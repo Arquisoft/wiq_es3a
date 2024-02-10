@@ -27,5 +27,5 @@ para evitar problemas debido a errores de compatibilidad si se trataban de cambi
 Si bién aun estar por confirmar, también se tenía pensado el uso de MongoDB para la base de datos. Se decidió usar este tipo
 de base de datos debido, en su gran mayoría, a la familiaridad con dicho sistema y debido que algunos de los objetos que se 
 requieren guardar es más sencillo de hacer en una base de datos NoSQL.
-
+ 
 ****
