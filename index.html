@@ -451,14 +451,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_stakeholders">1.3. Stakeholders</a></li>
 </ul>
 </li>
-<li><a href="#section-architecture-constraints">2. Architecture Constraints</a></li>
+<li><a href="#section-architecture-constraints">2. Restricciones de arquitectura</a>
+<ul class="sectlevel2">
+<li><a href="#_requisitos_técnicos">2.1. Requisitos técnicos</a></li>
+<li><a href="#_restricciones_organizativas">2.2. Restricciones organizativas</a></li>
+<li><a href="#_decisiones_tomadas">2.3. Decisiones tomadas</a></li>
+</ul>
+</li>
 <li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
 <ul class="sectlevel2">
 <li><a href="#_business_context">3.1. Business Context</a></li>
 <li><a href="#_technical_context">3.2. Technical Context</a></li>
 </ul>
 </li>
-<li><a href="#section-solution-strategy">4. Solution Strategy</a></li>
+<li><a href="#section-solution-strategy">4. Estrategia de solución</a></li>
 <li><a href="#section-building-block-view">5. Building Block View</a>
 <ul class="sectlevel2">
 <li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
@@ -474,10 +480,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</a></li>
 </ul>
 </li>
-<li><a href="#section-deployment-view">7. Deployment View</a>
+<li><a href="#section-deployment-view">7. Vista de Despliegue</a>
 <ul class="sectlevel2">
-<li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
-<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
+<li><a href="#_motivación">7.1. Motivación</a></li>
+<li><a href="#_características_de_calidad_yo_rendimiento">7.2. Características de Calidad y/o Rendimiento</a></li>
+<li><a href="#_componentes_de_la_infraestructura">7.3. Componentes de la infraestructura</a></li>
 </ul>
 </li>
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
@@ -494,7 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
+<li><a href="#section-technical-risks">11. Riesgos y deudas técnicas</a></li>
 <li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
@@ -709,7 +716,7 @@ These stakeholders determine the extent and the level of detail of your work and
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
+<h2 id="section-architecture-constraints">2. Restricciones de arquitectura</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -735,7 +742,106 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_requisitos_técnicos">2.1. Requisitos técnicos</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wikidata</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Las preguntas serán generadas automáticamente a partir de datos de Wikidata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usaremos GitHub para mantener el proyecto en un repositorio remoto, comunicarnos, asignar tareas y documentar las actas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto será desplegado a través de Docker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pruebas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deberán ser implementadas pruebas de cobertura, aceptación y carga.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_restricciones_organizativas">2.2. Restricciones organizativas</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Miembros del grupo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo en un equipo con 6 miembros que trabajarán de forma conjunta.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entregas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El trabajo conlleva un calendario de entregas específico:<br>
+* Documentación 0.1 será entregada en la semana 4.<br>
+* Prototipo 0.1 en la semana 7.<br>
+* Prototype 1.0 y documentación 1.0 en la semana 10.<br>
+* Prototipo 1.1 y documentación 1.1 en la semana 13.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones y acta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es obligatorio hacer una reunión de equipo en cada clase y tomar su correspondiente acta.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_decisiones_tomadas">2.3. Decisiones tomadas</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentaremos el proyecto siguiendo el modelo arc42.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lenguajes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se usará NodeJS y React para implementar los distintos requisitos de la aplicación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base de datos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se usará MongoDB como base de datos del proyecto.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Idioma</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La documentación será en español.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -838,48 +944,33 @@ together with a mapping table showing the relationships between channels and inp
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-solution-strategy">4. Solution Strategy</h2>
+<h2 id="section-solution-strategy">4. Estrategia de solución</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
-<p>A short summary and explanation of the fundamental decisions and solution strategies, that shape system architecture. It includes</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>technology decisions</p>
-</li>
-<li>
-<p>decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern</p>
-</li>
-<li>
-<p>decisions on how to achieve key quality goals</p>
-</li>
-<li>
-<p>relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.</p>
-</li>
-</ul>
+<div class="title">Solución pensada:</div>
+<p>El programa usado como solución consiste en una página en la que los usuarios pueden crear una cuenta a la que
+acceder para a una partida en la que tendran que responder varias preguntas. Se debe poder guardar tanto las preguntas como
+el ratio de aciertos del usuario en una base de datos.</p>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
-<p>These decisions form the cornerstones for your architecture. They are the foundation for many other detailed decisions or implementation rules.</p>
+<p>Las partidas tendrán aproximadamente diez preguntas y cada pregunta mostrará cuatro opciones, siendo solo una
+la respuesta correcta. Cada pregunta tendrá una duración máxima de, aproximadamente, 30 segundos. Esto fue decidido para
+facilitar la generación de las preguntas y la jugabilidad.</p>
 </div>
 <div class="paragraph">
-<div class="title">Form</div>
-<p>Keep the explanations of such key decisions short.</p>
+<div class="title">Tecnologías pensadas para su uso:</div>
+<p>La solución pensada originalmente consiste en usar Node.js y React para llevar a cabo la programación del
+sistema, usando consultas a Wikidata para realizar las preguntas y obtener las respuestas más actualizadas.</p>
 </div>
 <div class="paragraph">
-<p>Motivate what was decided and why it was decided that way,
-based upon problem statement, quality goals and key constraints.
-Refer to details in the following sections.</p>
+<p>El uso de Wikidata para realizar las perguntas fue una de las limitaciones impuestas sobre nuestro proyecto. El uso de React y
+Node.js se debe a que el proyecto inicial dado estaba escrito usando dicho entorno y biblioteca de código y se decidió seguir usandolo
+para evitar problemas debido a errores de compatibilidad si se trataban de cambiar.</p>
 </div>
 <div class="paragraph">
-<div class="title">Further Information</div>
-<p>See <a href="https://docs.arc42.org/section-4/">Solution Strategy</a> in the arc42 documentation.</p>
-</div>
-</div>
+<p>Si bién aun estar por confirmar, también se tenía pensado el uso de MongoDB para la base de datos. Se decidió usar este tipo
+de base de datos debido, en su gran mayoría, a la familiaridad con dicho sistema y debido que algunos de los objetos que se
+requieren guardar es más sencillo de hacer en una base de datos NoSQL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1289,144 +1380,49 @@ building block instances depicted in this diagram.&gt;</em></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-deployment-view">7. Deployment View</h2>
+<h2 id="section-deployment-view">7. Vista de Despliegue</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<div class="title">Content</div>
-<p>The deployment view describes:</p>
+<p><span class="image"><img src="./images/diagramaDespliegue.png" alt="Diagrama de despliegue"></span></p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>technical infrastructure used to execute your system, with infrastructure elements like geographical locations, environments, computers, processors, channels and net topologies as well as other infrastructure elements and</p>
-</li>
-<li>
-<p>mapping of (software) building blocks to that infrastructure elements.</p>
-</li>
-</ol>
-</div>
+<div class="sect2">
+<h3 id="_motivación">7.1. Motivación</h3>
 <div class="paragraph">
-<p>Often systems are executed in different environments, e.g. development environment, test environment, production environment. In such cases you should document all relevant environments.</p>
-</div>
-<div class="paragraph">
-<p>Especially document a deployment view if your software is executed as distributed system with more than one computer, processor, server or container or when you design and construct your own hardware processors and chips.</p>
-</div>
-<div class="paragraph">
-<p>From a software perspective it is sufficient to capture only those elements of an infrastructure that are needed to show a deployment of your building blocks. Hardware architects can go beyond that and describe an infrastructure to any level of detail they need to capture.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Software does not run without hardware.
-This underlying infrastructure can and will influence a system and/or some
-cross-cutting concepts. Therefore, there is a need to know the infrastructure.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Maybe a highest level deployment diagram is already contained in section 3.2. as
-technical context with your own infrastructure as ONE black box. In this section one can
-zoom into this black box using additional deployment diagrams:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
-when your infrastructure is more complex.</p>
-</li>
-<li>
-<p>When your (hardware) stakeholders prefer other kinds of diagrams rather than a deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Further Information</div>
-<p>See <a href="https://docs.arc42.org/section-7/">Deployment View</a> in the arc42 documentation.</p>
-</div>
+<p>El sistema se desplegara en una maquina virtual de Azure, dentro de la maquina cada micro servicio que compone la aplicación,
+ la base de datos y la web estarna desplegados en un contenedor docker ya que es como nos han proporcionado la integración continua inicial.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
+<h3 id="_características_de_calidad_yo_rendimiento">7.2. Características de Calidad y/o Rendimiento</h3>
 <div class="paragraph">
-<p>Describe (usually in a combination of diagrams, tables, and text):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>distribution of a system to multiple locations, environments, computers, processors, .., as well as physical connections between them</p>
-</li>
-<li>
-<p>important justifications or motivations for this deployment structure</p>
-</li>
-<li>
-<p>quality and/or performance features of this infrastructure</p>
-</li>
-<li>
-<p>mapping of software artifacts to elements of this infrastructure</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For multiple environments or alternative deployments please copy and adapt this section of arc42 for all relevant environments.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Motivation</dt>
-<dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
-</dd>
-<dt class="hdlist1">Quality and/or Performance Features</dt>
-<dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
-</dd>
-<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
-<dd>
-<p><em>&lt;description of the mapping&gt;</em></p>
-</dd>
-</dl>
+<p>Completar mas adelante</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you can include the internal structure of (some) infrastructure elements from level 1.</p>
-</div>
-<div class="paragraph">
-<p>Please copy the structure from level 1 for each selected element.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_1">7.2.1. <em>&lt;Infrastructure Element 1&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_2">7.2.2. <em>&lt;Infrastructure Element 2&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_n">7.2.3. <em>&lt;Infrastructure Element n&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
+<h3 id="_componentes_de_la_infraestructura">7.3. Componentes de la infraestructura</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Element</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>WebApp</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es el frontend de nuestra aplicación al cual se accederá desde un navegador.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ServiceGateway</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es la REST API de nuestra aplicación a la cual se conecta WebApp y se podrá acceder desde el exterior para obtener datos de los usuarios.Esta parte junta todas las operaciones de los microservicios en un único puerto.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 </div>
@@ -1708,31 +1704,54 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
+<h2 id="section-technical-risks">11. Riesgos y deudas técnicas</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>A list of identified technical risks or technical debts, ordered by priority</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.)</p>
-</div>
-<div class="paragraph">
-<p>This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.</p>
-</div>
-<div class="paragraph">
-<div class="title">Further Information</div>
-<p>See <a href="https://docs.arc42.org/section-11/">Risks and Technical Debt</a> in the arc42 documentation.</p>
-</div>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Riesgos/Deudas técnicas</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Despliegue en servidor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puede haber errores de conexión con la máquina que despliega la aplicación. Además, si la desplegamos en servicios como Azure o AWS, la aplicación depende de una fuente externa, por lo que, podría darse la situación de no poder desplegar la web por una causa ajena.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inconsistencias de datos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Al utilizar Wikidata para responder sacar la respuesta a preguntas, puede haber ciertas inconsistencias en los datos. Estos son actualizados por usuarios independientes y puede ocurrir que exista alguna respuesta que no tiene algún dato actualizado o incluso datos erróneos</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizar dependencias antiguas/inseguras</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puede ser un problema utilizar librerías o frameworks antiguos, expuestos a vulnerabilidades de seguridad o que dejen de funcionar, ya que, han sido modificados.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pruebas insuficientes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No hacer las suficientes pruebas puede ser problema para el producto final de la aplicación. Son necesarias para verificar que todo funciona correctamente y como es esperado. Si no es así será detectado mediante las pruebas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registro de usuarios</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Los usuarios han de poder registrarse con una contraseña asociada a su nombre de usuario, lo que puede dar lugar a problemas de seguridad si alguien quiere averiguar la contraseña de algún usuario. Por lo que se debería de garantizar el transporte de datos seguro.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carga muy alta de datos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Si la aplicación llegase a tener registrados una alta carga de usuarios (millones), hay que tener en cuenta que para cada usuario habrá que guardar un histórico de todas sus partidas. Además, de guardar en la base de datos los diferentes tipos de preguntas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta demanda de peticiones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Podría haber problemas de rendimiento si hay un número elevado de usuarios jugando al mismo tiempo. Eso podría colapsar la máquina y base de datos que dan soporte al juego.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad en la web</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se intentará que la aplicación sea lo más usable posible y que pueda llegar al máximo número de personas y rangos de edad; evitando colores parecidos, mala legibilidad y haciendo la aplicación lo más intuitiva posible.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
