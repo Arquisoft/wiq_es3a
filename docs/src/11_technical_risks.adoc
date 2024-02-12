@@ -1,3 +1,7 @@
+ifndef::imagesdir[:imagesdir: ../images]
+
+[[section-technical-risks]]
+== Riesgos y deudas técnicas
 
 [options="header",cols="2,2"]
 |===
@@ -19,3 +23,5 @@
 |Alta demanda de peticiones| Podría haber problemas de rendimiento si hay un número elevado de usuarios jugando al mismo tiempo. Eso podría colapsar la máquina y base de datos que dan soporte al juego.
 
 |Usabilidad en la web| Se intentará que la aplicación sea lo más usable posible y que pueda llegar al máximo número de personas y rangos de edad; evitando colores parecidos, mala legibilidad y haciendo la aplicación lo más intuitiva posible.
+
+|===

@@ -1,11 +1,10 @@
 ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-solution-strategy]]
-== Solution Strategy
+== Estrategia de solución
 
 
-[role="arc42help"]
-****
+
 .Solución pensada:
 
 El programa usado como solución consiste en una página en la que los usuarios pueden crear una cuenta a la que 
@@ -27,5 +26,4 @@ para evitar problemas debido a errores de compatibilidad si se trataban de cambi
 Si bién aun estar por confirmar, también se tenía pensado el uso de MongoDB para la base de datos. Se decidió usar este tipo
 de base de datos debido, en su gran mayoría, a la familiaridad con dicho sistema y debido que algunos de los objetos que se 
 requieren guardar es más sencillo de hacer en una base de datos NoSQL.
- 
-****
+
