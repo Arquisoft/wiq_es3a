@@ -1,35 +1,24 @@
 ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-design-decisions]]
-== Architecture Decisions
+== Decisiones de Arquitectura
+
+.Tecnologías para el backend
+
+Se ha decidido usar las tecnologías Node.js y React para llevar a cabo la programación del programa y la 
+página en la que se va a usar.
+
+Esto se debe, en gran medida, debido a que iniciamos desde un proyecto ya creado, el cual usa estas dos tecnologías.
+Por ello, para evitar perder tiempo intentando cambiar el código funcional ya existente, se ha decidido mantener el uso
+de estas tecnologías en los servicios a realizar.
+
+Base de Datos::
+
+Para el manejo de datos, como los usuarios, se ha decidido el uso de la tecnología de MongoDB. Esta es una tecnología
+compatible con las ya aceptadas del proyecto dado y es una con la que todos, o por lo menos la gran mayoría de los miembros
+del grupo, estamos acostumbrados a usar.
+
+También, debido al tipo de los datos a guardar en la base de datos se ha pensado y aceptado por los usuarios que la mejor 
+opción para guardarlos es usando una base de datos NoSQL, cosa de la MongoDB se especializa.
 
 
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationales.
-With "decisions" we mean selecting one alternative based on given criteria.
-
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
-
-Avoid redundancy. 
-Refer to section 4, where you already captured the most important decisions of your architecture.
-
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-.Form
-Various options:
-
-* ADR (https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[Documenting Architecture Decisions]) for every important decision
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-
-.Further Information
-
-See https://docs.arc42.org/section-9/[Architecture Decisions] in the arc42 documentation.
-There you will find links and examples about ADR.
-
-****
