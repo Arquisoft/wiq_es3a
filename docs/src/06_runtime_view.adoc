@@ -1,65 +1,66 @@
 ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-runtime-view]]
-== Runtime View
+== Vista de ejecución 
 
+=== Iniciar Sesión
 
-[role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
-
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
-
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
-
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
-
-.Form
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
-
-.Further Information
-
-See https://docs.arc42.org/section-6/[Runtime View] in the arc42 documentation.
-
-****
-
-=== <Runtime Scenario 1>
-
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
+Para el inicio de sesión el webapp mostrara la vista de inicio de sesión donde se le pedirá el usuario y la contraseña y se enviará los datos al servicio de registro el caul devuelve el token de sesión.
 
 [plantuml,"Sequence diagram",png]
 ----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor Usuario
+participant  Webapp
+participant  Servicio
+database MongoDB
+
+Usuario -> Webapp: Rellenar formulario login
+Webapp -> Servicio: Envía los datos
+
+Servicio -> MongoDB: Valida los datos
+MongoDB -> Servicio: Devuelve los datos correspondientes
+Servicio -> Webapp: Devuelve token
+Webapp -> Usuario: Notifica al usuario
 ----
 
-=== <Runtime Scenario 2>
+=== Juego
+En el juego el usuario iniciara una partida haciendo una petición al servidor el cual generara preguntas con wikidata. Una vez se genera 
+la pregunta se mostrara y el usuario deberá contestarla en un tiempo determinado. Tras esto se enviaran datos de la ronda y se almacenera en la base de datos. 
 
-=== ...
+[plantuml,"Sequence diagram1",png]
+----
+actor Usuario
+participant  Webapp
+participant  Servicio
+database MongoDB
+database WikiData
 
-=== <Runtime Scenario n>
+Usuario -> Webapp: Inicia una partida
+Webapp -> Servicio: Realiza petición de preguntas
+
+Servicio -> WikiData: Hace consulta para generar pregunta
+WikiData -> Servicio: Devuelve pregunta y respuestas 
+Servicio -> MongoDB: Almacena pregunta
+Servicio -> Webapp: Retorna pregunta y respuestas 
+Usuario -> Webapp: Contesta a la pregunta 
+
+Webapp -> Servicio: Envía la respuesta 
+Servicio ->MongoDB: Almacena datos en el usuario
+----
+=== Consulta a la API
+
+Se hace una consulta a la API y esta retornara los datos.
+
+[plantuml,"Sequence diagram2",png]
+----
+actor Usuario
+participant  Servicio
+database MongoDB
+
+Usuario -> Servicio:  Hace una petición
+
+Servicio -> MongoDB: Pide los datos que devolver.
+MongoDB -> Servicio: Devuelve los datos correspondientes
+Servicio -> Usuario: Devuelve datos
+
+----
