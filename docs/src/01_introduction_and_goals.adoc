@@ -1,93 +1,58 @@
-ifndef::imagesdir[:imagesdir: ../images]
-
 [[section-introduction-and-goals]]
-== Introduction and Goals
-
-[role="arc42help"]
-****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. 
-These include
-
-* underlying business goals, 
-* essential features, 
-* essential functional requirements, 
-* quality goals for the architecture and
-* relevant stakeholders and their expectations
-****
-
-=== Requirements Overview
-
-[role="arc42help"]
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
-
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
-
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
+== Introducción y objetivos
+Wiq es un proyecto desarrollado por la Universidad de Oviedo, desarrollado por la empresa HappySw contratada por RTVE para la realización de una versión online de un concurso de preguntas y respuestas.
+La aplicación consiste en una serie de preguntas de diferentes categorías y temas generadas automáticamente a pratir de datos de Wikidata.
+Los miembros del equipo de desarrollo son los siguientes:
 
 
-.Further Information
+=== Requisitos
+* Los usuarios podrán registrarse en el sistema y consultar el historico de participaciones.
+* Las preguntas serán generadas automáticamente con datos de Wikidata.
+* Las preguntas tendran un tiempo límite.
+* Cada pregunta tendrá una respuesta correcta y varias incorrectas, todas ellas generadas automáticamente.
+* El sistema dispondrá de una API para acceder a la información de las preguntas y los usuarios.
 
-See https://docs.arc42.org/section-1/[Introduction and Goals] in the arc42 documentation.
+=== Objetivos de calidad
+[options="header",cols="1,2,4"] 
 
-****
+|=== 
+| Objetivo de calidad | Motivación | Prioridad
 
-=== Quality Goals
+| *1*
+| *_Privacidad_*
+| El sistema garantizará la privacidad de los usuarios, para que sus datos no sean expuestos a terceras personas.
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. 
-We really mean quality goals for the architecture. Don't confuse them with project goals.
-They are not necessarily identical.
+| *2*
+| *_Usabilidad_*
+| La aplicación tiene que ser sencilla de utilizar para todas las personas aunque dispongan poco conocimineto sobre las tecnologías.
 
-Consider this overview of potential topics (based upon the ISO 25010 standard):
+| *3*
+| *_Mantenibilidad_*
+| La aplicación tiene que ser fácil de mantener, para añadir nuevas funcionalidades o cambiar las exixtentes, no se deberían tener que hacer muchos cambios.
 
-image::01_2_iso-25010-topics-EN.drawio.png["Categories of Quality Requirements"]
-
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. 
-Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged...
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+| *4*
+| *_Testeabilidad_*
+| Se utilizarán pruebas unitarias para garantizar el buen funcionamiento de la aplicación. 
+|=== 
 
 === Stakeholders
+[options="header",cols="1,2,5"] 
+|=== 
+|Nombre|Descripción|Expectativas
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
+| *_Equipo de desarrollo_*
+| 
+| El equipo de desarrollo esta formado por los estudiantes anteriormente indicados, y deberían desarrollar la aplicación con éxito en base a la documentación entregada por la empresa.
 
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
+| *_Usuarios_*
+| Personas que utilicen la aplicación.
+| Los usuarios esperan que la aplicación funcione correctamente y que cumpla con los objetivos.
 
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
+| *_Cliente_*
+| Empresa que contrata el desarrollo de la aplicación.
+| Se espera que la aplicación cumpla con los requisitos mencionados anteriormente.
 
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
-
-[options="header",cols="1,2,2"]
-|===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
-|===
+| *RTVE*
+| Empresa que contrata
+| Tiene las mismas expectativas que que el equipo de desarrollo que funccione todo correctamente y sin ningún fallo
+|=== 
