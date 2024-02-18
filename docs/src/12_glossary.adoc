@@ -1,42 +1,31 @@
 ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-glossary]]
-== Glossary
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-
-.Form
-
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-
-.Further Information
-
-See https://docs.arc42.org/section-12/[Glossary] in the arc42 documentation.
-
-****
+== Glosario
 
 [cols="e,2e" options="header"]
 |===
-|Term |Definition
+|Término |Definición
 
-|<Term-1>
-|<definition-1>
+|Wikidata
+|Base de datos colaborativa y libre que almacena datos estructurados de donde se obtiene la respuesta de las preguntas que se hacen en el juego.
 
-|<Term-2>
-|<definition-2>
+|MongoDB
+|MongoDB es una base de datos NoSQL orientada a documentos, en la cual se almacenarán los datos de la aplicación.
+
+|API
+|Es un conjunto de reglas y protocolos que permite que distintos componentes de software se comuniquen entre sí. Las API definen los métodos y formatos de datos que deben seguirse para que las aplicaciones puedan interactuar de manera eficiente.
+
+|Frontend
+|Es la parte de un sistema o aplicación de software que interactúa directamente con los usuarios finales.
+
+|Backend
+|Es la parte de un sistema o aplicación de software que no es visible para los usuarios finales y que se encarga de procesar datos, realizar cálculos y realizar funciones relacionadas con la lógica del negocio.
+
+|Persistencia
+|Es el proceso de almacenamiento y recuperación de datos para mantener el estado de la aplicación.
+
+|Stakeholders
+|Son el conjunto de personas o entidades que tienen interés o influencia de alguna manera sobre un proyecto
+
 |===
