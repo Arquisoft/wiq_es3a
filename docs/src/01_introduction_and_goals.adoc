@@ -1,14 +1,14 @@
 [[section-introduction-and-goals]]
 == Introducción y objetivos
 Wiq es un proyecto desarrollado por la Universidad de Oviedo, desarrollado por la empresa HappySw contratada por RTVE para la realización de una versión online de un concurso de preguntas y respuestas.
-La aplicación consiste en una serie de preguntas de diferentes categorías y temas generadas automáticamente a pratir de datos de Wikidata.
+La aplicación consiste en una serie de preguntas de diferentes categorías y temas generadas automáticamente a partir de datos de Wikidata.
 Los miembros del equipo de desarrollo son los siguientes:
 
 
 === Requisitos
-* Los usuarios podrán registrarse en el sistema y consultar el historico de participaciones.
+* Los usuarios podrán registrarse en el sistema y consultar el histórico de participaciones.
 * Las preguntas serán generadas automáticamente con datos de Wikidata.
-* Las preguntas tendran un tiempo límite.
+* Las preguntas tendrán un tiempo límite.
 * Cada pregunta tendrá una respuesta correcta y varias incorrectas, todas ellas generadas automáticamente.
 * El sistema dispondrá de una API para acceder a la información de las preguntas y los usuarios.
 
@@ -24,11 +24,11 @@ Los miembros del equipo de desarrollo son los siguientes:
 
 | *2*
 | *_Usabilidad_*
-| La aplicación tiene que ser sencilla de utilizar para todas las personas aunque dispongan poco conocimineto sobre las tecnologías.
+| La aplicación tiene que ser sencilla de utilizar para todas las personas aunque dispongan poco conocimiento sobre las tecnologías.
 
 | *3*
 | *_Mantenibilidad_*
-| La aplicación tiene que ser fácil de mantener, para añadir nuevas funcionalidades o cambiar las exixtentes, no se deberían tener que hacer muchos cambios.
+| La aplicación tiene que ser fácil de mantener, para añadir nuevas funcionalidades o cambiar las existentes, no se deberían tener que hacer muchos cambios.
 
 | *4*
 | *_Testeabilidad_*
@@ -54,5 +54,5 @@ Los miembros del equipo de desarrollo son los siguientes:
 
 | *RTVE*
 | Empresa que contrata
-| Tiene las mismas expectativas que que el equipo de desarrollo que funccione todo correctamente y sin ningún fallo
+| Tiene las mismas expectativas que que el equipo de desarrollo que funcione todo correctamente y sin ningún fallo
 |=== 
