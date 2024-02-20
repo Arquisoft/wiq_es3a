@@ -5,14 +5,14 @@
         {
           "ID": 1,
           "pregunta": "¿Cuál es la capital de ",
-          "query": "SELECT ?paisLabel ?capitalLabel WHERE { ?pais wdt:P31 wd:Q6256. ?pais wdt:P36 ?capital. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
+          "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P36 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
           "respuestaCorrecta": "",
           "respuestasIncorrectas": ["", "", ""]
         },
         {
           "ID": 2,
           "pregunta": "¿A qué continente pertenece ",
-          "query": "SELECT ?paisLabel ?continenteLabel WHERE { ?pais wdt:P31 wd:Q6256. ?pais wdt:P30 ?continente. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
+          "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P30 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
           "respuestaCorrecta": "",
           "respuestasIncorrectas": ["", "", ""]
         }
@@ -25,14 +25,14 @@
         {
           "ID": 1,
           "pregunta": "¿En que fecha se fundó el equipo de fútbol ",
-          "query": "SELECT ?equipoLabel ?fechaFundacion WHERE { ?equipo wdt:P31/wdt:P279* wd:Q476028; wdt:P17 wd:Q29; wdt:P118 ?tipoEquipo. VALUES ?tipoEquipo { wd:Q35615 wd:Q324867 } OPTIONAL { ?equipo wdt:P571 ?fechaFundacion } SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. }}", 
+          "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31/wdt:P279* wd:Q476028; wdt:P17 wd:Q29; wdt:P118 ?tipoEquipo. VALUES ?tipoEquipo { wd:Q35615 wd:Q324867 } OPTIONAL { ?p wdt:P571 ?rLabel } SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. }}", 
           "respuestaCorrecta": "",
           "respuestasIncorrectas": ["", "", ""]
         },
         {
           "ID": 2,
           "pregunta": "¿Quién es el ganador de la ",
-          "query": "SELECT ?temporadaLabel ?ganadorLabel WHERE { wd:Q1968 wdt:P793 ?temporada. ?temporada wdt:P1346 ?ganador. ?ganador wdt:P31 wd:Q5. SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. }}",
+          "query": "SELECT ?pLabel ?rLabel WHERE { wd:Q1968 wdt:P793 ?p. ?p wdt:P1346 ?r. ?r wdt:P31 wd:Q5. SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. }}",
           "respuestaCorrecta": "",
           "respuestasIncorrectas": ["", "", ""]
         }
