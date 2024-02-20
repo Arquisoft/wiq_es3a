@@ -25,7 +25,9 @@ function capitalPais(endpointUrl, sparqlQuery) {
 function setUp() {
     capitalPais(endpointUrl, sparqlQuery).then(function(data) {
         JSON = data;
+        
         console.log(JSON);
+        console.log(Object.keys(JSON).length)
     });
 }
 
