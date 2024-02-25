@@ -18,7 +18,7 @@ function App() {
     <Container component="main" maxWidth="ml">
       <CssBaseline />
       <div className="welcome-container">
-      <Typography component="h1" variant="h3" align="center" sx={{ marginTop: 2, marginBottom: 2}}>
+      <Typography component="h1" variant="h3" align="center" sx={{ marginTop: 2, marginBottom: 2, fontWeight:"bold"}}>
         Welcome to WIQ
       </Typography>
       </div>

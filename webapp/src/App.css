@@ -40,8 +40,6 @@
 .welcome-container {
   padding: 1em; /* Añade espacio alrededor del texto */
   margin-bottom: 1em; /* Añade espacio debajo del texto */
-  width: 100%;
-  max-width: 100%;
 }
 
 
