@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -34,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ marginTop: 4 }}>
+    <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
       {loginSuccess ? (
         <div>
           <Typography component="h1" variant="h5" sx={{ textAlign: 'center' }}>
@@ -45,8 +46,8 @@ const Login = () => {
           </Typography>
         </div>
       ) : (
-        <div>
-          <Typography component="h1" variant="h5">
+        <div className="login-container">
+          <Typography component="h1" variant="h5" >
             Login
           </Typography>
           <TextField

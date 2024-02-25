@@ -1,0 +1,17 @@
+
+ .login-container {
+    justify-content: center;
+    align-items: center;
+    border: 0.5ex solid #61b6ce; /* Establece el borde */
+    padding: 1em; /* Añade espacio alrededor del texto */
+    margin-bottom: 1em; /* Añade espacio debajo del texto */
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  h1{
+    text-align: center;
+}
+
+  
+  
