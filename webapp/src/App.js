@@ -20,15 +20,15 @@ function App() {
         Welcome to the 2024 edition of the Software Architecture course
       </Typography>
       {showLogin ? <Login /> : <AddUser />}
-      <Typography component="div" align="center" sx={{ marginTop: 2 }}>
+      <Typography component="div" align="center" sx={{ marginTop: -5 }}>
         {showLogin ? (
-          <Link name="gotoregister" component="button" variant="body2" onClick={handleToggleView}>
-            Don't have an account? Register here.
-          </Link>
+          <Button name="gotoregister" component="button" variant="body2" onClick={handleToggleView}>
+            Register
+          </Button>
         ) : (
-          <Link component="button" variant="body2" onClick={handleToggleView}>
-            Already have an account? Login here.
-          </Link>
+          <Button component="button" variant="body2" onClick={handleToggleView}>
+            Login
+          </Button>
         )}
       </Typography>
     </Container>
