@@ -4,10 +4,10 @@ import Login from './components/Login';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+//import Link from '@mui/material/Link';
 
 function App() {
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
 
   const handleToggleView = () => {
     setShowLogin(!showLogin);
@@ -22,13 +22,13 @@ function App() {
       {showLogin ? <Login /> : <AddUser />}
       <Typography component="div" align="center" sx={{ marginTop: -5 }}>
         {showLogin ? (
-          <Button name="gotoregister" component="button" variant="body2" onClick={handleToggleView}>
+          <button name="gotoregister" type="button" onClick={handleToggleView}>
             Register
-          </Button>
+          </button>
         ) : (
-          <Button component="button" variant="body2" onClick={handleToggleView}>
+          <button type="button" onClick={handleToggleView}>
             Login
-          </Button>
+          </button>
         )}
       </Typography>
     </Container>
