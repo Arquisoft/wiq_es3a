@@ -29,12 +29,14 @@ function validateRequiredFields(req, requiredFields) {
 app.post('/adduser', async (req, res) => {
     try {
         // Check if required fields are present in the request body
-        validateRequiredFields(req, ['username', 'password']);
+        validateRequiredFields(req, ['name', 'surname', 'username', 'password', 'passwordRepeat']);
 
         // Encrypt the password before saving it
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
         const newUser = new User({
+            name: req.body.name,
+            surname: req.body.surname,
             username: req.body.username,
             password: hashedPassword,
         });
