@@ -38,11 +38,10 @@ app.post('/adduser', async (req, res) => {
         // Check if required fields are present in the request body
         validateRequiredFields(req, ['name', 'surname', 'username', 'password', 'passwordRepeat']);
 
+        validateSamePassword(req.body.password, req.body.passwordRepeat);
+
         // Encrypt the password before saving it
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const hashedPasswordRepeat = await bcrypt.hash(req.body.passwordRepeat, 10);
-
-        validateSamePassword(hashedPassword, hashedPasswordRepeat);
 
         const newUser = new User({
             name: req.body.name,
