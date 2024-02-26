@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
+import './AddUser.css';
 
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
 
@@ -35,58 +36,70 @@ const AddUser = () => {
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 4 }}>
-      <Typography component="h1" variant="h5">
-        Add User
-      </Typography>
-      <TextField
-        name="name"
-        margin="normal"
-        fullWidth
-        label="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <TextField
-        name="surname"
-        margin="normal"
-        fullWidth
-        label="Surname"
-        value={surname}
-        onChange={(e) => setSurName(e.target.value)}
-      />
-      <TextField
-        name="username"
-        margin="normal"
-        fullWidth
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <TextField
-        name="password"
-        margin="normal"
-        fullWidth
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <TextField
-        name="passwordRepeat"
-        margin="normal"
-        fullWidth
-        label="Password Repeat"
-        type="password"
-        value={passwordRepeat}
-        onChange={(e) => setPasswordRepeat(e.target.value)}
-      />
-      <Button variant="contained" color="primary" onClick={addUser}>
-        Add User
-      </Button>
-      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar} message="User added successfully" />
-      {error && (
-        <Snackbar open={!!error} autoHideDuration={6000} onClose={() => setError('')} message={`Error: ${error}`} />
-      )}
+      <div className="register-container">
+        <Typography component="h1" variant="h5">
+          Añadir usuario
+        </Typography>
+        <TextField
+          name="name"
+          margin="normal"
+          fullWidth
+          label="Nombre"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          name="surname"
+          margin="normal"
+          fullWidth
+          label="Apellidos"
+          value={surname}
+          onChange={(e) => setSurName(e.target.value)}
+        />
+        <TextField
+          name="username"
+          margin="normal"
+          fullWidth
+          label="Nombre de usuario"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <TextField
+          name="password"
+          margin="normal"
+          fullWidth
+          label="Contraseña"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <TextField
+          name="passwordRepeat"
+          margin="normal"
+          fullWidth
+          label="Repetir contraseña"
+          type="password"
+          value={passwordRepeat}
+          onChange={(e) => setPasswordRepeat(e.target.value)}
+        />
+        <Button variant="contained" color="primary" onClick={addUser}>
+          Registrarse
+        </Button>
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+          message="User registrado correctamente"
+        />
+        {error && (
+          <Snackbar
+            open={!!error}
+            autoHideDuration={6000}
+            onClose={() => setError("")}
+            message={`Error: ${error}`}
+          />
+        )}
+      </div>
     </Container>
   );
 };

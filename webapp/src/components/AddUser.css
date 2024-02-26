@@ -1,0 +1,19 @@
+.register-container {
+    justify-content: center;
+    align-items: center;
+    padding: 1.5em; /* Añade espacio alrededor del texto */
+    margin-bottom: 1em; /* Añade espacio debajo del texto */
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #ffffff;
+    border-radius: 1em;
+    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.6);
+  }
+
+  h1{
+    text-align: center;
+  }
+  
+  .register-container button:hover {
+    background-color: #0056b3;
+  }
