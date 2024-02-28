@@ -1,19 +1,53 @@
 .register-container {
-    justify-content: center;
-    align-items: center;
-    padding: 1.5em; /* Añade espacio alrededor del texto */
-    margin-bottom: 1em; /* Añade espacio debajo del texto */
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: #ffffff;
-    border-radius: 1em;
-    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    margin-top: 200px;
+    background-color: #fff;
+    padding-bottom: 30px;
+    border-radius: 20px;
   }
 
-  h1{
-    text-align: center;
-  }
+.text{
+  margin-top: 15px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.underline{
+  width: 100px;
+  margin-top: 7px;
+  height: 6px;
+  border-radius: 9px;
+  background: #FB8AB4;
+  align-self: center;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  margin-left: 13px;
+  margin-right: 13px;
+}
   
-  .register-container button:hover {
-    background-color: #0056b3;
-  }
+.register-container button {
+  background-color: #FB8AB4;
+}
+
+.register-container button:hover {
+  background-color: #FB8AB4;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at 50% -20.71%, #ffdfda 0, #ffdfd8 6.25%, #ffe0d5 12.5%, #ffe1d3 18.75%, #fee2d1 25%, #fbe3cf 31.25%, #f8e4ce 37.5%, #f5e5cd 43.75%, #f2e6cd 50%, #eee7cd 56.25%, #ebe8ce 62.5%, #e7e9cf 68.75%, #e3ead0 75%, #dfebd2 81.25%, #dcecd4 87.5%, #d8edd7 93.75%, #d5edda 100%);
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  margin-left: 13px;
+  margin-top: 13px;
+  margin-right: 13px;
+}
+

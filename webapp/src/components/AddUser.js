@@ -35,19 +35,25 @@ const AddUser = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ marginTop: 4 }}>
+    <Container component="main">
       <div className="register-container">
-        <Typography component="h1" variant="h5">
-          Añadir usuario
-        </Typography>
+        <div className='text'>
+          <Typography variant="h4">
+            Añadir usuario
+          </Typography>
+        </div>
+        <div className="underline"></div>
+        <div className='input'>
         <TextField
           name="name"
           margin="normal"
-          fullWidth
           label="Nombre"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          id = "input"
         />
+        </div>
+        <div className='input'>
         <TextField
           name="surname"
           margin="normal"
@@ -55,7 +61,10 @@ const AddUser = () => {
           label="Apellidos"
           value={surname}
           onChange={(e) => setSurName(e.target.value)}
+          id = "input"
         />
+        </div>
+        <div className='input'>
         <TextField
           name="username"
           margin="normal"
@@ -63,7 +72,11 @@ const AddUser = () => {
           label="Nombre de usuario"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          id = "input"
         />
+        </div>
+        
+        <div className='input'>
         <TextField
           name="password"
           margin="normal"
@@ -72,7 +85,11 @@ const AddUser = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          id = "input"
         />
+        </div>
+        
+        <div className='input'>
         <TextField
           name="passwordRepeat"
           margin="normal"
@@ -81,10 +98,15 @@ const AddUser = () => {
           type="password"
           value={passwordRepeat}
           onChange={(e) => setPasswordRepeat(e.target.value)}
+          id = "input"
         />
-        <Button variant="contained" color="primary" onClick={addUser}>
+        </div>
+        <div className="underline"></div>
+        <div className='button'>
+        <Button variant="contained" onClick={addUser}>
           Registrarse
         </Button>
+        </div>
         <Snackbar
           open={openSnackbar}
           autoHideDuration={6000}
