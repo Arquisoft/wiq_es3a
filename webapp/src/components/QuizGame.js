@@ -3,16 +3,20 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 
 const QuizGame = () => {
-    const [questions, setQuestions] = useState([]);
+    const numberOfQuestions = 10;
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [score, setScore] = useState(0);
+    const [questionsNumber, setQuestionsNumber] = useState(0);
     const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
+    const [correctQuestions, setCorrectQuestions] = useState([]);
+    const [failedQuestions, setFailedQuestions] = useState([]);
+    
 
     useEffect(() => {
-        fetchQuestions();
-    }, []);
+        generateQuestion();
 
-    const fetchQuestions = async () => {
+    }, [questionsNumber]);
+
+    const generateQuestion = async () => {
         try {
             //const response = await axios.get(`${apiEndpoint}/generate-question`);
             //setQuestions(response.data);
@@ -27,7 +31,7 @@ const QuizGame = () => {
                     ],
                 }
             ];
-            setQuestions(hardcodedQuestions);
+            setCurrentQuestion(hardcodedQuestions[0]);
 
         } catch (error) {
             console.error('Error fetching questions:', error);
@@ -36,10 +40,17 @@ const QuizGame = () => {
 
     const handleAnswer = (isCorrect) => {
         if (isCorrect) {
-            setScore(score + 1);
+            //Save the question as correct
+            correctQuestions.push(currentQuestion);
+            //Display a message 
+            
+        }else{
+            //Save the question as failed
+            failedQuestions.push(currentQuestion);
         }
-        if (currentQuestion < questions.length - 1) {
-            setCurrentQuestion(currentQuestion + 1);
+        if (questionsNumber < numberOfQuestions ) {
+            questionsNumber++;
+
         } else {
             // Quiz is finished
             // You can display the final score or redirect to another page
@@ -50,9 +61,9 @@ const QuizGame = () => {
         <div>
             {questions.length > 0 ? (
                 <div>
-                    <h2>{questions[currentQuestion].question}</h2>
+                    <h2>{currentQuestion.question}</h2>
                     <div>
-                        {questions[currentQuestion].answers.slice(0, 2).map((answer, index) => (
+                        {currentQuestion.answers.slice(0, 2).map((answer, index) => (
                             <Button key={index} onClick={() => handleAnswer(answer.isCorrect)}>
                                 {answer.text}
                             </Button>
