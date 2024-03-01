@@ -50,18 +50,39 @@ app.get('/generate-question', async (req, res) => {
 
     //Execute the query
     const formattedResults = await executeQuery(template);
-    
-    //Select random formatted result
-    const randomIndex = Math.floor(Math.random() * formattedResults.length);
-    const randomResult = formattedResults[randomIndex];
+
+    //Generación de índices aleatorios y diferentes
+    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
+    do {
+        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
+        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
+        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
+        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
+    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
+      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
+      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
+      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
+      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
+      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+
+    //Creación de respuestas
+    const correctAnswer = formattedResults[randomIndex0];
+    const wrongAnswer1 = formattedResults[randomIndex1];
+    const wrongAnswer2 = formattedResults[randomIndex2];
+    const wrongAnswer3 = formattedResults[randomIndex3];
+
+    //Creación de array desordenado con todas las respuestas
+    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
+    const allAnswers = shuffleArray(allAnswersSorted);
 
     // Add pLabel to question string from template
-    const question = template.question.replace('^', randomResult.pLabel);
+    const question = template.question.replace('^', correctAnswer.pLabel);
 
     // Create a new question
     const newQuestion = new Question({
       question: question,
-      correctAnswer: randomResult.rLabel
+      correctAnswer: correctAnswer.rLabel,
+      allAnswers: allAnswers
     });
 
     newQuestion.save();
@@ -86,3 +107,11 @@ server.on('close', () => {
   });
 
   module.exports = server
+
+//Funcion que mezcla los elementos de un array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
