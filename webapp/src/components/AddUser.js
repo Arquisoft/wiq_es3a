@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './AddUser.css';
+import logo from './logo.png'
 
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
 
@@ -35,7 +36,10 @@ const AddUser = () => {
   };
 
   return (
-    <Container component="main">
+    <Container component="main" className='container'>
+      <div className='logo-container'>
+        <img src={logo} alt='Logo wiq'></img>
+      </div>
       <div className="register-container">
         <div className='text'>
           <Typography variant="h4">
