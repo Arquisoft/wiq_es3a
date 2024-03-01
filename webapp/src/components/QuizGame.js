@@ -4,42 +4,33 @@ import { Button } from '@mui/material';
 
 const QuizGame = () => {
     const numberOfQuestions = 10;
-    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState(null);
     const [questionsNumber, setQuestionsNumber] = useState(0);
     const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
-    const [correctQuestions, setCorrectQuestions] = useState([]);
-    const [failedQuestions, setFailedQuestions] = useState([]);
-
+    const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
     useEffect(() => {
         generateQuestion();
-
-    }, [questionsNumber]);
+    }, [questionsNumber]); // Solo se ejecuta al montar el componente
 
     const generateQuestion = async () => {
         try {
             const response = await axios.get(`${apiEndpoint}/generate-question`);
-            
             setCurrentQuestion(response.data);
-
         } catch (error) {
             console.error('Error fetching questions:', error);
+            // Manejo de errores
         }
     };
 
     const handleAnswer = (answer) => {
-        if (answer === currentQuestion.correctAnswer) {
-            //Save the question as correct
-            correctQuestions.push(currentQuestion);
-            //Display a message 
-
-        } else {
-            //Save the question as failed
-            failedQuestions.push(currentQuestion);
+        const isCorrect = answer === currentQuestion.correctAnswer;
+        setAnsweredQuestions(prev => [...prev, { question: currentQuestion, isCorrect }]);
+        if(isCorrect) {
+            console.log(answeredQuestions)
         }
         if (questionsNumber < numberOfQuestions) {
-            questionsNumber++;
-
+            setQuestionsNumber(prev => prev + 1);
         } else {
             // Quiz is finished
             // You can display the final score or redirect to another page
@@ -51,20 +42,26 @@ const QuizGame = () => {
             {currentQuestion !== null ? (
                 <div>
                     <h2>{currentQuestion.question}</h2>
-                    {currentQuestion.answers.map((answer, index) => {
-                        if (index % 2 === 0) {
-                            return (
-                                <div key={index}>
-                                    <Button onClick={() => handleAnswer(answer)}>{answer}</Button>
-                                    {currentQuestion.answers[index + 1] && (
-                                        <Button onClick={() => handleAnswer(currentQuestion.answers[index + 1])}>
-                                            {currentQuestion.answers[index + 1]}
-                                        </Button>
-                                    )}
-                                </div>
-                            );
-                        }
-                    })}
+                    <div>
+                        <div>
+                            {currentQuestion.allAnswers.map((answer, index) => (
+                                index < currentQuestion.allAnswers.length / 2 && (
+                                    <Button key={index} onClick={() => handleAnswer(answer)}>
+                                        {answer}
+                                    </Button>
+                                )
+                            ))}
+                        </div>
+                        <div>
+                            {currentQuestion.allAnswers.map((answer, index) => (
+                                index >= currentQuestion.allAnswers.length / 2 && (
+                                    <Button key={index} onClick={() => handleAnswer(answer)}>
+                                        {answer}
+                                    </Button>
+                                )
+                            ))}
+                        </div>
+                    </div>
                 </div>
             ) : (
                 <p>Loading questions...</p>
