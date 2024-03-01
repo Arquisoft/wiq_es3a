@@ -9,8 +9,8 @@ const questionSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  incorrectAnswers: {
-    type: [String],
+  allAnswers: {
+    type: Array,
     required: true
   }
 });
