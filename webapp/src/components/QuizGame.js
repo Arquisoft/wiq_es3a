@@ -9,7 +9,7 @@ const QuizGame = () => {
     const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
     const [correctQuestions, setCorrectQuestions] = useState([]);
     const [failedQuestions, setFailedQuestions] = useState([]);
-    
+
 
     useEffect(() => {
         generateQuestion();
@@ -18,37 +18,26 @@ const QuizGame = () => {
 
     const generateQuestion = async () => {
         try {
-            //const response = await axios.get(`${apiEndpoint}/generate-question`);
-            //setQuestions(response.data);
-            const hardcodedQuestions = [
-                {
-                    question: "¿Cuál es la capital de Francia?",
-                    answers: [
-                        { text: "Paris", isCorrect: true },
-                        { text: "Londres", isCorrect: false },
-                        { text: "Berlin", isCorrect: false },
-                        { text: "Roma", isCorrect: false },
-                    ],
-                }
-            ];
-            setCurrentQuestion(hardcodedQuestions[0]);
+            const response = await axios.get(`${apiEndpoint}/generate-question`);
+            
+            setCurrentQuestion(response.data);
 
         } catch (error) {
             console.error('Error fetching questions:', error);
         }
     };
 
-    const handleAnswer = (isCorrect) => {
-        if (isCorrect) {
+    const handleAnswer = (answer) => {
+        if (answer === currentQuestion.correctAnswer) {
             //Save the question as correct
             correctQuestions.push(currentQuestion);
             //Display a message 
-            
-        }else{
+
+        } else {
             //Save the question as failed
             failedQuestions.push(currentQuestion);
         }
-        if (questionsNumber < numberOfQuestions ) {
+        if (questionsNumber < numberOfQuestions) {
             questionsNumber++;
 
         } else {
@@ -59,23 +48,23 @@ const QuizGame = () => {
 
     return (
         <div>
-            {questions.length > 0 ? (
+            {currentQuestion !== null ? (
                 <div>
                     <h2>{currentQuestion.question}</h2>
-                    <div>
-                        {currentQuestion.answers.slice(0, 2).map((answer, index) => (
-                            <Button key={index} onClick={() => handleAnswer(answer.isCorrect)}>
-                                {answer.text}
-                            </Button>
-                        ))}
-                    </div>
-                    <div>
-                        {questions[currentQuestion].answers.slice(2).map((answer, index) => (
-                            <Button key={index} onClick={() => handleAnswer(answer.isCorrect)}>
-                                {answer.text}
-                            </Button>
-                        ))}
-                    </div>
+                    {currentQuestion.answers.map((answer, index) => {
+                        if (index % 2 === 0) {
+                            return (
+                                <div key={index}>
+                                    <Button onClick={() => handleAnswer(answer)}>{answer}</Button>
+                                    {currentQuestion.answers[index + 1] && (
+                                        <Button onClick={() => handleAnswer(currentQuestion.answers[index + 1])}>
+                                            {currentQuestion.answers[index + 1]}
+                                        </Button>
+                                    )}
+                                </div>
+                            );
+                        }
+                    })}
                 </div>
             ) : (
                 <p>Loading questions...</p>
