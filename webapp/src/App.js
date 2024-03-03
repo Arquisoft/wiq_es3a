@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AddUser from './components/AddUser';
-import Login from './components/Login';
+import AddUser from './components/register/AddUser';
+import Login from './components/login/Login';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -15,10 +15,10 @@ function App() {
   };
 
   return (
-    <Container component="main" maxWidth="ml">
+    <Container component="main" maxWidth="sm" >
       <CssBaseline />
       <div className="welcome-container">
-      <Typography component="h1" variant="h3" align="center" sx={{ marginTop: 2, marginBottom: 2, fontWeight:"bold"}}>
+      <Typography component="h1" variant="h3" align="center" sx={{ fontWeight:"bold"}}>
         Welcome to WIQ
       </Typography>
       </div>
