@@ -2,34 +2,30 @@ import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Login from './Login';
-import AddUser from './AddUser';
-import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import "./Inicio.css";
 
 function Inicio() {
-    const [showLogin, setShowLogin] = useState(true);
-
-  const handleToggleView = () => {
-    setShowLogin(!showLogin);
+  
+  const styles =
+  {  
+    backgroundImage:"url(/background.jpg)",
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: "100%",
+    height: '100%', 
+    
+    fontWeight:"bold",
+    fontSize:"larger",
+    color:"#FFFF"
   };
 
   return (
     <Container>
-        <CssBaseline />
-      <Typography component="h1" variant="h5" align="center" sx={{ marginTop: 2 }}>
+      <CssBaseline />
+      <Typography component="h1" variant="h5" align="center" sx={{ marginTop: 50 }}>
         Saber y Ganar
-      </Typography>
-      {showLogin ? <Login /> : <AddUser />}
-      <Typography component="div" align="center" sx={{ marginTop: 2 }}>
-        {showLogin ? (
-          <Link name="gotoregister" component="button" variant="body2" onClick={handleToggleView}>
-            Don't have an account? Register here.
-          </Link>
-        ) : (
-          <Link component="button" variant="body2" onClick={handleToggleView}>
-            Already have an account? Login here.
-          </Link>
-        )}
       </Typography>
     </Container>
     );
