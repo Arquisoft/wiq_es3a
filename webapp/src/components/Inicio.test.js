@@ -18,7 +18,7 @@ test('test mostrar login', () => {
 test('test crear cuenta', () => {
 render(<Inicio />);
 fireEvent.click(screen.getByRole('button', {
-    name: /Don't have an account? Register here./i
+    name: "Don't have an account? Register here."
   }));
 const linkElement = screen.getByText("Already have an account? Login here.");
   expect(linkElement).toBeInTheDocument();
