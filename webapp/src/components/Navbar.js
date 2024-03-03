@@ -19,13 +19,13 @@ const Navbar = () => {
             </li>
 
            <li className="nav-item">
-             <NavLink to="/home" className="nav__link">
+             <NavLink to={process.env.RUTA_HOME || '/home'}  className="nav__link">
                Home
              </NavLink>
            </li>
            
            <li className="nav-item">
-             <NavLink to="/" className="nav__link">
+             <NavLink to={process.env.RUTA_INICIO || '/'} className="nav__link">
                Login
              </NavLink>
            </li>
