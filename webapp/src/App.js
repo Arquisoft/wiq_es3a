@@ -12,7 +12,7 @@ function App() {
         <Navbar />
         <main className="main-content">
           <Routes>
-            <Route path={process.env.RUTA_INICIO || '/'} element={<Inicio />} />
+            <Route path="/" element={<Inicio />} />
             <Route path={process.env.RUTA_HOME || '/home'} element={<Home />} />
           </Routes>
         </main>
