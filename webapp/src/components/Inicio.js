@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Login from './Login';
-import AddUser from './AddUser';
+import Login from './login/Login';
+import AddUser from './register/AddUser';
 import Link from '@mui/material/Link';
 
 function Inicio() {
