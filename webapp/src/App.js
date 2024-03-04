@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Inicio from './components/Inicio';
+import Game from './components/QuizGame';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path={process.env.RUTA_HOME || '/home'} element={<Home />} />
+            <Route path={'/game'} element={<Game />} />
           </Routes>
         </main>
       </Router>

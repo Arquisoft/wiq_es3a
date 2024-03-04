@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from '@mui/material';
+import './QuizGame.css';
 
 const QuizGame = () => {
-    const numberOfQuestions = 10;
+    const numberOfQuestions = 9;
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [questionsNumber, setQuestionsNumber] = useState(0);
     const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
@@ -38,11 +39,11 @@ const QuizGame = () => {
     };
 
     return (
-        <div>
+        <div id="mainContainer">
             {currentQuestion !== null ? (
-                <div>
+                <div id="qContainer">
                     <h2>{currentQuestion.question}</h2>
-                    <div>
+                    <div id="rContainer">
                         <div>
                             {currentQuestion.allAnswers.map((answer, index) => (
                                 index < currentQuestion.allAnswers.length / 2 && (
