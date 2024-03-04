@@ -5,11 +5,8 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 == Building Block View
 
-[role="arc42help"]
-
 === Whitebox Overall System
 
-[role="arc42help"]
 
 ==== Overview Diagram
 image:05_DiagramaL1.png[Diagrama nivel 1]
@@ -20,6 +17,7 @@ Se trata de un diagrama explicativo de la aplicación y sus componentes más imp
 El principal actor, el usuario, interactúa con la aplicación la cual consulta la base de datos de Wikidata para recuperar preguntas y sus correspondientes respuestas. 
 Además, se utiliza la base de datos del proyecto para almacenar los resultados del usuario participante y para posibles inicios de sesión del mismo.
 Esto nos advierte de una división clara del proyecto en frontend, con la interfaz de usuario, y backend, para la lógica de negocio y consultas a recursos externos.
+
 
 
 
@@ -35,14 +33,13 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 ==== Important Interfaces
 Las interfaces más importantes son las encargadas de la interacción con el usuario, aunque irán cambiando a medida que el proyecto se desarrolle.
 
-[role="arc42help"]
-
 
 === Level 2
 
 image:05_DiagramaL2.png[Diagrama nivel 1]
 
-===== Building blocks
+
+==== Building blocks
 
 [options="header",cols="1,2"]
 |===
