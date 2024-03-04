@@ -5,11 +5,9 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 == Building Block View
 
-[role="arc42help"]
 
 === Whitebox Overall System
 
-[role="arc42help"]
 
 ==== Overview Diagram
 image:05_DiagramaL1.png[Diagrama nivel 1]
@@ -35,14 +33,14 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 ==== Important Interfaces
 Las interfaces más importantes son las encargadas de la interacción con el usuario, aunque irán cambiando a medida que el proyecto se desarrolle.
 
-[role="arc42help"]
+
 
 
 === Level 2
 
 image:05_DiagramaL2.png[Diagrama nivel 1]
 
-===== Building blocks
+==== Building blocks
 
 [options="header",cols="1,2"]
 |===

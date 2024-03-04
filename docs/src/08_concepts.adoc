@@ -1,73 +1,34 @@
 ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-concepts]]
-== Cross-cutting Concepts
+== Conceptos tranversales
+
+=== _Seguridad_
+
+_Es un factor muy importate a tener en cuenta, ya que, al tener un registro de usuarios debemos poder guardar sus contraseñas, entre otras cosas, sin perderlas y sin que puedan ser descubiertas. Debemos intentar prevenir cualquier ataque y asegurar la integridad de los datos._
+
+=== _Persistencia de datos_
+
+_La gestión y almacenamiento de datos de usuarios, incluyendo historiales de juegos y resultados, así como datos de preguntas generadas, es un aspecto crítico que abarca múltiples partes de la aplicación, desde la base de datos hasta la lógica de acceso a datos. Para ello utilizaremos MongoDB, una base de datos NoSQL._
+
+=== _Generación de preguntas automática_
+
+_Nuestra aplicación debe ser capaz de poder generar preguntas de manera automática cuando el usuario lo solicite a través del juego. Las preguntas serán aleatorias, esto provocará Estas, deben estar almacenadas con su respuesta correcta correspondiente._
+
+=== _Modelo de dominio_
+
+_El modelo de dominio definirá las principales entidades o conceptos del juego, como "usuario", "pregunta", "partida", "respuesta", entre otros. Estas entidades formarán la base de la lógica del negocio y estarán presentes en múltiples aspectos del sistema, como la interfaz de usuario, la lógica de negocio y la persistencia de datos._
 
 
-[role="arc42help"]
-****
-.Content
-This section describes overall, principal regulations and solution ideas that are relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
+=== _Disponibilidad_
 
-* models, especially domain models
-* architecture or design patterns
-* rules for using specific technology
-* principal, often technical decisions of an overarching (= cross-cutting) nature
-* implementation rules
+_La aplicación podrá ser desplegada desde la web por el usuario en cualquier momento, es decir, hay que crear una máquina servidor desde la cual se pueda desplegar el proyecto y así ser accesible en todo momento desde los exploradores web._
+
+=== _Interfaz de usuario_
+
+_La forma en que se presentan las preguntas y las posibles respuestas en la interfaz de usuario deben ser claras y legibles, con un diseño que facilite la comprensión rápida de la pregunta y las opciones de respuesta para el usuario. Además, la UI debe mostrar claramente el tiempo restante y proporcionar retroalimentación visual sobre el progreso del jugador, así como dejar claro donde esta cada apartado de la aplicación y donde poder ver las estadísticas, jugar...etc._
 
 
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity) of the architecture. 
-Thus, they are an important contribution to achieve inner qualities of your system.
+=== _Experiencia de usuario_
 
-Some of these concepts cannot be assigned to individual building blocks, e.g. security or safety. 
-
-
-.Form
-The form can be varied:
-
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
-
-.Structure
-A potential (but not mandatory) structure for this section could be:
-
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image::08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-
-
-.Further Information
-
-See https://docs.arc42.org/section-8/[Concepts] in the arc42 documentation.
-****
-
-
-=== _<Concept 1>_
-
-_<explanation>_
-
-
-
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+_La experiencia del usuario en la aplicación es una parte fundamental de una aplicación. Se debe intentar que los tiempos de respuesta sean mínimos, optimizando al máximo los recursos Wikidata. Además, los datos deben ser persistentes y los usuarios deben de poder crear y abrir sesión sin problemas; pudiendo, entre otras cosas, ver sus estadísitcas (histórico de juegos, preguntas acertadas y falladas... etc). Otros aspectos importantes como los colores, tamaños de letra o diseño también deben ser tenidos en cuenta para que la experiencia del usuario sea lo mejor posible._

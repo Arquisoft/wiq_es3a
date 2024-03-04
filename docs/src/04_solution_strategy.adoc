@@ -1,32 +1,29 @@
 ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-solution-strategy]]
-== Solution Strategy
+== Estrategia de solución
 
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape system architecture. It includes
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
+.Solución pensada:
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the foundation for many other detailed decisions or implementation rules.
+El programa usado como solución consiste en una página en la que los usuarios pueden crear una cuenta a la que 
+acceder para a una partida en la que tendran que responder varias preguntas. Se debe poder guardar tanto las preguntas como
+el ratio de aciertos del usuario en una base de datos.
 
-.Form
-Keep the explanations of such key decisions short.
+Las partidas tendrán aproximadamente diez preguntas y cada pregunta mostrará cuatro opciones, siendo solo una
+la respuesta correcta. Cada pregunta tendrá una duración máxima de, aproximadamente, 30 segundos. Esto fue decidido para 
+facilitar la generación de las preguntas y la jugabilidad.
 
-Motivate what was decided and why it was decided that way,
-based upon problem statement, quality goals and key constraints.
-Refer to details in the following sections.
+.Tecnologías pensadas para su uso:
+La solución pensada originalmente consiste en usar Node.js y React para llevar a cabo la programación del 
+sistema, usando consultas a Wikidata para realizar las preguntas y obtener las respuestas más actualizadas.
 
+El uso de Wikidata para realizar las perguntas fue una de las limitaciones impuestas sobre nuestro proyecto. El uso de React y 
+Node.js se debe a que el proyecto inicial dado estaba escrito usando dicho entorno y biblioteca de código y se decidió seguir usandolo
+para evitar problemas debido a errores de compatibilidad si se trataban de cambiar.
 
-.Further Information
+Si bién aun estar por confirmar, también se tenía pensado el uso de MongoDB para la base de datos. Se decidió usar este tipo
+de base de datos debido, en su gran mayoría, a la familiaridad con dicho sistema y debido que algunos de los objetos que se 
+requieren guardar es más sencillo de hacer en una base de datos NoSQL.
 
-See https://docs.arc42.org/section-4/[Solution Strategy] in the arc42 documentation.
-
-****
