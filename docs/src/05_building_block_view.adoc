@@ -54,14 +54,21 @@ image:05_DiagramaL2.png[Diagrama nivel 1]
 image:05_DiagramaL3.png[Diagrama nivel 1]
 
 ==== Contained Building Blocks
+
+[options="header",cols="1,2"]
 |===
 |Nombre|Descripción
+|Index |Bienvenida al usuario.
 | Log in |Permite al usuario registrarte o iniciar sesión.
-| Interfaz con preguntas y posibles respuestas. |Pantalla donde se mostrarán las preguntas y respuestas.
-|Estadísticas|Pantalla con las estadísticas de los usuarios. | Comprobación del registro o inicio de sesión.
-|Manejo de los datos de inicio de sesión y registro de usuario. | Generación preguntas y respuestas.| Lógica para la correcta generación de preguntas y respuestas.
-|Comprobación de respuesta.| Lógica para la correcta comprobación de la respuesta seleccionada por el usuario.
-|Generación de estadísticas.|Lógica para la correcta generación de estadísticas sobre los resultados de los usuarios.
+| Home |Permite al usuario comenzar a jugar o consultar su perfil.
+| Juego |Pantalla donde se mostrarán las preguntas y respuestas.
+|Estadísticas|Pantalla con las estadísticas de los usuarios. 
+| User service|Manejo de los datos de inicio de sesión
+| Auth service|Manejo de los datos de registro
+| Generación preguntas y respuestas| Lógica para la correcta generación de preguntas y respuestas.
+| Esquema| Plantilla para la generación de preguntas.
+|Cálculo de estadísticas| Lógica para el correcto manejo y cálculo de estadísticas sobre los resultados de los usuarios.
+
 
 |===
 
