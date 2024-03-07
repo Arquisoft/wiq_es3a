@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Login from './Login';
-import AddUser from './AddUser';
+import Login from './login/Login';
+import AddUser from './register/AddUser';
 import Link from '@mui/material/Link';
 
 function Inicio() {
@@ -16,8 +16,8 @@ function Inicio() {
   return (
     <Container>
         <CssBaseline />
-      <Typography component="h1" variant="h5" align="center" sx={{ marginTop: 2 }}>
-        Welcome to the 2024 edition of the Software Architecture course
+      <Typography component="h1" variant="h5" align="center"  sx={{ marginTop: 2, fontWeight:"bold" }}>
+        Welcome to WIQ
       </Typography>
       {showLogin ? <Login /> : <AddUser />}
       <Typography component="div" align="center" sx={{ marginTop: 2 }}>

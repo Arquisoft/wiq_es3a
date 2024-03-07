@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './Login.css';
 import Link from '@mui/material/Link';
-import logo from './logo.png'
+import logo from '../logo.png'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -39,7 +39,7 @@ const Login = () => {
   
 
   return (
-    <Container component="main" maxWidth="s" sx={{ marginTop: 8 }}>
+    <Container component="main" maxWidth="xs" sx={{ marginTop: 8 }}>
        <div className='logo-container' >
          <img src={logo} alt='Logo wiq'></img>
        </div>

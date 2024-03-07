@@ -13,15 +13,6 @@ const userSchema = new mongoose.Schema({
       type: Date,
       default: Date.now, 
     },
-    gamesPlayed:{ //Añadido para guardar las partidas en la bbdd
-      type: Number,
-    },
-    rigthAnswers:{
-      type:Number,
-    },
-    wrongAnswers:{
-      type:Number,
-    },
     
 });
 
