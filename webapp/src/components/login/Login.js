@@ -1,5 +1,5 @@
 // src/components/Login.js
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './Login.css';
@@ -35,26 +35,23 @@ const Login = () => {
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
-  
-  
 
+  useEffect(() => {
+    if (loginSuccess) {
+      // Redirigir a la página de inicio después de 2 segundos
+      setTimeout(() => {
+        window.location.href = '/home';
+      }, 2000);
+    }
+  }, [loginSuccess]);
+  
+  
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 8 }}>
        <div className='logo-container' >
          <img src={logo} alt='Logo wiq'></img>
        </div>
-      {loginSuccess ? (
-        
-        <div>
-          <Typography component="h1" variant="h5" sx={{ textAlign: 'center' }}>
-            Hello {username}!
-          </Typography>
-          <Typography component="p" variant="body1" sx={{ textAlign: 'center', marginTop: 2}}>
-            Your account was created on {new Date(createdAt).toLocaleDateString()}.
-          </Typography>
-        </div>
-      ) : (
-        
+    
         <div className="login-container">
        
            <div className='text'>
@@ -95,7 +92,7 @@ const Login = () => {
             <Snackbar open={!!error} autoHideDuration={6000} onClose={() => setError('')} message={`Error: ${error}`} />
           )}
         </div>
-      )}
+      
     </Container>
   );
 };
