@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import "./Inicio.css";
+import "./Primera.css";
 
-function Inicio() {
+function Primera() {
 
   document.body.style.backgroundImage = 'url(/background.png)';
   document.body.style.backgroundRepeat = "no-repeat";
@@ -22,4 +21,4 @@ function Inicio() {
     );
 }
 
-export default Inicio;
+export default Primera;
