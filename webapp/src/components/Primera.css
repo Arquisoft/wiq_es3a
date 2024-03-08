@@ -1,5 +1,15 @@
 
-.MuiTypography-h5
+body:has(.box)
+{
+    height: 100vh;
+    background-image: url("../../public/background.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size:cover;
+}
+
+
+.box .MuiTypography-h5
 {
     color:black;
     background-color: white;

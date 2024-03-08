@@ -5,19 +5,17 @@ import "./Primera.css";
 
 function Primera() {
 
-  document.body.style.backgroundImage = 'url(/background.png)';
-  document.body.style.backgroundRepeat = "no-repeat";
-  document.body.style.backgroundPosition = 'top';
-  document.body.style.backgroundSize = 'cover';
-  document.body.style.height ='30em';
+ 
 
   return (
-    <Container>
+  <div class="box">
+    <Container>      
         <CssBaseline />
       <Typography component="h1" variant="h5" align="center" sx={{ marginTop: 20 }}>
         Saber y Ganar: El Juego
-      </Typography>
+      </Typography>      
     </Container>
+    </div>
     );
 }
 
