@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
-import Primera from './components/Primera';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Inicio from './components/Inicio';
 
 function App() {
+
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />       
-      <Primera/>   
-    </Container>
+      
+      <Router>
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Inicio />} />
+            <Route path={process.env.RUTA_HOME || '/home'} element={<Home />} />
+          </Routes>
+        </main>
+      </Router>      
   );
 }
 
