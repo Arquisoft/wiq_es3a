@@ -5,7 +5,6 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 == Building Block View
 
-
 === Whitebox Overall System
 
 
@@ -18,6 +17,7 @@ Se trata de un diagrama explicativo de la aplicación y sus componentes más imp
 El principal actor, el usuario, interactúa con la aplicación la cual consulta la base de datos de Wikidata para recuperar preguntas y sus correspondientes respuestas. 
 Además, se utiliza la base de datos del proyecto para almacenar los resultados del usuario participante y para posibles inicios de sesión del mismo.
 Esto nos advierte de una división clara del proyecto en frontend, con la interfaz de usuario, y backend, para la lógica de negocio y consultas a recursos externos.
+
 
 
 
@@ -34,11 +34,10 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 Las interfaces más importantes son las encargadas de la interacción con el usuario, aunque irán cambiando a medida que el proyecto se desarrolle.
 
 
-
-
 === Level 2
 
 image:05_DiagramaL2.png[Diagrama nivel 1]
+
 
 ==== Building blocks
 
@@ -55,14 +54,21 @@ image:05_DiagramaL2.png[Diagrama nivel 1]
 image:05_DiagramaL3.png[Diagrama nivel 1]
 
 ==== Contained Building Blocks
+
+[options="header",cols="1,2"]
 |===
 |Nombre|Descripción
+|Index |Bienvenida al usuario.
 | Log in |Permite al usuario registrarte o iniciar sesión.
-| Interfaz con preguntas y posibles respuestas. |Pantalla donde se mostrarán las preguntas y respuestas.
-|Estadísticas|Pantalla con las estadísticas de los usuarios. | Comprobación del registro o inicio de sesión.
-|Manejo de los datos de inicio de sesión y registro de usuario. | Generación preguntas y respuestas.| Lógica para la correcta generación de preguntas y respuestas.
-|Comprobación de respuesta.| Lógica para la correcta comprobación de la respuesta seleccionada por el usuario.
-|Generación de estadísticas.|Lógica para la correcta generación de estadísticas sobre los resultados de los usuarios.
+| Home |Permite al usuario comenzar a jugar o consultar su perfil.
+| Juego |Pantalla donde se mostrarán las preguntas y respuestas.
+|Estadísticas|Pantalla con las estadísticas de los usuarios. 
+| User service|Manejo de los datos de inicio de sesión
+| Auth service|Manejo de los datos de registro
+| Generación preguntas y respuestas| Lógica para la correcta generación de preguntas y respuestas.
+| Esquema| Plantilla para la generación de preguntas.
+|Cálculo de estadísticas| Lógica para el correcto manejo y cálculo de estadísticas sobre los resultados de los usuarios.
+
 
 |===
 

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -8,7 +9,6 @@ import Primera from './components/Primera';
 function App() {
 
   return (
-      
     <Router>
     <Navbar />
     <main className="main-content">
@@ -19,6 +19,7 @@ function App() {
       </Routes>
     </main>
   </Router>  
+
   );
 }
 

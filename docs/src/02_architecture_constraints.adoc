@@ -44,7 +44,7 @@ See https://docs.arc42.org/section-2/[Architecture Constraints] in the arc42 doc
 | Entregas |El trabajo conlleva un calendario de entregas específico: +
 * Documentación 0.1 será entregada en la semana 4. +
 * Prototipo 0.1 en la semana 7. +
-* Prototype 1.0 y documentación 1.0 en la semana 10. +
+* Prototipo 1.0 y documentación 1.0 en la semana 10. +
 * Prototipo 1.1 y documentación 1.1 en la semana 13.
 
 | Reuniones y acta | Es obligatorio hacer una reunión de equipo en cada clase y tomar su correspondiente acta.
