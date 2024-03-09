@@ -11,6 +11,7 @@ const QuizGame = () => {
     const [answeredQuestions, setAnsweredQuestions] = useState([]);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [answerSelected, setAnswerSelected] = useState(false);
+    const [error, setError] = useState(null); 
 
     useEffect(() => {
         generateQuestion();
@@ -21,9 +22,9 @@ const QuizGame = () => {
         try {
             const response = await axios.get(`${apiEndpoint}/generate-question`);
             setCurrentQuestion(response.data);
+            setError(null); 
         } catch (error) {
-            console.error('Error fetching questions:', error);
-            // Manejo de errores
+            setError('Ha habido un error cargando las preguntas'); 
         }
     };
 
@@ -54,7 +55,10 @@ const QuizGame = () => {
                     : 'red' 
                 : 'white'
         }}>
-            {currentQuestion !== null ? (
+            {error ? (
+                <h2>{error}</h2> // Si hay un error, muestra el mensaje de error
+            ):
+            currentQuestion !== null ? (
                 <div id="qContainer">
                     <h2>{currentQuestion.question}</h2>
                     <div id="rContainer">
