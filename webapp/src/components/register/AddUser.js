@@ -26,6 +26,7 @@ const AddUser = () => {
         passwordRepeat
       });
       setOpenSnackbar(true);
+      window.location.href = '/home';
     } catch (error) {
       setError(error.response.data.error);
     }

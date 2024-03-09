@@ -3,7 +3,7 @@ import Inicio from './Inicio';
 
 test('renders learn react link', () => {
   render(<Inicio />);
-  const linkElement = screen.getByText(/Welcome to the 2024 edition of the Software Architecture course/i);
+  const linkElement = screen.getByText(/Welcome to WIQ/i);
   expect(linkElement).toBeInTheDocument();
 });
 

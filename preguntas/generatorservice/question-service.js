@@ -18,8 +18,10 @@ mongoose.connect(mongoUri);
 
 //Function to search a random template
 const searchRandomTemplate = async () => {
-  const template = await Template.findOne({});  
-  return template;
+
+  // Search a random template
+  const template = await Template.aggregate([{ $sample: { size: 1 } }]);
+  return template[0];
 }
 
 const executeQuery = async (template) => {
