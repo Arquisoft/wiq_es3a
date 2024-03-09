@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from '@mui/material';
 import './QuizGame.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const QuizGame = () => {
     const numberOfQuestions = 9;
@@ -34,7 +36,10 @@ const QuizGame = () => {
         setSelectedAnswer({ answer, isCorrect });
         setAnswerSelected(true);
         if(isCorrect) {
+            toast.success('¡Respuesta correcta!', { position: toast.POSITION.TOP_CENTER }); // Muestra un popup verde si la respuesta es correcta
             console.log(answeredQuestions)
+        } else {
+            toast.error('Respuesta incorrecta', { position: toast.POSITION.TOP_CENTER }); // Muestra un popup rojo si la respuesta es incorrecta
         }
         setTimeout(() => {
             if (questionsNumber < numberOfQuestions) {
@@ -55,6 +60,7 @@ const QuizGame = () => {
                     : 'red' 
                 : 'white'
         }}>
+            <ToastContainer />
             {error ? (
                 <h2>{error}</h2> // Si hay un error, muestra el mensaje de error
             ):
