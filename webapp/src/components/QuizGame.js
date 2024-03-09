@@ -15,6 +15,9 @@ const QuizGame = () => {
     const [answerSelected, setAnswerSelected] = useState(false);
     const [error, setError] = useState(null); 
 
+    const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
+    const image1 = 'https://plus.unsplash.com/premium_photo-1680302397750-ef86e280a172?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+
     useEffect(() => {
         generateQuestion();
         setAnswerSelected(false);
@@ -54,11 +57,13 @@ const QuizGame = () => {
     return (
         <div id="mainContainer" 
         style={{
-            backgroundColor: answerSelected && selectedAnswer 
+            background: answerSelected && selectedAnswer 
                 ? selectedAnswer.isCorrect 
                     ? 'green' 
                     : 'red' 
-                : 'white'
+                : `url(${image}) center/cover no-repeat`,
+            height: '100vh',
+            width: '100vw'
         }}>
             <ToastContainer />
             {error ? (
