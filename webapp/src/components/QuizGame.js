@@ -27,36 +27,36 @@ const QuizGame = () => {
     const wrongImage = 'https://img.freepik.com/foto-gratis/signo-cruzado-incorrecto-o-negativo-negativo-eleccion-icono-simbolo-icono-ilustracion-aislado-sobre-fondo-rojo-3d-rendering_56104-1219.jpg?t=st=1710078617~exp=1710082217~hmac=a9dc243dfad6f2c548c66d6748c5aae79b5039b1b5763e34bce3e787114bc329&w=1380';
 
     useEffect(() => {
-        if (!isToastVisible && questionsNumber <= numberOfQuestions) { 
+        const generateQuestion = async () => {
+            try {
+                const response = await axios.get(`${apiEndpoint}/generate-question`);
+                setCurrentQuestion(response.data);
+                setError(null);
+            } catch (error) {
+                setError('Ha habido un error cargando las preguntas');
+            }
+        };
+    
+        if (!isToastVisible && questionsNumber <= numberOfQuestions) {
             generateQuestion();
             setAnswerSelected(false);
         }
-    }, [questionsNumber, isToastVisible,generateQuestion]);
-
-    const generateQuestion = async () => {
-        try {
-            const response = await axios.get(`${apiEndpoint}/generate-question`);
-            setCurrentQuestion(response.data);
-            setError(null); 
-        } catch (error) {
-            setError('Ha habido un error cargando las preguntas'); 
-        }
-    };
+    }, [questionsNumber, isToastVisible, apiEndpoint]);
 
     const handleAnswer = (answer) => {
         const isCorrect = answer === currentQuestion.correctAnswer;
         setAnsweredQuestions(prev => [...prev, { question: currentQuestion, isCorrect }]);
         setSelectedAnswer({ answer, isCorrect });
         setAnswerSelected(true);
-        let toastId;
+        
         if(isCorrect) {
-            toastId = toast.success('¡Respuesta correcta!', { 
+            toast.success('¡Respuesta correcta!', { 
                 position: toast.POSITION.TOP_CENTER, 
                 onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
             }); 
             console.log(answeredQuestions)
         } else {
-            toastId = toast.error('Respuesta incorrecta', { 
+            toast.error('Respuesta incorrecta', { 
                 position: toast.POSITION.TOP_CENTER, 
                 onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
             }); 
