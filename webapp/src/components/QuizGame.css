@@ -1,0 +1,64 @@
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+
+#qContainer {
+    width: 50%;
+    height: 50%;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+#qContainer h2 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffff; 
+    font-size: 1.8em;
+}
+
+#rContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80%;
+    gap: 2%; 
+}
+
+#rContainer div {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    justify-content: space-between;
+    flex: 1; 
+}
+
+#rContainer div Button {
+    flex: 1; 
+    margin-top: 1rem; 
+    border: 2px solid #ffff; 
+    background-color: #EE0E51; 
+    color: #ffff; 
+    padding: 1rem 2rem; 
+    transition: background-color 0.3s ease; 
+    font-weight: bold;
+}
+
+#rContainer div Button:hover {
+    background-color: #A80032; 
+    color: #ffff; 
+}
+
+p {
+    color: #666;
+}

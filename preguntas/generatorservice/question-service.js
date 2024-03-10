@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Question = require('./question-model');
 const Template = require('./template-model');
 const axios = require('axios');
+const templateData = require('./data/data.json');
 
 // Create an instance of Express
 const app = express();
@@ -14,7 +15,9 @@ const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/questiond
 
 const endpointUrl = 'https://query.wikidata.org/sparql';
 
-mongoose.connect(mongoUri);
+mongoose.connect(mongoUri)
+  .then(() => {return Template.deleteMany({})})
+  .then(() => {return Template.insertMany(templateData)});
 
 //Function to search a random template
 const searchRandomTemplate = async () => {
