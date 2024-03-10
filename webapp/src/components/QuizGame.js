@@ -22,6 +22,8 @@ const QuizGame = () => {
     //const image3 = 'https://t3.ftcdn.net/jpg/02/53/98/62/360_F_253986268_I3wMfXKQvcjNVcRSLDTMfKtkvbmpAj1J.jpg';
     //const image4 = 'https://t3.ftcdn.net/jpg/03/83/30/50/360_F_383305055_VmJPSFQVYLKVUMn6a4TqYRolLPynuuXG.jpg';
     //const image5 = 'https://t4.ftcdn.net/jpg/05/24/20/77/360_F_524207725_cDk3moNgO4NYGQpogqLpoOWANpc9vzCF.jpg';
+    const correctImage = 'https://img.freepik.com/foto-gratis/signo-icono-simbolo-marca-verificacion-verde-correcto-o-correcto-aprobar-o-concepto-confirmar-ilustracion-aislada-representacion-3d-fondo-verde_56104-1220.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1710028800&semt=ais';
+    const wrongImage = 'https://img.freepik.com/foto-gratis/signo-cruzado-incorrecto-o-negativo-negativo-eleccion-icono-simbolo-icono-ilustracion-aislado-sobre-fondo-rojo-3d-rendering_56104-1219.jpg?t=st=1710078617~exp=1710082217~hmac=a9dc243dfad6f2c548c66d6748c5aae79b5039b1b5763e34bce3e787114bc329&w=1380';
 
     useEffect(() => {
         if (!isToastVisible) { 
@@ -74,9 +76,12 @@ const QuizGame = () => {
         style={{
             background: isToastVisible && answerSelected && selectedAnswer
                 ? selectedAnswer.isCorrect 
-                    ? 'green' 
-                    : 'red' 
+                    ? `url(${correctImage}) center/cover no-repeat` 
+                    : `url(${wrongImage}) center/cover no-repeat` 
                 : `url(${image1}) center/cover no-repeat`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            overflow: 'hidden',
             height: '100vh',
             width: '100vw'
         }}>
