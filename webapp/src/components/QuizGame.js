@@ -15,6 +15,7 @@ const QuizGame = () => {
     const [answerSelected, setAnswerSelected] = useState(false);
     const [error, setError] = useState(null); 
     const [isToastVisible, setIsToastVisible] = useState(false);
+    const [isFinished, setIsFinished] = useState(false);
 
     //const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
     const image1 = 'https://t3.ftcdn.net/jpg/05/60/26/26/360_F_560262652_SMg7tie3Zii0zFT9LYkKMqrNrPcU5owB.jpg';
@@ -63,6 +64,14 @@ const QuizGame = () => {
     
         setIsToastVisible(true);
         setQuestionsNumber(prev => prev + 1);
+
+        if (questionsNumber === numberOfQuestions) {
+            if (questionsNumber === numberOfQuestions) {
+                setTimeout(() => {
+                    setIsFinished(true);
+                }, 1000);
+            }
+        }
         
     };
 
@@ -84,7 +93,7 @@ const QuizGame = () => {
             {error ? (
                 <h2>{error}</h2> // Si hay un error, muestra el mensaje de error
             ):
-            currentQuestion !== null ? (
+            currentQuestion !== null && !isFinished ? (
                 <div id="qContainer">
                     <h2>{currentQuestion.question}</h2>
                     <div id="rContainer">
@@ -128,11 +137,35 @@ const QuizGame = () => {
                         </div>
                     </div>
                 </div>
-            ) : (
-                <p>Loading questions...</p>
-            )}
-        </div>
-    );
+            ) : isFinished ? (
+                <div id="qContainer"
+                    style={{
+                        backgroundColor: 'rgba(238, 14, 81, 1)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                    <h2>¡Has terminado el juego!</h2>
+                    <h3>Has acertado {answeredQuestions.filter(question => question.isCorrect).length} preguntas de {numberOfQuestions + 1}</h3>
+                    <Button
+                        id='bJugar'
+                        onClick={() => window.location.reload()}
+                        style={{
+                            backgroundColor: 'white',
+                            color: 'black'
+                        }}
+                    >
+                        Volver a jugar
+                    </Button>
+                </div>
+            )
+                : (
+                    <p>Loading questions...</p>
+                )
+        }
+    </div>
+);
 };
 
 export default QuizGame;
