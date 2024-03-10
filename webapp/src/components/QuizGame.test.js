@@ -9,19 +9,19 @@ beforeEach(() => {
     mockAxios.reset();
   });
 
-test('Pregunta correcta', () => {
+  test('Pregunta correcta', async () => {
     mockAxios.onGet('http://localhost:8000/generate-question').reply(200, {
-    question: "pregunta",
-  correctAnswer: "correcta",
-  allAnswers: ["correcta","no1","no2","no3"]});
-
-  render(<QuizGame />);
-  expect(screen.getByText(/Loading questions.../i)).toBeInTheDocument();
-
+      question: "pregunta",
+      correctAnswer: "correcta",
+      allAnswers: ["correcta", "no1", "no2", "no3"]
+    });
   
-
-  const correcta = screen.getByRole('button', { name: /correcta/i });
-  fireEvent.click(correcta);
-
+    render(<QuizGame />);
+    expect(screen.getByText(/Loading questions.../i)).toBeInTheDocument();
   
-});
+    // Wait for the asynchronous operation to complete
+    await screen.findByRole('button', { name: /correcta/i });
+  
+    const correcta = screen.getByRole('button', { name: /correcta/i });
+    fireEvent.click(correcta);
+  });
