@@ -26,7 +26,7 @@ const QuizGame = () => {
     const wrongImage = 'https://img.freepik.com/foto-gratis/signo-cruzado-incorrecto-o-negativo-negativo-eleccion-icono-simbolo-icono-ilustracion-aislado-sobre-fondo-rojo-3d-rendering_56104-1219.jpg?t=st=1710078617~exp=1710082217~hmac=a9dc243dfad6f2c548c66d6748c5aae79b5039b1b5763e34bce3e787114bc329&w=1380';
 
     useEffect(() => {
-        if (!isToastVisible) { 
+        if (!isToastVisible && questionsNumber <= numberOfQuestions) { 
             generateQuestion();
             setAnswerSelected(false);
         }
@@ -62,13 +62,8 @@ const QuizGame = () => {
         }
     
         setIsToastVisible(true);
+        setQuestionsNumber(prev => prev + 1);
         
-        if (questionsNumber < numberOfQuestions) {
-            setQuestionsNumber(prev => prev + 1);
-        } else {
-            // Quiz is finished
-            // You can display the final score or redirect to another page
-        }
     };
 
     return (
