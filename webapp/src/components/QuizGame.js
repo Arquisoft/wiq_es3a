@@ -31,7 +31,7 @@ const QuizGame = () => {
             generateQuestion();
             setAnswerSelected(false);
         }
-    }, [questionsNumber, isToastVisible]);
+    }, [questionsNumber, isToastVisible,generateQuestion]);
 
     const generateQuestion = async () => {
         try {
