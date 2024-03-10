@@ -3,22 +3,31 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import "./Home.css";
 
 function Home() {
 
   return (
-    
-    <Container component="home" maxWidth="xs">
+    <div className="home">
 
+      <img className="imagenHome" src="/saber-ganar-logo.png" alt="Logo" />
 
-      <CssBaseline />
-      <Typography component="h1" variant="h5" align="center" sx={{ marginTop: 2 }}>
-        HOME
-      </Typography>
-      <Button variant="contained" color="primary" fullWidth onClick={() => { window.location.href = '/game'; }}>
-        Go to Game
-      </Button>
-    </Container>
+      <Container className="boxHome" maxWidth="xs">
+        <CssBaseline />
+
+        <Typography className="tituloHome_h1" component="h1" variant="h5" align="center" sx={{ marginTop: 2 }}>
+          BIENVENIDO
+        </Typography>
+
+        <Typography className="tituloHome" component="h2" variant="h5" align="center" sx={{ marginTop: 2 }}>
+        PULSA EL BOTÓN PARA JUGAR
+        </Typography>
+        <Button className="botonHome" variant="contained" color="primary" fullWidth onClick={() => { window.location.href = '/game'; }}>
+          JUGAR
+        </Button>
+      </Container>
+      
+    </div>
   );
 }
 
