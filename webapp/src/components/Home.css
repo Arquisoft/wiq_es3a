@@ -1,0 +1,37 @@
+.home{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 94vh;
+    background-image: linear-gradient(to top, rgba(255, 0, 0, 0), #ee0e5173);
+}
+
+.tituloHome{
+    padding-bottom: 2vh;
+}
+
+.tituloHome_h1{
+    padding-bottom: 2vh;
+    font-weight: 800!important;
+    font-size: 3em!important;
+}
+
+.botonHome{
+    background-color: var(--rosa) !important;
+}
+
+.boxHome{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff7a;
+    padding-bottom: 1.5em;
+    border-radius: 1em;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.imagenHome{
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}

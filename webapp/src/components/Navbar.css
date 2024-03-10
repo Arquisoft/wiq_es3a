@@ -26,6 +26,6 @@
   }
   
   .nav-menu a.active {
-    background-color: #04AA6D;
+    background-color: var(--rosa);
     color: white;
   }
