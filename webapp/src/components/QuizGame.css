@@ -14,7 +14,6 @@
 #qContainer {
     width: 50%;
     height: 50%;
-    background-color: #e27898;
     border-radius: 1rem;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -25,7 +24,7 @@
     margin-left: auto;
     margin-right: auto;
     color: #ffff; 
-    font-size: 1.5em;
+    font-size: 1.8em;
 }
 
 #rContainer {

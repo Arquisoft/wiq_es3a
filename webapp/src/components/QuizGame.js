@@ -14,14 +14,21 @@ const QuizGame = () => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [answerSelected, setAnswerSelected] = useState(false);
     const [error, setError] = useState(null); 
+    const [isToastVisible, setIsToastVisible] = useState(false);
 
-    const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
-    const image1 = 'https://plus.unsplash.com/premium_photo-1680302397750-ef86e280a172?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+    //const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
+    const image1 = 'https://t3.ftcdn.net/jpg/05/60/26/26/360_F_560262652_SMg7tie3Zii0zFT9LYkKMqrNrPcU5owB.jpg';
+    //const image2 = 'https://t4.ftcdn.net/jpg/03/45/88/07/360_F_345880772_zIT2mkdCzTthplO7xqaGGrMspN0jw0ll.jpg';
+    //const image3 = 'https://t3.ftcdn.net/jpg/02/53/98/62/360_F_253986268_I3wMfXKQvcjNVcRSLDTMfKtkvbmpAj1J.jpg';
+    //const image4 = 'https://t3.ftcdn.net/jpg/03/83/30/50/360_F_383305055_VmJPSFQVYLKVUMn6a4TqYRolLPynuuXG.jpg';
+    //const image5 = 'https://t4.ftcdn.net/jpg/05/24/20/77/360_F_524207725_cDk3moNgO4NYGQpogqLpoOWANpc9vzCF.jpg';
 
     useEffect(() => {
-        generateQuestion();
-        setAnswerSelected(false);
-    }, [questionsNumber]); // Solo se ejecuta al montar el componente
+        if (!isToastVisible) { 
+            generateQuestion();
+            setAnswerSelected(false);
+        }
+    }, [questionsNumber, isToastVisible]);
 
     const generateQuestion = async () => {
         try {
@@ -38,30 +45,38 @@ const QuizGame = () => {
         setAnsweredQuestions(prev => [...prev, { question: currentQuestion, isCorrect }]);
         setSelectedAnswer({ answer, isCorrect });
         setAnswerSelected(true);
+        let toastId;
         if(isCorrect) {
-            toast.success('¡Respuesta correcta!', { position: toast.POSITION.TOP_CENTER }); // Muestra un popup verde si la respuesta es correcta
+            toastId = toast.success('¡Respuesta correcta!', { 
+                position: toast.POSITION.TOP_CENTER, 
+                onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
+            }); 
             console.log(answeredQuestions)
         } else {
-            toast.error('Respuesta incorrecta', { position: toast.POSITION.TOP_CENTER }); // Muestra un popup rojo si la respuesta es incorrecta
+            toastId = toast.error('Respuesta incorrecta', { 
+                position: toast.POSITION.TOP_CENTER, 
+                onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
+            }); 
         }
-        setTimeout(() => {
-            if (questionsNumber < numberOfQuestions) {
-                setQuestionsNumber(prev => prev + 1);
-            } else {
-                // Quiz is finished
-                // You can display the final score or redirect to another page
-            }
-        }, 500);
+    
+        setIsToastVisible(true);
+        
+        if (questionsNumber < numberOfQuestions) {
+            setQuestionsNumber(prev => prev + 1);
+        } else {
+            // Quiz is finished
+            // You can display the final score or redirect to another page
+        }
     };
 
     return (
         <div id="mainContainer" 
         style={{
-            background: answerSelected && selectedAnswer 
+            background: isToastVisible && answerSelected && selectedAnswer
                 ? selectedAnswer.isCorrect 
                     ? 'green' 
                     : 'red' 
-                : `url(${image}) center/cover no-repeat`,
+                : `url(${image1}) center/cover no-repeat`,
             height: '100vh',
             width: '100vw'
         }}>
