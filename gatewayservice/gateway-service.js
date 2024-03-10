@@ -45,10 +45,12 @@ app.post('/adduser', async (req, res) => {
 app.get('/generate-question', async (req, res) => {
   try {
     // Forward the generate question request to the question service
-    const questionResponse = await axios.get(questionServiceUrl+'/generate-question');
+    const questionResponse = await axios.get(questionServiceUrl + '/generate-question');
     res.json(questionResponse.data);
   } catch (error) {
-    res.status(error.response.status).json({ error: error.response.data.error });
+    res.status((error.response && error.response.status) || 500).json({
+      error: (error.response && error.response.data && error.response.data.error) || 'Internal Server Error',
+    });
   }
 });
 

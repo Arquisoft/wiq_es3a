@@ -1,10 +1,10 @@
 const request = require('supertest');
 const axios = require('axios');
-const app = require('./gateway-service'); 
+const app = require('./gateway-service');
 
 afterAll(async () => {
-    app.close();
-  });
+  app.close();
+});
 
 jest.mock('axios');
 
@@ -15,6 +15,11 @@ describe('Gateway Service', () => {
       return Promise.resolve({ data: { token: 'mockedToken' } });
     } else if (url.endsWith('/adduser')) {
       return Promise.resolve({ data: { userId: 'mockedUserId' } });
+    } 
+  });
+  axios.get.mockImplementation((url) => {
+    if (url.endsWith('/generate-question')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
     }
   });
 
@@ -36,5 +41,14 @@ describe('Gateway Service', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body.userId).toBe('mockedUserId');
+  });
+  // Test /generate-question endpoint
+  it('should forward generate question request to question service', async () => {
+    const response = await request(app)
+      .get('/generate-question');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.question).toBe('mockedQuestion');
+  
   });
 });
