@@ -13,14 +13,13 @@ function App() {
     <Navbar />
     <main className="main-content">
       <Routes>
-        <Route path={process.env.RUTA_INICIO || '/'} element={<Primera />} />
+        <Route index element={<Primera />} />
         <Route path={process.env.RUTA_LOGIN || '/login'} element={<Inicio />} />
         <Route path={process.env.RUTA_HOME || '/home'} element={<Home />} />
         <Route path={process.env.RUTA_GAME || '/game'} element={<Game />} />
       </Routes>
-    </main>
-  </Router>  
-
+    </main>    
+  </Router>    
   );
 }
 
