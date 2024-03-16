@@ -18,6 +18,19 @@ const AddUser = () => {
 
   const addUser = async () => {
     try {
+
+      if(name.trim().length === 0 || surname.trim().length === 0 || username.trim().length === 0
+      || password.trim().length === 0 || passwordRepeat.trim().length === 0)
+      {
+        setError("No se permite dejar espacios en blanco");
+        return;   
+      }
+      if(password != passwordRepeat)
+      {
+        setError("Repita correctamente la contraseña que quiera usar");
+        return;   
+      }
+
       await axios.post(`${apiEndpoint}/adduser`, { 
         name,
         surname,

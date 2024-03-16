@@ -17,6 +17,12 @@ const Login = () => {
 
   const loginUser = async () => {
     try {
+      if(username.trim().length ===0 || password.trim().length===0)
+      {
+        setError("No se permite dejar espacios en blanco");
+        return;  
+      }
+
       await axios.post(`${apiEndpoint}/login`, { username, password });
 
       // Extract data from the response
