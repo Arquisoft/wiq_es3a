@@ -57,7 +57,7 @@ const Routes = () => {
   ]);
 
   // Provide the router configuration using RouterProvider
-  return <RouterProvider router={router}> <Navbar /> </RouterProvider>
+  return <RouterProvider router={router}> </RouterProvider>
   ;
 };
 
