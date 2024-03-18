@@ -50,6 +50,20 @@ services:
     environment:
       MONGODB_URI: mongodb://mongodb:27017/userdb
 
+  statisticsservice:
+    container_name: statisticsservice-${teamname:-defaultASW}
+    image: ghcr.io/arquisoft/wiq_es3a/statisticsservice:latest
+    profiles: ["dev", "prod"]
+    build: ./statistics/statisticsservice
+    depends_on:
+      - mongodb
+    ports:
+      - "8006:8006"
+    networks:
+      - mynetwork
+   
+
+
   gatewayservice:
     container_name: gatewayservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/gatewayservice:latest

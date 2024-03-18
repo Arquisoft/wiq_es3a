@@ -66,15 +66,38 @@ const QuizGame = () => {
         setQuestionsNumber(prev => prev + 1);
 
         if (questionsNumber === numberOfQuestions) {
+            const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
+            const wrongAnswers=totalQuestions-rigthAnswers;
+            const totalQuestions = numberOfQuestions + 1;
+            
             if (questionsNumber === numberOfQuestions) {
                 setTimeout(() => {
                     setIsFinished(true);
                 }, 1000);
+                const statisticsData = {
+                    userId: localStorage.getItem('username'), 
+                    rigthAnswers,
+                    wrongAnswers
+                };
+                saveStatistics(statisticsData);
             }
+
+       
+           // 
+           // 
+            //
         }
         
+    }
+    
+    const saveStatistics = async (statisticsData) => {
+        try {
+            await axios.post(`${apiEndpoint}/addStatistic`, statisticsData);
+            console.log('Estadísticas guardadas exitosamente');
+        } catch (error) {
+            console.error('Error al guardar las estadísticas:', error);
+        }
     };
-
     return (
         <div id="mainContainer" 
         style={{

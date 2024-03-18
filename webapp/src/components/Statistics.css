@@ -30,3 +30,10 @@ table {
     background-size: cover; 
    
   }
+
+  h1{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+  }

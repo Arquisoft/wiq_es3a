@@ -18,7 +18,7 @@ function App() {
         <Route path={process.env.RUTA_LOGIN || '/login'} element={<Inicio />} />
         <Route path={process.env.RUTA_HOME || '/home'} element={<Home />} />
         <Route path={process.env.RUTA_GAME || '/game'} element={<Game />} />
-        <Route path={process.env.RUTA_USER || '/user'} element={<Statistics />} />
+        <Route path={process.env.RUTA_USER || '/statistics/:userId'} element={<Statistics />} />
       </Routes>
     </main>
   </Router>  
