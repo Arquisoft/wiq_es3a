@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './Login.css';
 import logo from '../logo.png'
+import { useAuth } from "./AuthProvider";
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -15,6 +17,9 @@ const Login = () => {
 
   const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
 
+  const { setToken } = useAuth();
+
+
   const loginUser = async () => {
     try {
       if(username.trim().length ===0 || password.trim().length===0)
@@ -23,9 +28,12 @@ const Login = () => {
         return;  
       }
 
-      await axios.post(`${apiEndpoint}/login`, { username, password });
+      let res= await axios.post(`${apiEndpoint}/login`, { username, password });
+
 
       // Extract data from the response
+      setToken(res.data.token);
+      console.log(res);
       
       setLoginSuccess(true);
 
