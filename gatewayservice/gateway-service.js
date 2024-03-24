@@ -50,6 +50,10 @@ app.post('/adduser', async (req, res) => {
 app.get('/generate-question', async (req, res) => {
   try {
     // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
     const questionResponse = await axios.get(generatorServiceUrl+'/generate-question');
     res.json(questionResponse.data);
   } catch (error) {
@@ -59,6 +63,10 @@ app.get('/generate-question', async (req, res) => {
 
 app.get('/questions', async (req, res) => {
   try {
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
     // Forward the get questions request to the question service
     const questionResponse = await axios.get(questionServiceUrl+'/questions');
     res.json(questionResponse.data);
