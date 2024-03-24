@@ -4,12 +4,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const Statistic = require('./user-model')
+const cors = require('cors')
 
 const app = express();
 const port = 8006;
 
 // Middleware to parse JSON in request body
 app.use(bodyParser.json());
+app.use(cors());
 
 // Connect to MongoDB
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/userdb';
@@ -28,30 +30,49 @@ function validateRequiredFields(req, requiredFields) {
 
 app.post('/addStatistic', async (req, res) => {
     try {
+      console.log("entra por add statistic de statistic service")
         // Check if required fields are present in the request body
         validateRequiredFields(req, ['username', 'rigthAnswers', 'wrongAnswers']);
-
+        console.log("pasa el validate fields")  
+        const userId = req.body.username;
+        const userStatistics = await Statistic.findOne({username: userId });
+        
         // Encrypt the password before saving it
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-        const newStatistic = new Statistic({
-            username: req.body.username,
-            rigthAnswers:rigthAnswers,
-            wrongAnswers:wrongAnswers
-        });
+        if (!userStatistics) {
+          // Si no hay estadísticas para este usuario, crear una nueva
+          const newStatistic = new Statistic({
+              username: userId,
+              gamesPlayed: 1, // Iniciar el contador de juegos jugados en 1 para la nueva estadística
+              rigthAnswers: req.body.rigthAnswers,
+              wrongAnswers: req.body.wrongAnswers
+          });
+          await newStatistic.save(); // Guardar la nueva estadística en la base de datos
+          res.json(newStatistic);
+      } else {
+          // Si ya existen estadísticas para este usuario, actualizarlas
+          userStatistics.gamesPlayed++; // Incrementar el contador de juegos jugados
+          userStatistics.rigthAnswers += req.body.rigthAnswers; // Sumar las respuestas correctas
+          userStatistics.wrongAnswers += req.body.wrongAnswers; // Sumar las respuestas incorrectas
 
-        await newStatistic.save();
-        res.json(newStatistic);
-    } catch (error) {
-        res.status(400).json({ error: error.message }); 
+          await userStatistics.save(); // Guardar las estadísticas actualizadas en la base de datos
+          res.json(userStatistics);
+      }
+  } catch (error) {
+      res.status(400).json({ error: error.message }); 
     }});
     
-    app.get('/statistics/:userId', async (req, res) => {
+    app.get('/statistics', async (req, res) => {
       try {
-        const userId = req.params.userId;
+        const userId = req.query.userId;
         // Buscar las estadísticas asociadas al userId
-        const userStatistics = await Statistic.findOne({ userId });
+        const userStatistics = await Statistic.findOne({username: userId });
         if (!userStatistics) {
+          throw new Error('Usuario no encontrado');
+      }
+        if (!userStatistics) {
+          console.log( 'No se encontraron estadísticas para el usuario.' )
           return res.status(404).json({ message: 'No se encontraron estadísticas para el usuario.' });
         }
     
@@ -60,11 +81,11 @@ app.post('/addStatistic', async (req, res) => {
         console.error('Error al obtener estadísticas del usuario:', error);
         res.status(500).json({ message: 'Error interno del servidor al obtener estadísticas del usuario.' });
       }
-
+   
     });
 
 const server = app.listen(port, () => {
-  console.log(`User Service listening at http://localhost:${port}`);
+  console.log(`Statistics Service listening at http://localhost:${port}`);
 });
 
 // Listen for the 'close' event on the Express.js server

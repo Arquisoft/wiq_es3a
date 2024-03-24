@@ -9,6 +9,7 @@ const port = 8000;
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
+const statsServiceUrl = process.env.STATS_SERVICE_URL || 'http://localhost:8006';
 
 app.use(cors());
 app.use(express.json());
@@ -46,6 +47,29 @@ app.get('/generate-question', async (req, res) => {
   try {
     // Forward the generate question request to the question service
     const questionResponse = await axios.get(questionServiceUrl+'/generate-question');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/statistics', async (req, res) => {
+  try {
+    const questionResponse = await axios.get(statsServiceUrl+'/statistics', {
+      params: req.query,
+    });
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.post('/addStatistic', async (req, res) => {
+  console.log("entra por add statisctic de gateway")
+  try {
+    const questionResponse = await axios.post(statsServiceUrl+'/addStatistic', {
+      params: req.body,
+    });
     res.json(questionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });

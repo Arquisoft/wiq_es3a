@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import './Statistics.css';
 
-function Statistics(){
+const Statistics= () => {
+  const gatewayEndpoint = process.env.GATEWAY_SERVICE_URL || 'http://localhost:8000';
   const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
-    // Obtener el userId del localStorage o de cualquier otro lugar donde lo almacenes
     const userId = localStorage.getItem('username');
-
     // Realizar una solicitud al servidor para obtener las estadísticas del usuario
-    fetch(`/getStatistics/${userId}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al obtener las estadísticas del usuario.');
-        }
-        return response.json();
-      })
+    fetch(`${gatewayEndpoint}/statistics?userId=${userId}`)
+      .then(response => response.json())
       .then(data => {
         setUserData(data);
       })
       .catch(error => {
-        console.error('Error:', error);
+        setError('Ha habido un error cargando las estadísticas');
       });
   }, []);
+
 
   return (
     <div>
       <h1>Estadísticas</h1>
-      {userData ? (
+      {error ? ( // Verificar si hay un error
+      <p>Error: {error}</p>
+    ) : userData ? (
         <table>
           <thead>
             <tr>
@@ -39,8 +37,8 @@ function Statistics(){
           <tbody>
             <tr>
               <td>{userData.gamesPlayed}</td>
-              <td>{userData.correctAnswers}</td>
-              <td>{userData.incorrectAnswers}</td>
+              <td>{userData.rigthAnswers}</td>
+              <td>{userData.wrongAnswers}</td>
             </tr>
           </tbody>
         </table>

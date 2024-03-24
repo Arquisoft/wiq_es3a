@@ -16,6 +16,7 @@ const QuizGame = () => {
     const [error, setError] = useState(null); 
     const [isToastVisible, setIsToastVisible] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
+    const gatewayEndpoint = process.env.GATEWAY_SERVICE_URL || 'http://localhost:8000';
 
     //const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
     const image1 = 'https://t3.ftcdn.net/jpg/05/60/26/26/360_F_560262652_SMg7tie3Zii0zFT9LYkKMqrNrPcU5owB.jpg';
@@ -66,37 +67,50 @@ const QuizGame = () => {
         setQuestionsNumber(prev => prev + 1);
 
         if (questionsNumber === numberOfQuestions) {
-            const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
-            const wrongAnswers=totalQuestions-rigthAnswers;
-            const totalQuestions = numberOfQuestions + 1;
             
             if (questionsNumber === numberOfQuestions) {
+                const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
+                const wrongAnswers=numberOfQuestions-rigthAnswers;
                 setTimeout(() => {
                     setIsFinished(true);
                 }, 1000);
+                const username=localStorage.getItem('username')
                 const statisticsData = {
-                    userId: localStorage.getItem('username'), 
-                    rigthAnswers,
-                    wrongAnswers
+                    username:  username,
+                    rigthAnswers: rigthAnswers,
+                    wrongAnswers:wrongAnswers
                 };
                 saveStatistics(statisticsData);
             }
 
-       
-           // 
-           // 
-            //
         }
-        
+       
     }
     
-    const saveStatistics = async (statisticsData) => {
-        try {
-            await axios.post(`${apiEndpoint}/addStatistic`, statisticsData);
-            console.log('Estadísticas guardadas exitosamente');
-        } catch (error) {
-            console.error('Error al guardar las estadísticas:', error);
-        }
+    const saveStatistics = (statisticsData) => {
+        fetch( `${apiEndpoint}/addStatistic`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(statisticsData)
+        })
+        .then(response => {
+            if (response.ok) {
+                // La solicitud fue exitosa
+                return response.json();
+            } else {
+                // La solicitud falló, manejar el error
+                throw new Error('Error al enviar estadísticas al servidor');
+            }
+        })
+        .then(data => {
+            // Procesar la respuesta del servidor si es necesario
+        })
+        .catch(error => {
+            // Manejar el error
+            console.error('Error al enviar estadísticas al servidor:', error);
+        });
     };
     return (
         <div id="mainContainer" 
