@@ -70,7 +70,7 @@ const QuizGame = () => {
             
             if (questionsNumber === numberOfQuestions) {
                 const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
-                const wrongAnswers=numberOfQuestions-rigthAnswers;
+                const wrongAnswers=numberOfQuestions+1-rigthAnswers;
                 setTimeout(() => {
                     setIsFinished(true);
                 }, 1000);

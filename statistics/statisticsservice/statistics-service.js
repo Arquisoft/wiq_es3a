@@ -31,35 +31,18 @@ function validateRequiredFields(req, requiredFields) {
 app.post('/addStatistic', async (req, res) => {
     try {
       console.log("entra por add statistic de statistic service")
-        // Check if required fields are present in the request body
-        validateRequiredFields(req, ['username', 'rigthAnswers', 'wrongAnswers']);
-        console.log("pasa el validate fields")  
+         
         const userId = req.body.username;
         const userStatistics = await Statistic.findOne({username: userId });
-        
-        // Encrypt the password before saving it
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+       
+        userStatistics.gamesPlayed++; // Incrementar el contador de juegos jugados
+        userStatistics.rigthAnswers += req.body.rigthAnswers; // Sumar las respuestas correctas
+        userStatistics.wrongAnswers += req.body.wrongAnswers; // Sumar las respuestas incorrectas
 
-        if (!userStatistics) {
-          // Si no hay estadísticas para este usuario, crear una nueva
-          const newStatistic = new Statistic({
-              username: userId,
-              gamesPlayed: 1, // Iniciar el contador de juegos jugados en 1 para la nueva estadística
-              rigthAnswers: req.body.rigthAnswers,
-              wrongAnswers: req.body.wrongAnswers
-          });
-          await newStatistic.save(); // Guardar la nueva estadística en la base de datos
-          res.json(newStatistic);
-      } else {
-          // Si ya existen estadísticas para este usuario, actualizarlas
-          userStatistics.gamesPlayed++; // Incrementar el contador de juegos jugados
-          userStatistics.rigthAnswers += req.body.rigthAnswers; // Sumar las respuestas correctas
-          userStatistics.wrongAnswers += req.body.wrongAnswers; // Sumar las respuestas incorrectas
-
-          await userStatistics.save(); // Guardar las estadísticas actualizadas en la base de datos
-          res.json(userStatistics);
+        await userStatistics.save(); // Guardar las estadísticas actualizadas en la base de datos
+        res.json(userStatistics);
       }
-  } catch (error) {
+   catch (error) {
       res.status(400).json({ error: error.message }); 
     }});
     
