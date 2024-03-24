@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "./login/AuthProvider";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const { nombreUsuario } = useAuth();
+
  return (
    <header className="header">
      <nav className="nav container">
@@ -14,7 +17,7 @@ const Navbar = () => {
          <ul className="nav-list">
             <li className="nav-item">
              <NavLink to="/user" className="nav__link">
-               Usuario
+               {nombreUsuario}
              </NavLink>
             </li>
 
