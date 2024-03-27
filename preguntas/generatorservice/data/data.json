@@ -18,14 +18,14 @@
   },
   {
     "question":"¿En qué año se creó como país ^?",
-    "query": "SELECT ?pLabel (MIN(?r) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q6256; wdt:P571 ?r; wdt:P1082 ?population. FILTER(?p != wd:Q703695 && ?population > 2000000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
+    "query": "SELECT ?pLabel (MIN(YEAR(?r)) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q6256; wdt:P571 ?r; wdt:P1082 ?population. FILTER(?p != wd:Q703695 && ?population > 2000000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }} GROUP BY ?pLabel"
   },
 
 
 
   {
-    "question": "¿En que fecha se fundó el equipo de fútbol ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31/wdt:P279* wd:Q476028; wdt:P17 wd:Q29; wdt:P118 ?tipoEquipo. VALUES ?tipoEquipo { wd:Q35615 wd:Q324867 } OPTIONAL { ?p wdt:P571 ?rLabel } SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. }}"
+    "question": "¿En que año se fundó el equipo de fútbol ^?",
+    "query": "SELECT ?pLabel (YEAR(?r) AS ?rLabel) WHERE { ?p wdt:P31/wdt:P279* wd:Q476028; wdt:P17 wd:Q29; wdt:P118 ?tipoEquipo. VALUES ?tipoEquipo { wd:Q35615 wd:Q324867 } OPTIONAL { ?p wdt:P571 ?r } SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. }} GROUP BY ?pLabel ?r"
   },
   {
     "question": "¿Qué piloto es el ganador de la ^?",
@@ -90,8 +90,8 @@
     "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q128518 wd:Q162729 wd:Q183066 wd:Q61740820 wd:Q108839994 wd:Q44578 wd:Q163872 wd:Q11621 wd:Q185658 wd:Q165325 wd:Q104123 wd:Q47703 wd:Q131074 wd:Q20856802 wd:Q277038 wd:Q458656 wd:Q1050105 wd:Q543462 wd:Q65032692 wd:Q54274 } ?p wdt:P57 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   {
-    "question":"¿Cuál es la fecha de nacimiento de ^?",
-    "query":"SELECT ?pLabel (SAMPLE(?r) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q5; wdt:P8687 ?followers; wdt:P569 ?r. FILTER(?followers > 60000000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
+    "question":"¿Cuál es el año de nacimiento de ^?",
+    "query":"SELECT ?pLabel (YEAR(SAMPLE(?r)) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q5; wdt:P8687 ?followers; wdt:P569 ?r. FILTER(?followers > 60000000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }} GROUP BY ?pLabel"
   },
   {
     "question":"¿Cuál es el lugar de nacimiento de ^?",
