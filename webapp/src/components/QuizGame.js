@@ -16,6 +16,8 @@ const QuizGame = () => {
     const [error, setError] = useState(null); 
     const [isToastVisible, setIsToastVisible] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
+    const [buttonsDisabled, setButtonsDisabled] = useState(false);
+
 
     //const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
     const image1 = 'https://t3.ftcdn.net/jpg/05/60/26/26/360_F_560262652_SMg7tie3Zii0zFT9LYkKMqrNrPcU5owB.jpg';
@@ -40,6 +42,7 @@ const QuizGame = () => {
         if (!isToastVisible && questionsNumber <= numberOfQuestions) {
             generateQuestion();
             setAnswerSelected(false);
+            setButtonsDisabled(false);
         }
     }, [questionsNumber, isToastVisible, apiEndpoint]);
 
@@ -48,17 +51,19 @@ const QuizGame = () => {
         setAnsweredQuestions(prev => [...prev, { question: currentQuestion, isCorrect }]);
         setSelectedAnswer({ answer, isCorrect });
         setAnswerSelected(true);
+        setButtonsDisabled(true);
+
         
         if(isCorrect) {
             toast.success('¡Respuesta correcta!', { 
                 position: toast.POSITION.TOP_CENTER, 
-                onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
+                onClose: () => setIsToastVisible(false) 
             }); 
             console.log(answeredQuestions)
         } else {
             toast.error('Respuesta incorrecta', { 
                 position: toast.POSITION.TOP_CENTER, 
-                onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
+                onClose: () => setIsToastVisible(false) 
             }); 
         }
     
@@ -102,6 +107,7 @@ const QuizGame = () => {
                                 index < currentQuestion.allAnswers.length / 2 && (
                                     <Button 
                                     key={index} 
+                                    disabled={buttonsDisabled}
                                     onClick={() => handleAnswer(answer)}
                                     style={{
                                         backgroundColor: answerSelected && selectedAnswer && selectedAnswer.answer === answer 
@@ -121,6 +127,7 @@ const QuizGame = () => {
                                 index >= currentQuestion.allAnswers.length / 2 && (
                                     <Button 
                                     key={index} 
+                                    disabled={buttonsDisabled}
                                     onClick={() => handleAnswer(answer)}
                                     style={{
                                         backgroundColor: answerSelected && selectedAnswer && selectedAnswer.answer === answer 
