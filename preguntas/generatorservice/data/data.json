@@ -86,10 +86,6 @@
     "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q480 wd:Q174596 wd:Q178869 wd:Q208460 wd:Q15228 wd:Q25338 wd:Q8337 wd:Q52910 wd:Q1784466 wd:Q214132} ?p wdt:P50 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
   },
   {
-    "question":"¿Quién es el autor de la obra de teatro ^?",	
-    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q41567 wd:Q58894719 wd:Q822850 wd:Q19871 wd:Q842106 wd:Q1168267 wd:Q61777432 wd:Q886624 wd:Q669694} ?p wdt:P50 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
-  },
-  {
     "question": "¿Quién dirigió la película ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q128518 wd:Q162729 wd:Q183066 wd:Q61740820 wd:Q108839994 wd:Q44578 wd:Q163872 wd:Q11621 wd:Q185658 wd:Q165325 wd:Q104123 wd:Q47703 wd:Q131074 wd:Q20856802 wd:Q277038 wd:Q458656 wd:Q1050105 wd:Q543462 wd:Q65032692 wd:Q54274 } ?p wdt:P57 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
