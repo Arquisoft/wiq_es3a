@@ -12,30 +12,42 @@
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P2046 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   { 
-    "question": "¿Cuál es la suerficie ocupada por el ^?", 
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q165. ?p wdt:P2046 ?r. FILTER (STR(?p) != 'http://www.wikidata.org/entity/Q3240274') SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
+    "question": "¿Cuál es la suerficie ocupada por el ^ en kilómetros cuadrados (km2)?", 
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q165. ?p wdt:P2046 ?r. FILTER (?r > 800000) FILTER (STR(?p) != 'http://www.wikidata.org/entity/Q3240274') SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
  
+  },
+  {
+    "question":"¿En qué año se creó como país ^?",
+    "query": "SELECT ?pLabel (MIN(?r) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q6256; wdt:P571 ?r; wdt:P1082 ?population. FILTER(?p != wd:Q703695 && ?population > 2000000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
   },
 
 
 
   {
     "question": "¿En que fecha se fundó el equipo de fútbol ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31/wdt:P279* wd:Q476028; wdt:P17 wd:Q29; wdt:P118 ?tipoEquipo. VALUES ?tipoEquipo { wd:Q35615 wd:Q324867 } OPTIONAL { ?p wdt:P571 ?rLabel } SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. }}"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31/wdt:P279* wd:Q476028; wdt:P17 wd:Q29; wdt:P118 ?tipoEquipo. VALUES ?tipoEquipo { wd:Q35615 wd:Q324867 } OPTIONAL { ?p wdt:P571 ?rLabel } SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. }}"
   },
   {
     "question": "¿Qué piloto es el ganador de la ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { wd:Q1968 wdt:P793 ?p. ?p wdt:P1346 ?r. ?r wdt:P31 wd:Q5. SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],en'. }}"
+    "query": "SELECT ?pLabel ?rLabel WHERE { wd:Q1968 wdt:P793 ?p. ?p wdt:P1346 ?r. ?r wdt:P31 wd:Q5. SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. }}"
   },
   {
     "question": "¿Qué equipo ganó la ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { wd:Q9448 wdt:P527 ?p. ?p wdt:P1346 ?r. FILTER (?p != wd:Q124371422 && ?p != wd:Q116977381) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". }}"
+    "query": "SELECT ?pLabel ?rLabel WHERE { wd:Q9448 wdt:P527 ?p. ?p wdt:P1346 ?r. FILTER (?p != wd:Q124371422 && ?p != wd:Q116977381) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
+  },
+  {
+    "question": "¿Qué equipo ganó la ^?",
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p p:P31 [ps:P31 wd:Q27020041]; p:P3450 [ps:P3450 wd:Q324867]; p:P1346 ?rStatement. ?rStatement ps:P1346 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+  },
+  {
+    "question": "¿Cuál es el apodo de ^?",
+    "query":"SELECT ?pLabel (SAMPLE(?r) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q5; wdt:P118 wd:Q155223; wdt:P8687 ?followers; wdt:P1449 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
   },
 
 
 
   {
-    "question": "¿Cuál es el nombre de la moneda de ^?",
+    "question": "¿Qúe moneda es utilizada en ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P38 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   {
@@ -45,14 +57,26 @@
   {
     "question": "¿Cuál es el nombre del primer ministro de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE {?p wdt:P31 wd:Q6256. ?p wdt:P6 ?r. FILTER (?p != wd:Q967 && ?p != wd:Q965) SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. }}"
+  },
+  {
+    "question": "¿Qué imagen es de ^?",
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q5; wdt:P27 wd:Q29; wdt:P106 wd:Q82955; wdt:P18 ?rLabel; wdt:P8687 ?followers. FILTER(?followers > 514772 && ?followers < 20000000) FILTER(?p != wd:Q513911) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   }, 
 
 
 
   {
     "question": "¿Cuál es la bandera de ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. OPTIONAL { ?p wdt:P41 ?rLabel } FILTER(BOUND(?rLabel)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". }}"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. OPTIONAL { ?p wdt:P41 ?rLabel } FILTER(BOUND(?rLabel)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
 
+  },
+  {
+    "question": "¿Cuál es el logo de ^?",
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q13393265; wdt:P118 wd:Q155223; wdt:P154 ?rLabel. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+  },
+  {
+    "question": "¿Cuál es el escudo de ^?",
+    "query":"SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q476028; wdt:P118 ?liga; wdt:P154 ?rLabel. VALUES ?liga { wd:Q9448 wd:Q324867 wd:Q82595 wd:Q15804} SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
 
 
@@ -60,5 +84,25 @@
   {
     "question": "¿Quién es el autor de la novela ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q480 wd:Q174596 wd:Q178869 wd:Q208460 wd:Q15228 wd:Q25338 wd:Q8337 wd:Q52910 wd:Q1784466 wd:Q214132} ?p wdt:P50 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
+  },
+  {
+    "question":"¿Quién es el autor de la obra de teatro ^?",	
+    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q41567 wd:Q58894719 wd:Q822850 wd:Q19871 wd:Q842106 wd:Q1168267 wd:Q61777432 wd:Q886624 wd:Q669694} ?p wdt:P50 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+  },
+  {
+    "question": "¿Quién dirigió la película ^?",
+    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q128518 wd:Q162729 wd:Q183066 wd:Q61740820 wd:Q108839994 wd:Q44578 wd:Q163872 wd:Q11621 wd:Q185658 wd:Q165325 wd:Q104123 wd:Q47703 wd:Q131074 wd:Q20856802 wd:Q277038 wd:Q458656 wd:Q1050105 wd:Q543462 wd:Q65032692 wd:Q54274 } ?p wdt:P57 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+  },
+  {
+    "question":"¿Cuál es la fecha de nacimiento de ^?",
+    "query":"SELECT ?pLabel (SAMPLE(?r) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q5; wdt:P8687 ?followers; wdt:P569 ?r. FILTER(?followers > 60000000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
+  },
+  {
+    "question":"¿Cuál es el lugar de nacimiento de ^?",
+    "query":"SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q5; wdt:P8687 ?followers; wdt:P19 ?r. FILTER(?followers > 60000000) FILTER(?p != wd:Q46896 && ?p != wd:Q22686) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel ?rLabel"
+  },
+  {
+    "question":"¿Cuál es la imagen de ^?",
+    "query":"SELECT ?pLabel (SAMPLE(?rLabel) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q5; wdt:P8687 ?followers; wdt:P18 ?rLabel; wdt:P106 ?type. VALUES ?type { wd:Q33999 wd:Q639669 wd:Q36180 wd:Q17125263 } FILTER(?followers > 31000000) FILTER(?p != wd:Q99375148) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
   }
 ]
