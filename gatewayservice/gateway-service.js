@@ -2,13 +2,18 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const promBundle = require('express-prom-bundle');
+//libraries required for OpenAPI-Swagger
+const swaggerUi = require('swagger-ui-express'); 
+const fs = require("fs")
+const YAML = require('yaml')
 
 const app = express();
 const port = 8000;
 
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
-const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
+const generatorServiceUrl = process.env.GENERATOR_SERVICE_URL || 'http://localhost:8003';
+const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8004';
 
 app.use(cors());
 app.use(express.json());
@@ -45,12 +50,39 @@ app.post('/adduser', async (req, res) => {
 app.get('/generate-question', async (req, res) => {
   try {
     // Forward the generate question request to the question service
-    const questionResponse = await axios.get(questionServiceUrl+'/generate-question');
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question');
     res.json(questionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
   }
 });
+
+app.get('/questions', async (req, res) => {
+  try {
+    // Forward the get questions request to the question service
+    const questionResponse = await axios.get(questionServiceUrl+'/questions');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+
+// Read the OpenAPI YAML file synchronously
+openapiPath='./openapi.yaml'
+if (fs.existsSync(openapiPath)) {
+  const file = fs.readFileSync(openapiPath, 'utf8');
+
+  // Parse the YAML content into a JavaScript object representing the Swagger document
+  const swaggerDocument = YAML.parse(file);
+
+  // Serve the Swagger UI documentation at the '/api-doc' endpoint
+  // This middleware serves the Swagger UI files and sets up the Swagger UI page
+  // It takes the parsed Swagger document as input
+  app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+} else {
+  console.log("Not configuring OpenAPI. Configuration file not present.")
+}
 
 // Start the gateway service
 const server = app.listen(port, () => {

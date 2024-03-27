@@ -36,6 +36,19 @@ services:
           - mynetwork
         environment:
           MONGODB_URI: mongodb://mongodb:27017/questiondb
+  questionservice:
+        container_name: questionservice-${teamname:-defaultASW}
+        image: ghcr.io/arquisoft/wiq_es3a/questionservice:latest
+        profiles: ["dev", "prod"]
+        build: ./preguntas/questionservice
+        depends_on:
+          - mongodb
+        ports:
+          - "8004:8004"
+        networks:
+          - mynetwork
+        environment:
+          MONGODB_URI: mongodb://mongodb:27017/questiondb
   userservice:
     container_name: userservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/userservice:latest
@@ -60,6 +73,7 @@ services:
       - userservice
       - authservice
       - generatorservice
+      - questionservice
     ports:
       - "8000:8000"
     networks:
@@ -67,7 +81,8 @@ services:
     environment:
       AUTH_SERVICE_URL: http://authservice:8002
       USER_SERVICE_URL: http://userservice:8001
-      QUESTION_SERVICE_URL: http://generatorservice:8003
+      GENERATOR_SERVICE_URL: http://generatorservice:8003
+      QUESTION_SERVICE_URL: http://questionservice:8004
 
   webapp:
     container_name: webapp-${teamname:-defaultASW}
@@ -115,6 +130,11 @@ services:
 
 volumes:
   mongodb_data:
+   driver:  local
+   driver_opts:
+      type: none
+      o: bind
+      device: /path/to/your/local/mongodb_data
   prometheus_data: 
   grafana_data: 
 

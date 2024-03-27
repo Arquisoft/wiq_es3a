@@ -20,6 +20,8 @@ describe('Gateway Service', () => {
   axios.get.mockImplementation((url) => {
     if (url.endsWith('/generate-question')) {
       return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/questions')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
     }
   });
 
@@ -50,5 +52,13 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.question).toBe('mockedQuestion');
   
+  });
+  // Test /questions endpoint
+  it('should forward get questions request to question service', async () => {
+    const response = await request(app)
+      .get('/questions');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.question).toBe('mockedQuestion');
   });
 });
