@@ -53,13 +53,11 @@ const QuizGame = () => {
         setAnswerSelected(true);
         setButtonsDisabled(true);
 
-        
         if(isCorrect) {
             toast.success('¡Respuesta correcta!', { 
                 position: toast.POSITION.TOP_CENTER, 
                 onClose: () => setIsToastVisible(false) 
             }); 
-            console.log(answeredQuestions)
         } else {
             toast.error('Respuesta incorrecta', { 
                 position: toast.POSITION.TOP_CENTER, 
@@ -110,8 +108,8 @@ const QuizGame = () => {
                                     disabled={buttonsDisabled}
                                     onClick={() => handleAnswer(answer)}
                                     style={{
-                                        backgroundColor: answerSelected && selectedAnswer && selectedAnswer.answer === answer 
-                                            ? selectedAnswer.isCorrect 
+                                        backgroundColor: answerSelected && selectedAnswer 
+                                            ? answer === currentQuestion.correctAnswer 
                                                 ? 'green' 
                                                 : 'red' 
                                             : '#EE0E51'
@@ -130,8 +128,8 @@ const QuizGame = () => {
                                     disabled={buttonsDisabled}
                                     onClick={() => handleAnswer(answer)}
                                     style={{
-                                        backgroundColor: answerSelected && selectedAnswer && selectedAnswer.answer === answer 
-                                            ? selectedAnswer.isCorrect 
+                                        backgroundColor: answerSelected && selectedAnswer 
+                                            ? answer === currentQuestion.correctAnswer 
                                                 ? 'green' 
                                                 : 'red' 
                                             : '#EE0E51'
