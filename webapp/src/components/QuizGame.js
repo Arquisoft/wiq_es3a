@@ -112,10 +112,24 @@ const QuizGame = () => {
                                             ? answer === currentQuestion.correctAnswer 
                                                 ? 'green' 
                                                 : 'red' 
-                                            : '#EE0E51'
+                                            : '#EE0E51',
+
+                                        background: answer.startsWith('http') ?
+                                            `url(${answer})`
+                                            : '#EE0E51',
+
+                                        color: answer.startsWith('http') && answerSelected && selectedAnswer
+                                        ? answer === currentQuestion.correctAnswer
+                                            ? 'green'
+                                            : 'red'
+                                        : undefined
                                     }}
                                     >
-                                        {answer}
+                                        {
+                                            answer.startsWith('http') ? 
+                                                ""  
+                                            : answer
+                                        }
                                     </Button>
                                 )
                             ))}
@@ -132,10 +146,24 @@ const QuizGame = () => {
                                             ? answer === currentQuestion.correctAnswer 
                                                 ? 'green' 
                                                 : 'red' 
-                                            : '#EE0E51'
+                                            : '#EE0E51',
+
+                                        background: answer.startsWith('http') ?
+                                            `url(${answer})`
+                                            : '#EE0E51',
+
+                                        color: answer.startsWith('http') && answerSelected && selectedAnswer
+                                        ? answer === currentQuestion.correctAnswer
+                                            ? 'green'
+                                            : 'red'
+                                        : undefined
                                     }}
                                     >
-                                        {answer}
+                                        {
+                                            answer.startsWith('http') ? 
+                                                ""  
+                                            : answer
+                                        }
                                     </Button>
                                 )
                             ))}
