@@ -130,11 +130,6 @@ services:
 
 volumes:
   mongodb_data:
-   driver:  local
-   driver_opts:
-      type: none
-      o: bind
-      device: /path/to/your/local/mongodb_data
   prometheus_data: 
   grafana_data: 
 
