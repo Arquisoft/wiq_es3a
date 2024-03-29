@@ -563,7 +563,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sectionbody">
 <div class="paragraph">
 <p>Wiq es un proyecto desarrollado por la Universidad de Oviedo, desarrollado por la empresa HappySw contratada por RTVE para la realización de una versión online de un concurso de preguntas y respuestas.
-La aplicación consiste en una serie de preguntas de diferentes categorías y temas generadas automáticamente a pratir de datos de Wikidata.
+La aplicación consiste en una serie de preguntas de diferentes categorías y temas generadas automáticamente a partir de datos de Wikidata.
 Los miembros del equipo de desarrollo son los siguientes:</p>
 </div>
 <div class="sect2">
@@ -571,13 +571,13 @@ Los miembros del equipo de desarrollo son los siguientes:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Los usuarios podrán registrarse en el sistema y consultar el historico de participaciones.</p>
+<p>Los usuarios podrán registrarse en el sistema y consultar el histórico de participaciones.</p>
 </li>
 <li>
 <p>Las preguntas serán generadas automáticamente con datos de Wikidata.</p>
 </li>
 <li>
-<p>Las preguntas tendran un tiempo límite.</p>
+<p>Las preguntas tendrán un tiempo límite.</p>
 </li>
 <li>
 <p>Cada pregunta tendrá una respuesta correcta y varias incorrectas, todas ellas generadas automáticamente.</p>
@@ -612,12 +612,12 @@ Los miembros del equipo de desarrollo son los siguientes:</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>2</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Usabilidad</em></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación tiene que ser sencilla de utilizar para todas las personas aunque dispongan poco conocimineto sobre las tecnologías.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación tiene que ser sencilla de utilizar para todas las personas aunque dispongan poco conocimiento sobre las tecnologías.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Mantenibilidad</em></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación tiene que ser fácil de mantener, para añadir nuevas funcionalidades o cambiar las exixtentes, no se deberían tener que hacer muchos cambios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación tiene que ser fácil de mantener, para añadir nuevas funcionalidades o cambiar las existentes, no se deberían tener que hacer muchos cambios.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>4</strong></p></td>
@@ -661,7 +661,7 @@ Los miembros del equipo de desarrollo son los siguientes:</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RTVE</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Empresa que contrata</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tiene las mismas expectativas que que el equipo de desarrollo que funccione todo correctamente y sin ningún fallo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiene las mismas expectativas que que el equipo de desarrollo que funcione todo correctamente y sin ningún fallo</p></td>
 </tr>
 </tbody>
 </table>
@@ -752,7 +752,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <td class="tableblock halign-left valign-top"><p class="tableblock">El trabajo conlleva un calendario de entregas específico:<br>
 * Documentación 0.1 será entregada en la semana 4.<br>
 * Prototipo 0.1 en la semana 7.<br>
-* Prototype 1.0 y documentación 1.0 en la semana 10.<br>
+* Prototipo 1.0 y documentación 1.0 en la semana 10.<br>
 * Prototipo 1.1 y documentación 1.1 en la semana 13.</p></td>
 </tr>
 <tr>
@@ -1006,20 +1006,30 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 <h4 id="_contained_building_blocks_2">5.3.1. Contained Building Blocks</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nombre</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Index</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bienvenida al usuario.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Log in</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario registrarte o iniciar sesión.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interfaz con preguntas y posibles respuestas.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Home</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario comenzar a jugar o consultar su perfil.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Juego</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla donde se mostrarán las preguntas y respuestas.</p></td>
 </tr>
 <tr>
@@ -1027,20 +1037,24 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla con las estadísticas de los usuarios.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comprobación del registro o inicio de sesión.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manejo de los datos de inicio de sesión y registro de usuario.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manejo de los datos de inicio de sesión</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generación preguntas y respuestas.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auth service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manejo de los datos de registro</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generación preguntas y respuestas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lógica para la correcta generación de preguntas y respuestas.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comprobación de respuesta.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lógica para la correcta comprobación de la respuesta seleccionada por el usuario.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Esquema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plantilla para la generación de preguntas.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generación de estadísticas.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lógica para la correcta generación de estadísticas sobre los resultados de los usuarios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cálculo de estadísticas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lógica para el correcto manejo y cálculo de estadísticas sobre los resultados de los usuarios.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1437,7 +1451,7 @@ opción para guardarlos es usando una base de datos NoSQL, cosa de la MongoDB se
 <div id="footer">
 <div id="footer-text">
 Version 8.2 EN<br>
-Last updated 2024-02-19 09:06:20 +0100
+Last updated 2024-02-19 07:16:59 +0100
 </div>
 </div>
 </body>
