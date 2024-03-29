@@ -114,10 +114,6 @@ const QuizGame = () => {
                                                 : 'red' 
                                             : '#EE0E51',
 
-                                        background: answer.startsWith('http') ?
-                                            `url(${answer})`
-                                            : '#EE0E51',
-
                                         color: answer.startsWith('http') && answerSelected && selectedAnswer
                                         ? answer === currentQuestion.correctAnswer
                                             ? 'green'
@@ -127,7 +123,7 @@ const QuizGame = () => {
                                     >
                                         {
                                             answer.startsWith('http') ? 
-                                                ""  
+                                                <img src={answer} alt="imagen" style={{ height: '110px' }} />  
                                             : answer
                                         }
                                     </Button>
@@ -148,10 +144,6 @@ const QuizGame = () => {
                                                 : 'red' 
                                             : '#EE0E51',
 
-                                        background: answer.startsWith('http') ?
-                                            `url(${answer})`
-                                            : '#EE0E51',
-
                                         color: answer.startsWith('http') && answerSelected && selectedAnswer
                                         ? answer === currentQuestion.correctAnswer
                                             ? 'green'
@@ -161,7 +153,7 @@ const QuizGame = () => {
                                     >
                                         {
                                             answer.startsWith('http') ? 
-                                                ""  
+                                            <img src={answer} alt="imagen" style={{ height: '110px' }} /> 
                                             : answer
                                         }
                                     </Button>
