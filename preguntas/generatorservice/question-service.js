@@ -97,6 +97,14 @@ app.get('/generate-question', async (req, res) => {
     // Add pLabel to question string from template
     const question = template.question.replace('^', correctAnswer.pLabel);
 
+    //Cambio de formato de numero. Se intenta hacer más legible
+    if (question.includes('superficie') || question.includes('área')) {
+      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
+      for (let i = 0; i < allAnswers.length; i++) {
+        allAnswers[i] = await formatoNumero(allAnswers[i]);
+      }
+    }
+
     // Create a new question
     const newQuestion = new Question({
       question: question,
@@ -149,3 +157,18 @@ function getThumbUrl(originalUrl, width) {
 
   return thumbnailUrl;
 }*/
+
+//Funcion de formateo de numeros
+async function formatoNumero(numero) {
+  // Convertir el número a string y reemplazar puntos por comas
+  let numeroStr = numero.toString().replace('.', ',');
+
+  // Separar la parte entera de la decimal
+  let partes = numeroStr.split(',');
+
+  // Formatear la parte entera con puntos cada 3 dígitos
+  partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+  // Unir las partes nuevamente
+  return partes.join(',');
+}

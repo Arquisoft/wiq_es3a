@@ -12,7 +12,7 @@
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P2046 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   { 
-    "question": "¿Cuál es la suerficie ocupada por el ^ en kilómetros cuadrados (km2)?", 
+    "question": "¿Cuál es la superficie ocupada por el ^ en kilómetros cuadrados (km2)?", 
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q165. ?p wdt:P2046 ?r. FILTER (?r > 800000) FILTER (STR(?p) != 'http://www.wikidata.org/entity/Q3240274') SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
  
   },
