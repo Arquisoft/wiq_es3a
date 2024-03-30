@@ -10,8 +10,10 @@ const templateData = require('./data/data.json');
 const app = express();
 const port = 8003;
 
+/**
 //Constante para el tamaño de imagenes
 const widthSize = 140;
+*/
 
 // Connect to MongoDB
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/questiondb';
@@ -79,13 +81,14 @@ app.get('/generate-question', async (req, res) => {
     const wrongAnswer2 = formattedResults[randomIndex2];
     const wrongAnswer3 = formattedResults[randomIndex3];
 
+    /** 
     //Cambio de URL. Imagen redimensionada
     if (correctAnswer.rLabel.includes('upload.wikimedia.org')) {
       correctAnswer.rLabel = getThumbUrl(correctAnswer.rLabel, widthSize);
       wrongAnswer1.rLabel = getThumbUrl(wrongAnswer1.rLabel, widthSize);
       wrongAnswer2.rLabel = getThumbUrl(wrongAnswer2.rLabel, widthSize);
       wrongAnswer3.rLabel = getThumbUrl(wrongAnswer3.rLabel, widthSize);
-    }
+    }*/
 
     //Creación de array desordenado con todas las respuestas
     const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
@@ -132,7 +135,7 @@ function shuffleArray(array) {
   }
   return array;
 }
-
+/** 
 function getThumbUrl(originalUrl, width) {
   // Verifica si la URL es de Wikipedia
   if (!originalUrl.includes('upload.wikimedia.org/wikipedia/commons/')) {
@@ -145,4 +148,4 @@ function getThumbUrl(originalUrl, width) {
       "/commons/", "/commons/thumb/").replace(".svg", ".png") + "/"+ width +"px-" + filename;
 
   return thumbnailUrl;
-}
+}*/

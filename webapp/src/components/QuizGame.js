@@ -146,7 +146,7 @@ const QuizGame = () => {
                                     >
                                         {
                                             answer.startsWith('http') ? 
-                                                <img src={answer} alt="imagen" style={{ height: '110px' }} />  
+                                                <img src={answer} alt="imagen" style={{ maxWidth:"180px", height: '110px' }} />  
                                             : answer
                                         }
                                     </Button>
@@ -176,7 +176,7 @@ const QuizGame = () => {
                                     >
                                         {
                                             answer.startsWith('http') ? 
-                                            <img src={answer} alt="imagen" style={{ height: '110px' }} /> 
+                                            <img src={answer} alt="imagen" style={{ maxWidth: '180px', height: '110px' }} /> 
                                             : answer
                                         }
                                     </Button>
