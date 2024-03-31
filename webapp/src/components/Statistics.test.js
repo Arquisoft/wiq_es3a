@@ -1,17 +1,14 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Statistics from './Statistics';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 
-const mockAxios = new MockAdapter(axios);
-const gatewayEndpoint = process.env.GATEWAY_SERVICE_URL || 'http://localhost:8000';
+describe('Statistics component', () => {
+  beforeEach(() => {
+    // Limpiamos el localStorage antes de cada prueba
+    localStorage.clear();
+  });
 
-beforeEach(() => {
-  mockAxios.reset();
-});
-
-test('user statistics', async () => {
-   
+  test('user statistics', async () => {
     render(<Statistics />);
     let statisticWordArray=screen.getAllByText(/Estadísticas/i)
     for(let i=0;i<2;i++){
@@ -19,28 +16,52 @@ test('user statistics', async () => {
     }
   });
 
-  
-  test('renders statistics table correctly', async () => {
-     
-    // Configuramos axios-mock-adapter para que devuelva userData cuando se haga una solicitud a la URL deseada
-    mockAxios.onGet(`${gatewayEndpoint}/statistics?userId=felipe`).reply(200, {
+
+  it('fetches user statistics and displays them', async () => {
+    const userData = {
       gamesPlayed: 10,
       rigthAnswers: 7,
       wrongAnswers: 3
-    });
-  
-    // Renderizamos el componente Statistics
+    };
+
+    // Simulamos el usuario almacenado en localStorage
+    const userId = 'testUser';
+    localStorage.setItem('username', userId);
+
+    // Mock de la respuesta de la API
+    const mockResponse = {
+      ok: true,
+      json: jest.fn().mockResolvedValue(userData),
+    };
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce(mockResponse);
+
+    // Renderizamos el componente
     render(<Statistics />);
 
-    expect(screen.getByText(/Cargando estadísticas.../i)).toBeInTheDocument();
+    // Verificamos que se haya hecho la solicitud con la URL correcta
+    expect(global.fetch).toHaveBeenCalledWith(`http://localhost:8000/statistics?userId=${userId}`);
 
-    // Verifica "Partidas jugadas" 
-    expect(await screen.findByText('Partidas Jugadas')).toBeInTheDocument();
+    // Verificamos que se muestren los datos de las estadísticas
+    await screen.findByText(/Partidas jugadas/i);
+    expect(screen.getByText(/Preguntas Acertadas/i)).toBeInTheDocument();
+    expect(screen.getByText(/Preguntas Falladas/i)).toBeInTheDocument();
+  });
 
-    // Verifica "Preguntas acertadas" 
-    expect(screen.getByText('Preguntas Acertadas')).toBeInTheDocument();
+  it('displays an error message when fetching statistics fails', async () => {
+    // Simulamos el usuario almacenado en localStorage
+    const userId = 'testUser';
+    localStorage.setItem('username', userId);
 
-    // Verifica "Preguntas falladas" 
-    expect(screen.getByText('Preguntas Falladas')).toBeInTheDocument();
+    // Mock de la respuesta de la API para simular un error
+    jest.spyOn(global, 'fetch').mockRejectedValueOnce(new Error('Failed to fetch'));
 
-  }); 
+    // Renderizamos el componente
+    render(<Statistics />);
+
+    // Verificamos que se haya hecho la solicitud con la URL correcta
+    expect(global.fetch).toHaveBeenCalledWith(`http://localhost:8000/statistics?userId=${userId}`);
+
+    // Verificamos que se muestre el mensaje de error
+    await screen.findByText(/Ha habido un error cargando las estadísticas/i);
+  });
+});
