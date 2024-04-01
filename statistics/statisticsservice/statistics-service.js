@@ -29,9 +29,7 @@ function validateRequiredFields(req, requiredFields) {
 }
 
 app.post('/addStatistic', async (req, res) => {
-    try {
-      console.log("entra por add statistic de statistic service")
-         
+    try {    
         const userId = req.body.username;
         const userStatistics = await Statistic.findOne({username: userId });
        

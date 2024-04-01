@@ -84,9 +84,7 @@ app.get('/questions', async (req, res) => {
 
 app.post('/addStatistic', async (req, res) => {
   try {
-    const questionResponse = await axios.post(statisticssServiceUrl+'/addStatistic', 
-      req.body,
-    );
+    const questionResponse = await axios.post(statisticssServiceUrl+'/addStatistic', req.body );
     res.json(questionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
