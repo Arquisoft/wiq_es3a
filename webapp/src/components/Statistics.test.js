@@ -59,7 +59,6 @@ const dataRows = tableRows.slice(1); // Ignorar la primera fila que son los enca
 dataRows.forEach(row => {
   const cells = row.querySelectorAll('td'); // Obtener todas las celdas de la fila
   expect(cells.length).toBe(3); // Verificar que hay exactamente 3 celdas por fila
-  // Puedes hacer más verificaciones aquí si es necesario, por ejemplo:
    expect(cells[0]).toHaveTextContent('10'); // Verificar que la primera celda contiene el número de partidas jugadas
    expect(cells[1]).toHaveTextContent('7'); // Verificar que la segunda celda contiene el número de preguntas acertadas
    expect(cells[2]).toHaveTextContent('3'); // Verificar que la tercera celda contiene el número de preguntas falladas
