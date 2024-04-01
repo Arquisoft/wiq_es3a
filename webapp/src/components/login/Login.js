@@ -63,8 +63,10 @@ const Login = () => {
       setTimeout(() => {
         window.location.href = '/home';
       }, 2000);
+      localStorage.setItem('username', username);
     }
-  }, [loginSuccess]);
+  }, [loginSuccess],
+   );
   
   
   return (

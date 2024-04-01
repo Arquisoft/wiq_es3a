@@ -12,8 +12,10 @@ const port = 8000;
 
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
+const statisticssServiceUrl = process.env.STATS_SERVICE_URL || 'http://localhost:8006';
 const generatorServiceUrl = process.env.GENERATOR_SERVICE_URL || 'http://localhost:8003';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8004';
+
 
 app.use(cors());
 app.use(express.json());
@@ -57,10 +59,29 @@ app.get('/generate-question', async (req, res) => {
   }
 });
 
+
+app.get('/statistics', async (req, res) => {
+  try {
+    const questionResponse = await axios.get(statisticssServiceUrl+'/statistics', {
+      params: req.query,
+    });
+
 app.get('/questions', async (req, res) => {
   try {
     // Forward the get questions request to the question service
     const questionResponse = await axios.get(questionServiceUrl+'/questions');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+
+app.post('/addStatistic', async (req, res) => {
+  try {
+    const questionResponse = await axios.post(statisticssServiceUrl+'/addStatistic', 
+      req.body,
+    );
     res.json(questionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
@@ -83,6 +104,7 @@ if (fs.existsSync(openapiPath)) {
 } else {
   console.log("Not configuring OpenAPI. Configuration file not present.")
 }
+
 
 // Start the gateway service
 const server = app.listen(port, () => {
