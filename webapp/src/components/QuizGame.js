@@ -18,6 +18,11 @@ const QuizGame = () => {
     const [isFinished, setIsFinished] = useState(false);
     const gatewayEndpoint = process.env.GATEWAY_SERVICE_URL || 'http://localhost:8000';
 
+    const [buttonsDisabled, setButtonsDisabled] = useState(false);
+
+    const [auxQuestion, setAuxQuestion] = useState(null);
+
+
     //const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
     const image1 = 'https://t3.ftcdn.net/jpg/05/60/26/26/360_F_560262652_SMg7tie3Zii0zFT9LYkKMqrNrPcU5owB.jpg';
     //const image2 = 'https://t4.ftcdn.net/jpg/03/45/88/07/360_F_345880772_zIT2mkdCzTthplO7xqaGGrMspN0jw0ll.jpg';
@@ -28,41 +33,53 @@ const QuizGame = () => {
     const wrongImage = 'https://img.freepik.com/foto-gratis/signo-cruzado-incorrecto-o-negativo-negativo-eleccion-icono-simbolo-icono-ilustracion-aislado-sobre-fondo-rojo-3d-rendering_56104-1219.jpg?t=st=1710078617~exp=1710082217~hmac=a9dc243dfad6f2c548c66d6748c5aae79b5039b1b5763e34bce3e787114bc329&w=1380';
 
     useEffect(() => {
-        const generateQuestion = async () => {
-            try {
-                const response = await axios.get(`${apiEndpoint}/generate-question`);
-                setCurrentQuestion(response.data);
-                setError(null);
-            } catch (error) {
-                setError('Ha habido un error cargando las preguntas');
+        const generateQuestion =  async () => {
+            if (questionsNumber < 1){
+                try {
+                    const response = await axios.get(`${apiEndpoint}/generate-question`);
+                    setCurrentQuestion(response.data);
+                    setError(null);
+                } catch (error) {
+                    setError('Ha habido un error cargando las preguntas');
+                }
+            }
+            else{
+                setCurrentQuestion(auxQuestion);
             }
         };
     
         if (!isToastVisible && questionsNumber <= numberOfQuestions) {
             generateQuestion();
             setAnswerSelected(false);
+            setButtonsDisabled(false);
         }
-    }, [questionsNumber, isToastVisible, apiEndpoint]);
+    }, [questionsNumber, isToastVisible, apiEndpoint, auxQuestion]);
 
     const handleAnswer = (answer) => {
+        //Comprueba si la respuesta es correcta
         const isCorrect = answer === currentQuestion.correctAnswer;
         setAnsweredQuestions(prev => [...prev, { question: currentQuestion, isCorrect }]);
         setSelectedAnswer({ answer, isCorrect });
         setAnswerSelected(true);
-        
+        setButtonsDisabled(true);
+
+        //Muestra un toast con el resultado de la respuesta
         if(isCorrect) {
             toast.success('¡Respuesta correcta!', { 
                 position: toast.POSITION.TOP_CENTER, 
-                onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
+                onClose: () => setIsToastVisible(false) 
             }); 
-            console.log(answeredQuestions)
         } else {
             toast.error('Respuesta incorrecta', { 
                 position: toast.POSITION.TOP_CENTER, 
-                onClose: () => setIsToastVisible(false) // Aquí es donde se añade el onClose
+                onClose: () => setIsToastVisible(false) 
             }); 
         }
+
+        //Rellena la pregunta auxiliar de cara a la siguiente pregunta
+        generateAuxQuestion();
     
+        //Incrementa el número de preguntas.
         setIsToastVisible(true);
         setQuestionsNumber(prev => prev + 1);
 
@@ -112,6 +129,18 @@ const QuizGame = () => {
             console.error('Error al enviar estadísticas al servidor:', error);
         });
     };
+
+
+    const generateAuxQuestion = async () => {
+        try {
+            const response = await axios.get(`${apiEndpoint}/generate-question`);
+            setAuxQuestion(response.data);
+            setError(null);
+        } catch (error) {
+            setError('Ha habido un error cargando las preguntas');
+        }
+    }
+
     return (
         <div id="mainContainer" 
         style={{
@@ -139,16 +168,27 @@ const QuizGame = () => {
                                 index < currentQuestion.allAnswers.length / 2 && (
                                     <Button 
                                     key={index} 
+                                    disabled={buttonsDisabled}
                                     onClick={() => handleAnswer(answer)}
                                     style={{
-                                        backgroundColor: answerSelected && selectedAnswer && selectedAnswer.answer === answer 
-                                            ? selectedAnswer.isCorrect 
+                                        backgroundColor: answerSelected && selectedAnswer 
+                                            ? answer === currentQuestion.correctAnswer 
                                                 ? 'green' 
                                                 : 'red' 
-                                            : '#EE0E51'
+                                            : '#EE0E51',
+
+                                        color: answer.startsWith('http') && answerSelected && selectedAnswer
+                                        ? answer === currentQuestion.correctAnswer
+                                            ? 'green'
+                                            : 'red'
+                                        : undefined
                                     }}
                                     >
-                                        {answer}
+                                        {
+                                            answer.startsWith('http') ? 
+                                                <img src={answer} alt="imagen" style={{ maxWidth:"180px", height: '110px' }} />  
+                                            : answer
+                                        }
                                     </Button>
                                 )
                             ))}
@@ -158,16 +198,27 @@ const QuizGame = () => {
                                 index >= currentQuestion.allAnswers.length / 2 && (
                                     <Button 
                                     key={index} 
+                                    disabled={buttonsDisabled}
                                     onClick={() => handleAnswer(answer)}
                                     style={{
-                                        backgroundColor: answerSelected && selectedAnswer && selectedAnswer.answer === answer 
-                                            ? selectedAnswer.isCorrect 
+                                        backgroundColor: answerSelected && selectedAnswer 
+                                            ? answer === currentQuestion.correctAnswer 
                                                 ? 'green' 
                                                 : 'red' 
-                                            : '#EE0E51'
+                                            : '#EE0E51',
+
+                                        color: answer.startsWith('http') && answerSelected && selectedAnswer
+                                        ? answer === currentQuestion.correctAnswer
+                                            ? 'green'
+                                            : 'red'
+                                        : undefined
                                     }}
                                     >
-                                        {answer}
+                                        {
+                                            answer.startsWith('http') ? 
+                                            <img src={answer} alt="imagen" style={{ maxWidth: '180px', height: '110px' }} /> 
+                                            : answer
+                                        }
                                     </Button>
                                 )
                             ))}
