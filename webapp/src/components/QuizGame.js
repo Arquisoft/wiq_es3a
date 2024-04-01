@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import './QuizGame.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Timer from './Timer.js';
 
 const QuizGame = () => {
     const numberOfQuestions = 9;
@@ -101,6 +102,10 @@ const QuizGame = () => {
         }
     }
 
+    const handleTimeOver = () => {
+        alert('¡Tiempo agotado!');
+      };
+
     return (
         <div id="mainContainer" 
         style={{
@@ -121,6 +126,9 @@ const QuizGame = () => {
             ):
             currentQuestion !== null && !isFinished ? (
                 <div id="qContainer">
+                    <div id='timerCOntainer'>
+                    <Timer onTimeOver={handleTimeOver} />
+                    </div>
                     <h2>{currentQuestion.question}</h2>
                     <div id="rContainer">
                         <div>
