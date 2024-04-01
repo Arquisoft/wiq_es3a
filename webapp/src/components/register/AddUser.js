@@ -32,6 +32,22 @@ const AddUser = () => {
     }
   };
 
+  const checkForm = () =>
+  {
+    if(name.trim().length === 0 || surname.trim().length === 0 || username.trim().length === 0
+    || password.trim().length === 0 || passwordRepeat.trim().length === 0)
+    {
+      setError("No se permite dejar espacios en blanco");
+      return;
+    }
+    if(password != passwordRepeat)
+    {
+      setError("Repita correctamente la contraseña que quiera usar");
+      return;   
+    }
+    addUser();
+  };
+
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
@@ -55,7 +71,7 @@ const AddUser = () => {
           label="Nombre"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          id = "input"
+          id = "name"
         />
         </div>
         <div className='input'>
@@ -66,7 +82,7 @@ const AddUser = () => {
           label="Apellidos"
           value={surname}
           onChange={(e) => setSurName(e.target.value)}
-          id = "input"
+          id = "surname"
         />
         </div>
         <div className='input'>
@@ -77,7 +93,7 @@ const AddUser = () => {
           label="Nombre de usuario"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          id = "input"
+          id = "username"
         />
         </div>
         
@@ -90,7 +106,7 @@ const AddUser = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          id = "input"
+          id = "password"
         />
         </div>
         
@@ -103,12 +119,12 @@ const AddUser = () => {
           type="password"
           value={passwordRepeat}
           onChange={(e) => setPasswordRepeat(e.target.value)}
-          id = "input"
+          id = "password2"
         />
         </div>
         <div className="underline"></div>
         <div className='button'>
-        <Button variant="contained" onClick={addUser}>
+        <Button variant="contained" onClick={checkForm}>
           Registrarse
         </Button>
         </div>

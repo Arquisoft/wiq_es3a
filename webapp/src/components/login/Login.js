@@ -22,7 +22,15 @@ const Login = () => {
 
   const loginUser = async () => {
     try {
+
+      if(username.trim().length ===0 || password.trim().length===0)
+      {
+        setError("No se permite dejar espacios en blanco");
+        return;  
+      }
+
       let res= await axios.post(`${apiEndpoint}/login`, { username, password });
+
 
       // Extract data from the response
       setToken(res.data.token);
@@ -37,6 +45,15 @@ const Login = () => {
     }
   };
 
+  const checkForm = () =>
+  {
+    if(username.trim().length ===0 || password.trim().length===0)
+    {
+      setError("No se permite dejar espacios en blanco");
+      return;  
+    }
+  };
+
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
@@ -47,8 +64,10 @@ const Login = () => {
       setTimeout(() => {
         window.location.href = '/home';
       }, 2000);
+      localStorage.setItem('username', username);
     }
-  }, [loginSuccess]);
+  }, [loginSuccess],
+   );
   
   
   return (

@@ -10,6 +10,11 @@ const templateData = require('./data/data.json');
 const app = express();
 const port = 8003;
 
+/**
+//Constante para el tamaño de imagenes
+const widthSize = 140;
+*/
+
 // Connect to MongoDB
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/questiondb';
 
@@ -76,12 +81,29 @@ app.get('/generate-question', async (req, res) => {
     const wrongAnswer2 = formattedResults[randomIndex2];
     const wrongAnswer3 = formattedResults[randomIndex3];
 
+    /** 
+    //Cambio de URL. Imagen redimensionada
+    if (correctAnswer.rLabel.includes('upload.wikimedia.org')) {
+      correctAnswer.rLabel = getThumbUrl(correctAnswer.rLabel, widthSize);
+      wrongAnswer1.rLabel = getThumbUrl(wrongAnswer1.rLabel, widthSize);
+      wrongAnswer2.rLabel = getThumbUrl(wrongAnswer2.rLabel, widthSize);
+      wrongAnswer3.rLabel = getThumbUrl(wrongAnswer3.rLabel, widthSize);
+    }*/
+
     //Creación de array desordenado con todas las respuestas
     const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
     const allAnswers = shuffleArray(allAnswersSorted);
 
     // Add pLabel to question string from template
     const question = template.question.replace('^', correctAnswer.pLabel);
+
+    //Cambio de formato de numero. Se intenta hacer más legible
+    if (question.includes('superficie') || question.includes('área')) {
+      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
+      for (let i = 0; i < allAnswers.length; i++) {
+        allAnswers[i] = await formatoNumero(allAnswers[i]);
+      }
+    }
 
     // Create a new question
     const newQuestion = new Question({
@@ -120,4 +142,33 @@ function shuffleArray(array) {
       [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+/** 
+function getThumbUrl(originalUrl, width) {
+  // Verifica si la URL es de Wikipedia
+  if (!originalUrl.includes('upload.wikimedia.org/wikipedia/commons/')) {
+      return "URL no válida";
+  }
+
+  // Reemplaza la parte de la URL para obtener la versión miniatura
+  let filename = originalUrl.split('/').pop();
+  let thumbnailUrl = originalUrl.replace(
+      "/commons/", "/commons/thumb/").replace(".svg", ".png") + "/"+ width +"px-" + filename;
+
+  return thumbnailUrl;
+}*/
+
+//Funcion de formateo de numeros
+async function formatoNumero(numero) {
+  // Convertir el número a string y reemplazar puntos por comas
+  let numeroStr = numero.toString().replace('.', ',');
+
+  // Separar la parte entera de la decimal
+  let partes = numeroStr.split(',');
+
+  // Formatear la parte entera con puntos cada 3 dígitos
+  partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+  // Unir las partes nuevamente
+  return partes.join(',');
 }

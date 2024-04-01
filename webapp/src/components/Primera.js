@@ -9,7 +9,7 @@ function Primera() {
  
 
   return (
-  <div class="box">
+  <div className="box">
     <Container>      
         <CssBaseline />
       <Typography component="h1" variant="h5" align="center" sx={{ marginTop: 20 }}>

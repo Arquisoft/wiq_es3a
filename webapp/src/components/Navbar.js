@@ -16,8 +16,10 @@ const Navbar = () => {
        >
          <ul className="nav-list">
             <li className="nav-item">
-             <NavLink to="/user" className="nav__link">
-               {nombreUsuario}
+
+             <NavLink to={process.env.RUTA_USER ||"/statistics"}className="nav__link">
+               Usuario {nombreUsuario}
+
              </NavLink>
             </li>
 
