@@ -65,10 +65,11 @@ app.get('/statistics', async (req, res) => {
     const questionResponse = await axios.get(statisticssServiceUrl+'/statistics', {
       params: req.query,
     });
-    } catch (error) {
-      res.status(error.response.status).json({ error: error.response.data.error });
-    }
-  });
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
 
 app.get('/questions', async (req, res) => {
   try {
