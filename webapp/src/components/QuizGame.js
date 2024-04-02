@@ -145,7 +145,10 @@ const QuizGame = () => {
 
     const generateAuxQuestion = async () => {
         try {
-            const response = await axios.get(`${apiEndpoint}/generate-question`);
+            const config = {
+                headers: { Authorization: 'Bearer '+ token}
+              };
+            const response = await axios.get(`${apiEndpoint}/generate-question`,config);
             setAuxQuestion(response.data);
             setError(null);
         } catch (error) {
