@@ -22,8 +22,14 @@ describe('Gateway Service', () => {
       return Promise.resolve({ data: { question: 'mockedQuestion' } });
     }else if (url.endsWith('/questions')) {
       return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/statistics')) {
+      return Promise.resolve({ data: { gamesPlayed: 'mockedGamesPlayed' ,
+      rigthAnswers: 'mockedRigthAnswers', 
+      wrongAnswers:'mockedWrongAnswers'  }});
     }
   });
+
+ 
 
   // Test /login endpoint
   it('should forward login request to auth service', async () => {
@@ -61,4 +67,16 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.question).toBe('mockedQuestion');
   });
+
+   // Test /statistics endpoint
+   it('should forward get statistics request to statistics service', async () => {
+    const response = await request(app)
+      .get('/statistics');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.gamesPlayed).toBe('mockedGamesPlayed');
+    expect(response.body.rigthAnswers).toBe('mockedRigthAnswers');
+    expect(response.body.wrongAnswers).toBe('mockedWrongAnswers');
+  });
+
 });

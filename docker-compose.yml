@@ -77,8 +77,6 @@ services:
     environment:
       MONGODB_URI: mongodb://mongodb:27017/userdb
    
-
-
   gatewayservice:
     container_name: gatewayservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/gatewayservice:latest
@@ -114,6 +112,8 @@ services:
       - "3000:3000" 
     environment:
       GATEWAY_SERVICE_URL: http://gatewayservice:8000
+
+  
 
   prometheus:
     image: prom/prometheus

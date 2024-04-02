@@ -17,7 +17,7 @@ const Login = () => {
 
   const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
 
-  const { setToken } = useAuth();
+  const { setToken, setUsuario } = useAuth();
 
 
   const loginUser = async () => {
@@ -34,6 +34,7 @@ const Login = () => {
 
       // Extract data from the response
       setToken(res.data.token);
+      setUsuario(res.data.username);
       console.log(res);
       
       setLoginSuccess(true);

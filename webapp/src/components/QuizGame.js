@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import './QuizGame.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "./login/AuthProvider";
 
 const QuizGame = () => {
     const numberOfQuestions = 9;
@@ -32,11 +33,17 @@ const QuizGame = () => {
     const correctImage = 'https://img.freepik.com/foto-gratis/signo-icono-simbolo-marca-verificacion-verde-correcto-o-correcto-aprobar-o-concepto-confirmar-ilustracion-aislada-representacion-3d-fondo-verde_56104-1220.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1710028800&semt=ais';
     const wrongImage = 'https://img.freepik.com/foto-gratis/signo-cruzado-incorrecto-o-negativo-negativo-eleccion-icono-simbolo-icono-ilustracion-aislado-sobre-fondo-rojo-3d-rendering_56104-1219.jpg?t=st=1710078617~exp=1710082217~hmac=a9dc243dfad6f2c548c66d6748c5aae79b5039b1b5763e34bce3e787114bc329&w=1380';
 
+    const { token } = useAuth();
+
     useEffect(() => {
+
         const generateQuestion =  async () => {
             if (questionsNumber < 1){
                 try {
-                    const response = await axios.get(`${apiEndpoint}/generate-question`);
+                    const config = {
+                      headers: { Authorization: 'Bearer '+ token}
+                    };
+                    const response = await axios.get(`${apiEndpoint}/generate-question`,config);
                     setCurrentQuestion(response.data);
                     setError(null);
                 } catch (error) {
