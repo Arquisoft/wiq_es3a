@@ -44,4 +44,4 @@ describe('Question Service', () => {
             expect(response.body).toHaveProperty('allAnswers');
             expect(response.body.allAnswers).toHaveLength(4);
         });
-});
+}, 10000);

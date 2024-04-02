@@ -5,6 +5,7 @@ import './QuizGame.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Timer from './Timer.js';
+import { useAuth } from "./login/AuthProvider";
 
 const QuizGame = () => {
     const numberOfQuestions = 9;
@@ -19,6 +20,8 @@ const QuizGame = () => {
     const [error, setError] = useState(null); 
     const [isToastVisible, setIsToastVisible] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
+    const gatewayEndpoint = process.env.GATEWAY_SERVICE_URL || 'http://localhost:8000';
+
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
     const [auxQuestion, setAuxQuestion] = useState(null);
@@ -35,11 +38,17 @@ const QuizGame = () => {
     const correctImage = 'https://img.freepik.com/foto-gratis/signo-icono-simbolo-marca-verificacion-verde-correcto-o-correcto-aprobar-o-concepto-confirmar-ilustracion-aislada-representacion-3d-fondo-verde_56104-1220.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1710028800&semt=ais';
     const wrongImage = 'https://img.freepik.com/foto-gratis/signo-cruzado-incorrecto-o-negativo-negativo-eleccion-icono-simbolo-icono-ilustracion-aislado-sobre-fondo-rojo-3d-rendering_56104-1219.jpg?t=st=1710078617~exp=1710082217~hmac=a9dc243dfad6f2c548c66d6748c5aae79b5039b1b5763e34bce3e787114bc329&w=1380';
 
+    const { token } = useAuth();
+
     useEffect(() => {
+
         const generateQuestion =  async () => {
             if (questionsNumber < 1){
                 try {
-                    const response = await axios.get(`${apiEndpoint}/generate-question`);
+                    const config = {
+                      headers: { Authorization: 'Bearer '+ token}
+                    };
+                    const response = await axios.get(`${apiEndpoint}/generate-question`,config);
                     setCurrentQuestion(response.data);
                     setError(null);
                 } catch (error) {
@@ -87,14 +96,52 @@ const QuizGame = () => {
         setQuestionsNumber(prev => prev + 1);
 
         if (questionsNumber === numberOfQuestions) {
+            
             if (questionsNumber === numberOfQuestions) {
+                const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
+                const wrongAnswers=numberOfQuestions+1-rigthAnswers;
                 setTimeout(() => {
                     setIsFinished(true);
                 }, 1000);
+                const username=localStorage.getItem('username')
+                const statisticsData = {
+                    username:  username,
+                    rigthAnswers: rigthAnswers,
+                    wrongAnswers:wrongAnswers
+                };
+                saveStatistics(statisticsData);
             }
+
         }
-        
+       
+    }
+    
+    const saveStatistics = (statisticsData) => {
+        fetch( `${apiEndpoint}/addStatistic`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(statisticsData)
+        })
+        .then(response => {
+            if (response.ok) {
+                // La solicitud fue exitosa
+                return response.json();
+            } else {
+                // La solicitud falló, manejar el error
+                throw new Error('Error al enviar estadísticas al servidor');
+            }
+        })
+        .then(data => {
+            // Procesar la respuesta del servidor si es necesario
+        })
+        .catch(error => {
+            // Manejar el error
+            console.error('Error al enviar estadísticas al servidor:', error);
+        });
     };
+
 
     const generateAuxQuestion = async () => {
         try {
