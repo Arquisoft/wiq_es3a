@@ -65,6 +65,7 @@ app.post('/addStatistic', async (req, res) => {
    
     });
 
+
 const server = app.listen(port, () => {
   console.log(`Statistics Service listening at http://localhost:${port}`);
 });

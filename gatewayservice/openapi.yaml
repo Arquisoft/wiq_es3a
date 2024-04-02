@@ -238,3 +238,49 @@ paths:
                     type: string
                     description: Error information.
                     example: Internal Server Error
+  /users:
+      get:
+        summary: Get all users. 
+        operationId: getUsers
+        responses:
+          '200':
+            description: Users retrieved successfully.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        description: user ID.
+                        example: 65f756db3fa22d227a4b7c7d
+                      username:
+                        type: string
+                        description: User.
+                        example: carmen
+                      gamesPlayed:
+                        type: integer
+                        description: Games played.
+                        example: 2
+                      rigthAnswers:
+                        type: integer
+                        description: Right answers.
+                        example: 5
+                      wrongAnswers:
+                        type: integer
+                        description: Wrong answers.
+                        example: 5
+          
+          '500':
+            description: Internal server error.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      description: Error information.
+                      example: Internal Server Error
