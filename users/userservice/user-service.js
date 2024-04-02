@@ -45,6 +45,18 @@ app.post('/adduser', async (req, res) => {
         res.status(400).json({ error: error.message }); 
     }});
 
+    app.get('/users', async (req, res) => {
+      try {
+        const users = await User.find();
+        res.status(200).json(users); 
+      } catch (error) {
+        // Manejo de errores
+        console.error('Error al recuperar los usuarios:', error);
+        res.status(500).json({ message: 'Error interno del servidor al obtener los usuarios.' });
+      }
+   
+    });
+
 const server = app.listen(port, () => {
   console.log(`User Service listening at http://localhost:${port}`);
 });

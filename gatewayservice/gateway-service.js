@@ -16,7 +16,6 @@ const statisticssServiceUrl = process.env.STATS_SERVICE_URL || 'http://localhost
 const generatorServiceUrl = process.env.GENERATOR_SERVICE_URL || 'http://localhost:8003';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8004';
 
-
 app.use(cors());
 app.use(express.json());
 
@@ -92,10 +91,18 @@ app.get('/questions', async (req, res) => {
 
 app.post('/addStatistic', async (req, res) => {
   try {
-    const questionResponse = await axios.post(statisticssServiceUrl+'/addStatistic', 
-      req.body,
-    );
+    const questionResponse = await axios.post(statisticssServiceUrl+'/addStatistic', req.body );
     res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/users', async (req, res) => {
+  try {
+    // Forward the get questions request to the question service
+    const usersResponse = await axios.get(userServiceUrl+'/users');
+    res.json(usersResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
   }

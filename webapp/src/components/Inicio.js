@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Login from './login/Login';
 import AddUser from './register/AddUser';
 import Link from '@mui/material/Link';
+import './login/Login.css';
 
 function Inicio() {
     const [showLogin, setShowLogin] = useState(true);
