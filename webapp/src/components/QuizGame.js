@@ -153,13 +153,15 @@ const QuizGame = () => {
                     color: 'white',  
                     padding: '10px',            
                     borderRadius: '8px',        
-                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', 
+                    boxShadow: 'rgb(25, 118, 210) 0px 0px 15px', 
                     display: 'flex',             
                     justifyContent: 'space-between', 
-                    alignItems: 'center'         
+                    alignItems: 'center',
+                    width: '60%',         
                 }}
             >
                 <Timer onTimeOver={handleTimeOver} onTimeChange={(time) => assignTime(time)} />
+                <h3>Preguntas respondidas: {questionsNumber}/{numberOfQuestions + 1}</h3>
             </Box>) : null}
             {error ? (
                 <h2>{error}</h2> // Si hay un error, muestra el mensaje de error
