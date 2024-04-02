@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const totalTime = 180;
+const totalTime = 150;
 
-const Timer = ({ initialTime = totalTime, onTimeOver }) => {
+const Timer = ({ initialTime = totalTime, onTimeOver, onTimeChange }) => {
   const [time, setTime] = useState(initialTime);
 
   useEffect(() => {
@@ -15,12 +15,16 @@ const Timer = ({ initialTime = totalTime, onTimeOver }) => {
           }
           return prevTime;
         }
-        return prevTime - 1;
+        const newTime = prevTime - 1;
+        if (onTimeChange) {
+          onTimeChange(newTime);
+        }
+        return newTime;
       });
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [onTimeOver]);
+  }, [onTimeOver, onTimeChange]);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -29,8 +33,8 @@ const Timer = ({ initialTime = totalTime, onTimeOver }) => {
   };
 
   return (
-    <div>
-      Tiempo restante: {formatTime(time)}
+    <div id='timerContainer'>
+      <h3>Tiempo restante: {formatTime(time)}</h3>
     </div>
   );
 };

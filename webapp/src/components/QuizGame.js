@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import './QuizGame.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +8,8 @@ import Timer from './Timer.js';
 
 const QuizGame = () => {
     const numberOfQuestions = 9;
+    const totalTime = 150;
+
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [questionsNumber, setQuestionsNumber] = useState(0);
     const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
@@ -20,6 +22,8 @@ const QuizGame = () => {
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
     const [auxQuestion, setAuxQuestion] = useState(null);
+
+    const [time, setTime] = useState(totalTime);
 
 
     //const image = 'https://img.freepik.com/vector-gratis/fondo-signos-interrogacion_78370-2896.jpg';
@@ -103,8 +107,27 @@ const QuizGame = () => {
     }
 
     const handleTimeOver = () => {
+        setIsFinished(true);
         alert('¡Tiempo agotado!');
-      };
+    };
+
+    const assignTime = (time) => {
+        setTime(time);
+    }
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        
+        const minutos = minutes === 1 ? 'minuto' : 'minutos';
+        const segundos = remainingSeconds === 1 ? 'segundo' : 'segundos';
+    
+        return `${minutes} ${minutos} y ${remainingSeconds} ${segundos}`;
+    }
+
+    function formatPercentage(percentage){
+        return parseFloat(percentage).toFixed(2);
+    }
 
     return (
         <div id="mainContainer" 
@@ -118,17 +141,31 @@ const QuizGame = () => {
             backgroundPosition: 'center',
             overflow: 'hidden',
             height: '100vh',
-            width: '100vw'
+            width: '100vw',
+            justifyContent: isFinished ? 'center' : 'flex-start',
         }}>
             <ToastContainer />
+            {!isFinished ? (
+            <Box 
+                id='infoContainer' 
+                sx={{
+                    backgroundColor: '#EE0E51',
+                    color: 'white',  
+                    padding: '10px',            
+                    borderRadius: '8px',        
+                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', 
+                    display: 'flex',             
+                    justifyContent: 'space-between', 
+                    alignItems: 'center'         
+                }}
+            >
+                <Timer onTimeOver={handleTimeOver} onTimeChange={(time) => assignTime(time)} />
+            </Box>) : null}
             {error ? (
                 <h2>{error}</h2> // Si hay un error, muestra el mensaje de error
             ):
             currentQuestion !== null && !isFinished ? (
                 <div id="qContainer">
-                    <div id='timerCOntainer'>
-                    <Timer onTimeOver={handleTimeOver} />
-                    </div>
                     <h2>{currentQuestion.question}</h2>
                     <div id="rContainer">
                         <div>
@@ -202,8 +239,14 @@ const QuizGame = () => {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}>
-                    <h2>¡Has terminado el juego!</h2>
-                    <h3>Has acertado {answeredQuestions.filter(question => question.isCorrect).length} preguntas de {numberOfQuestions + 1}</h3>
+                    <h2>¡Has terminado el juego en { formatTime(totalTime - time) }!</h2>
+
+                    <h3>Has acertado { answeredQuestions.filter(question => question.isCorrect).length } preguntas de { numberOfQuestions + 1 } </h3>
+
+                    <h3>El porcentaje de aciertos ha sido del {
+                        formatPercentage((answeredQuestions.filter(question => question.isCorrect).length)/(numberOfQuestions+1)*100)
+                        } % </h3>
+
                     <Button
                         id='bJugar'
                         onClick={() => window.location.reload()}
