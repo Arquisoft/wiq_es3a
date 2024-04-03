@@ -50,15 +50,19 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.userId).toBe('mockedUserId');
   });
-  // Test /generate-question endpoint
-  it('should forward generate question request to question service', async () => {
-    const response = await request(app)
-      .get('/generate-question');
+// Test /generate-question endpoint
+it('should forward generate question request to question service', async () => {
+  const response = await request(app)
+    .get('/generate-question')
+    .set('Authorization', 'Bearer some-token');
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body.question).toBe('mockedQuestion');
-  
-  });
+  if (response.statusCode !== 200) {
+    console.error(response.body.error);
+  }
+
+  expect(response.statusCode).toBe(200);
+  expect(response.body.question).toBe('mockedQuestion');
+});
   // Test /questions endpoint
   it('should forward get questions request to question service', async () => {
     const response = await request(app)
