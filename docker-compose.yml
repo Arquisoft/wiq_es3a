@@ -4,6 +4,7 @@ services:
     container_name: mongodb-${teamname:-defaultASW}
     image: mongo
     profiles: ["dev", "prod"]
+    restart: always
     volumes:
       - mongodb_data:/data/db
     ports:
@@ -14,6 +15,7 @@ services:
     container_name: authservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/authservice:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./users/authservice
     depends_on:
       - mongodb
@@ -27,6 +29,7 @@ services:
         container_name: generatorservice-${teamname:-defaultASW}
         image: ghcr.io/arquisoft/wiq_es3a/generatorservice:latest
         profiles: ["dev", "prod"]
+        restart: always
         build: ./preguntas/generatorservice
         depends_on:
           - mongodb
@@ -40,6 +43,7 @@ services:
         container_name: questionservice-${teamname:-defaultASW}
         image: ghcr.io/arquisoft/wiq_es3a/questionservice:latest
         profiles: ["dev", "prod"]
+        restart: always
         build: ./preguntas/questionservice
         depends_on:
           - mongodb
@@ -53,6 +57,7 @@ services:
     container_name: userservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/userservice:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./users/userservice
     depends_on:
       - mongodb
@@ -67,6 +72,7 @@ services:
     container_name: statisticsservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/statisticsservice:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./statistics/statisticsservice
     depends_on:
       - mongodb
@@ -81,6 +87,7 @@ services:
     container_name: gatewayservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/gatewayservice:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./gatewayservice
     depends_on:
       - mongodb
@@ -105,6 +112,7 @@ services:
     container_name: webapp-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/webapp:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./webapp
     depends_on:
       - gatewayservice
@@ -119,6 +127,7 @@ services:
     image: prom/prometheus
     container_name: prometheus-${teamname:-defaultASW}
     profiles: ["dev"]
+    restart: always
     networks:
       - mynetwork
     volumes:
@@ -133,6 +142,7 @@ services:
     image: grafana/grafana
     container_name: grafana-${teamname:-defaultASW}
     profiles: ["dev"]
+    restart: always
     networks:
       - mynetwork
     volumes:

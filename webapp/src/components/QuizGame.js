@@ -20,7 +20,7 @@ const QuizGame = () => {
     const [error, setError] = useState(null); 
     const [isToastVisible, setIsToastVisible] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
-    const gatewayEndpoint = process.env.GATEWAY_SERVICE_URL || 'http://localhost:8000';
+    
 
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
