@@ -7,6 +7,7 @@ import AddUser from './register/AddUser';
 import Link from '@mui/material/Link';
 import './login/Login.css';
 
+
 function Inicio() {
     const [showLogin, setShowLogin] = useState(true);
 
@@ -23,7 +24,7 @@ function Inicio() {
       {showLogin ? <Login /> : <AddUser />}
       <Typography component="div" align="center" sx={{ marginTop: 2 }}>
         {showLogin ? (
-          <Link name="gotoregister" component="button" variant="body2" onClick={handleToggleView}>
+          <Link name="gotoregister" component="button" color={'#ffffff'} variant="body2" onClick={handleToggleView}>
             Don't have an account? Register here.
           </Link>
         ) : (

@@ -76,10 +76,12 @@ app.get('/statistics', async (req, res) => {
 
 app.get('/questions', async (req, res) => {
   try {
-    const bearerHeader = req.headers['authorization'];
+    /*const bearerHeader = req.headers['authorization'];
     if(! bearerHeader ){
+      if(!localStorage.getItem("token")){
         return res.sendStatus(403);
-    }
+      }      
+    }*/
     // Forward the get questions request to the question service
     const questionResponse = await axios.get(questionServiceUrl+'/questions');
     res.json(questionResponse.data);
