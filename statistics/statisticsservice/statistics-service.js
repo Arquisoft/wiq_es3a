@@ -21,11 +21,11 @@ mongoose.connect(mongoUri);
 
 // Function to validate required fields in the request body
 function validateRequiredFields(req, requiredFields) {
-    for (const field of requiredFields) {
-      if (!(field in req.body)) {
-        throw new Error(`Missing required field: ${field}`);
-      }
+  for (const field of requiredFields) {
+    if (!(field in req.body)) {
+      throw new Error(`Missing required field: ${field}`);
     }
+  }
 }
 
 app.post('/addStatistic', async (req, res) => {
@@ -36,6 +36,8 @@ app.post('/addStatistic', async (req, res) => {
         userStatistics.gamesPlayed++; // Incrementar el contador de juegos jugados
         userStatistics.rigthAnswers += req.body.rigthAnswers; // Sumar las respuestas correctas
         userStatistics.wrongAnswers += req.body.wrongAnswers; // Sumar las respuestas incorrectas
+        userStatistics.totalTime+=req.body.time;
+        userStatistics.avgTime=(userStatistics.totalTime/userStatistics.gamesPlayed);
 
         await userStatistics.save(); // Guardar las estadísticas actualizadas en la base de datos
         res.json(userStatistics);
