@@ -32,7 +32,7 @@ const Statistics= () => {
               <th>Partidas Jugadas</th>
               <th>Preguntas Acertadas</th>
               <th>Preguntas Falladas</th>
-              <th>Tiempo Medio</th>
+              <th>Tiempo Medio (s)</th>
             </tr>
           </thead>
           <tbody>

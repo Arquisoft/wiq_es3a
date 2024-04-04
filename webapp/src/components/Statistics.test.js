@@ -47,7 +47,7 @@ const table = await screen.findByRole('table');
 expect(table).toBeInTheDocument();
 
 // Verificar que la tabla contiene las columnas esperadas
-const columnHeaders = ['Partidas Jugadas', 'Preguntas Acertadas', 'Preguntas Falladas', 'Tiempo Medio'];
+const columnHeaders = ['Partidas Jugadas', 'Preguntas Acertadas', 'Preguntas Falladas', 'Tiempo Medio (s)'];
 const headerElements = screen.getAllByRole('columnheader');
 columnHeaders.forEach(headerText => {
   expect(headerElements.some(header => header.textContent === headerText)).toBeTruthy();
