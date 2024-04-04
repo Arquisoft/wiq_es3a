@@ -32,6 +32,7 @@ const Statistics= () => {
               <th>Partidas Jugadas</th>
               <th>Preguntas Acertadas</th>
               <th>Preguntas Falladas</th>
+              <th>Tiempo Medio</th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +40,7 @@ const Statistics= () => {
               <td>{userData.gamesPlayed}</td>
               <td>{userData.rigthAnswers}</td>
               <td>{userData.wrongAnswers}</td>
+              <td>{userData.avgTime}</td>
             </tr>
           </tbody>
         </table>

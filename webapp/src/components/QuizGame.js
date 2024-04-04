@@ -100,6 +100,8 @@ const QuizGame = () => {
             if (questionsNumber === numberOfQuestions) {
                 const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
                 const wrongAnswers=numberOfQuestions+1-rigthAnswers;
+                const completedTime = totalTime - time;
+                console.log(completedTime)
                 setTimeout(() => {
                     setIsFinished(true);
                 }, 1000);
@@ -107,7 +109,8 @@ const QuizGame = () => {
                 const statisticsData = {
                     username:  username,
                     rigthAnswers: rigthAnswers,
-                    wrongAnswers:wrongAnswers
+                    wrongAnswers:wrongAnswers,
+                    time:completedTime
                 };
                 saveStatistics(statisticsData);
             }
