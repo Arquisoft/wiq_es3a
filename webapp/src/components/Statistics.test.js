@@ -21,7 +21,8 @@ describe('Statistics component', () => {
     const userData = {
       gamesPlayed: 10,
       rigthAnswers: 7,
-      wrongAnswers: 3
+      wrongAnswers: 3,
+      avgTime: 56
     };
 
     // Simulamos el usuario almacenado en localStorage
@@ -46,7 +47,7 @@ const table = await screen.findByRole('table');
 expect(table).toBeInTheDocument();
 
 // Verificar que la tabla contiene las columnas esperadas
-const columnHeaders = ['Partidas Jugadas', 'Preguntas Acertadas', 'Preguntas Falladas'];
+const columnHeaders = ['Partidas Jugadas', 'Preguntas Acertadas', 'Preguntas Falladas', 'Tiempo Medio'];
 const headerElements = screen.getAllByRole('columnheader');
 columnHeaders.forEach(headerText => {
   expect(headerElements.some(header => header.textContent === headerText)).toBeTruthy();
@@ -58,10 +59,11 @@ expect(tableRows.length).toBeGreaterThan(1); // Verificar que hay más de una fi
 const dataRows = tableRows.slice(1); // Ignorar la primera fila que son los encabezados
 dataRows.forEach(row => {
   const cells = row.querySelectorAll('td'); // Obtener todas las celdas de la fila
-  expect(cells.length).toBe(3); // Verificar que hay exactamente 3 celdas por fila
+  expect(cells.length).toBe(4); // Verificar que hay exactamente 3 celdas por fila
    expect(cells[0]).toHaveTextContent('10'); // Verificar que la primera celda contiene el número de partidas jugadas
    expect(cells[1]).toHaveTextContent('7'); // Verificar que la segunda celda contiene el número de preguntas acertadas
    expect(cells[2]).toHaveTextContent('3'); // Verificar que la tercera celda contiene el número de preguntas falladas
+   expect(cells[3]).toHaveTextContent('56'); // Verificar que la tercera celda contiene el tiempo medio
 });
 
   });
