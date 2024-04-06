@@ -1,6 +1,6 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const formatoNumero = require('./question-service').formatoNumero;
+
 
 const Template = require('./template-model');
 
@@ -17,9 +17,10 @@ mongoServer = await MongoMemoryServer.create();
 const mongoUri = mongoServer.getUri();
 process.env.MONGODB_URI = mongoUri;
 app = require('./question-service');
+formatoNumero = require('./question-service').formatoNumero;
 
 await addTemplate(template);
-});
+}, 10000);
 
 //Function to add template
 async function addTemplate(template){
