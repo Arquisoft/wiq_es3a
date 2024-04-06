@@ -1,9 +1,9 @@
 // src/components/Login.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './Login.css';
 import { useAuth } from "./AuthProvider";
+import axios from 'axios';
 
 
 const Login = () => {
@@ -22,13 +22,7 @@ const Login = () => {
   const loginUser = async () => {
     try {
 
-      if (username.trim().length === 0 || password.trim().length === 0) {
-        setError("No se permite dejar espacios en blanco");
-        return;
-      }
-
-      let res = await axios.post(`${apiEndpoint}/login`, { username, password });
-
+      let res= await axios.post(`${apiEndpoint}/login`, { username, password });
 
       // Extract data from the response
       setToken(res.data.token);
@@ -48,6 +42,8 @@ const Login = () => {
       setError("No se permite dejar espacios en blanco");
       return;
     }
+
+    loginUser();
   };
 
   const handleCloseSnackbar = () => {
@@ -83,7 +79,7 @@ const Login = () => {
             fullWidth
             label="Username"
             name='username'
-            id="input"
+            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -97,12 +93,12 @@ const Login = () => {
             name = "password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            id="input"
+            id="password"
           />
-        </div>
-        <div className="underline"></div>
-        <div className='button'>
-          <Button variant="contained" color="primary" onClick={loginUser}>
+          </div>
+          <div className="underline"></div>
+          <div className='button'>
+          <Button variant="contained" color="primary" onClick={checkForm}>
             Login
           </Button>
         </div>

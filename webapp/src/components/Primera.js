@@ -6,8 +6,6 @@ import "./Primera.css";
 
 function Primera() {
 
- 
-
   return (
   <div className="box">
     <Container>      

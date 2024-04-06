@@ -3,18 +3,20 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './AddUser.css';
-
+import { useAuth } from "../login/AuthProvider";
 
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
 
 const AddUser = () => {
+  const {setToken} = useAuth();
   const [name, setName] = useState('');
   const [surname, setSurName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [error, setError] = useState('');
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false); 
+
 
   const addUser = async () => {
     try {
@@ -26,6 +28,11 @@ const AddUser = () => {
         passwordRepeat
       });
       setOpenSnackbar(true);
+
+      let res= await axios.post(`${apiEndpoint}/login`, { username, password });
+
+      setToken(res.data.token);
+
       window.location.href = '/home';
     } catch (error) {
       setError(error.response.data.error);
