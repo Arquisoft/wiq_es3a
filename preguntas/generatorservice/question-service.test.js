@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
+const formatoNumero = require('./question-service').formatoNumero;
 
 const Template = require('./template-model');
 
@@ -45,3 +46,11 @@ describe('Question Service', () => {
             expect(response.body.allAnswers).toHaveLength(4);
         });
 }, 10000);
+
+describe('formatoNumero', () => {
+  it('debería formatear correctamente los números', async () => {
+    const numero = 1234567.89;
+    const resultado = await formatoNumero(numero);
+    expect(resultado).toBe('1.234.567,89');
+  });
+});
