@@ -19,15 +19,6 @@ mongoose.connect(mongoUri);
 
 
 
-// Function to validate required fields in the request body
-function validateRequiredFields(req, requiredFields) {
-  for (const field of requiredFields) {
-    if (!(field in req.body)) {
-      throw new Error(`Missing required field: ${field}`);
-    }
-  }
-}
-
 app.post('/addStatistic', async (req, res) => {
     try {    
         const userId = req.body.username;
