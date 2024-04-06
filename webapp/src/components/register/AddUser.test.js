@@ -15,13 +15,6 @@ describe('AddUser component', () => {
   it('should add user successfully', async () => {
     render(<AuthProvider><AddUser /></AuthProvider>);
     
-    /*const usernameInput = screen.getByLabelText(/Nombre de Usuario/i);    
-    const nameInput = screen.getByLabelText(/Nombre/i);
-    const surnameInput = screen.getByLabelText(/Apellidos/i);
-    const passwordInput = screen.getByLabelText(/Contraseña/i);    
-    const password2Input = screen.getByLabelText(/Repetir contraseña/i);*/
-
-    
     const usernameInput = document.getElementById("username");    
     const nameInput = document.getElementById("name"); 
     const surnameInput = document.getElementById("surname"); 
