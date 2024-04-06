@@ -1,18 +1,18 @@
 [
   {
     "question": "¿Cuál es la capital de ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P36 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P36 ?r. FILTER(?p != wd:Q124653007) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   {
     "question": "¿A qué continente pertenece ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P30 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P30 ?r. FILTER(?p NOT IN (wd:Q703695, wd:Q28846511, wd:Q120088504, wd:Q115166787)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   {
     "question": "¿Cuál es el área en Kilómetros cuadrados (Km2) de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P2046 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   { 
-    "question": "¿Cuál es la suerficie ocupada por el ^ en kilómetros cuadrados (km2)?", 
+    "question": "¿Cuál es la superficie ocupada por el ^ en kilómetros cuadrados (km2)?", 
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q165. ?p wdt:P2046 ?r. FILTER (?r > 800000) FILTER (STR(?p) != 'http://www.wikidata.org/entity/Q3240274') SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
  
   },
@@ -41,22 +41,22 @@
   },
   {
     "question": "¿Cuál es el apodo de ^?",
-    "query":"SELECT ?pLabel (SAMPLE(?r) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q5; wdt:P118 wd:Q155223; wdt:P8687 ?followers; wdt:P1449 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
+    "query":"SELECT ?pLabel (SAMPLE(?r) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q5; wdt:P118 wd:Q155223; wdt:P8687 ?followers; wdt:P1449 ?r. FILTER(?followers > 100000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
   },
 
 
 
   {
     "question": "¿Qúe moneda es utilizada en ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P38 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P38 ?r. FILTER(?r NOT IN (wd:Q100928009, wd:Q329248, wd:Q4228784, wd:Q96051466)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   {
     "question": "¿Cuál es el nombre del presidente/jefe de Estado de ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P35 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P35 ?r. FILTER(?p != wd:Q124653007) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
   },
   {
     "question": "¿Cuál es el nombre del primer ministro de ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE {?p wdt:P31 wd:Q6256. ?p wdt:P6 ?r. FILTER (?p != wd:Q967 && ?p != wd:Q965) SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. }}"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P6 ?r. FILTER (?p != wd:Q967 && ?p != wd:Q965 && ?p != wd:Q124653007) SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. } }"
   },
   {
     "question": "¿Qué imagen es de ^?",
@@ -67,16 +67,16 @@
 
   {
     "question": "¿Cuál es la bandera de ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. OPTIONAL { ?p wdt:P41 ?rLabel } FILTER(BOUND(?rLabel)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. FILTER (?p != wd:Q124653007) OPTIONAL { ?p wdt:P41 ?rLabel } FILTER(BOUND(?rLabel)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
 
   },
   {
     "question": "¿Cuál es el logo de ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q13393265; wdt:P118 wd:Q155223; wdt:P154 ?rLabel. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+    "query": "SELECT ?pLabel (SAMPLE(?rLogo) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q13393265; wdt:P118 wd:Q155223; wdt:P154 ?rLogo. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
   },
   {
     "question": "¿Cuál es el escudo de ^?",
-    "query":"SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q476028; wdt:P118 ?liga; wdt:P154 ?rLabel. VALUES ?liga { wd:Q9448 wd:Q324867 wd:Q82595 wd:Q15804} SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }"
+    "query":"SELECT ?pLabel (SAMPLE(?rLogo) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q476028; wdt:P118 ?liga; wdt:P154 ?rLogo. VALUES ?liga { wd:Q9448 wd:Q324867 wd:Q82595 wd:Q15804} SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } } GROUP BY ?pLabel"
   },
 
 

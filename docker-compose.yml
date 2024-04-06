@@ -4,6 +4,7 @@ services:
     container_name: mongodb-${teamname:-defaultASW}
     image: mongo
     profiles: ["dev", "prod"]
+    restart: always
     volumes:
       - mongodb_data:/data/db
     ports:
@@ -14,6 +15,7 @@ services:
     container_name: authservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/authservice:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./users/authservice
     depends_on:
       - mongodb
@@ -27,6 +29,7 @@ services:
         container_name: generatorservice-${teamname:-defaultASW}
         image: ghcr.io/arquisoft/wiq_es3a/generatorservice:latest
         profiles: ["dev", "prod"]
+        restart: always
         build: ./preguntas/generatorservice
         depends_on:
           - mongodb
@@ -40,6 +43,7 @@ services:
         container_name: questionservice-${teamname:-defaultASW}
         image: ghcr.io/arquisoft/wiq_es3a/questionservice:latest
         profiles: ["dev", "prod"]
+        restart: always
         build: ./preguntas/questionservice
         depends_on:
           - mongodb
@@ -53,6 +57,7 @@ services:
     container_name: userservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/userservice:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./users/userservice
     depends_on:
       - mongodb
@@ -63,16 +68,33 @@ services:
     environment:
       MONGODB_URI: mongodb://mongodb:27017/userdb
 
+  statisticsservice:
+    container_name: statisticsservice-${teamname:-defaultASW}
+    image: ghcr.io/arquisoft/wiq_es3a/statisticsservice:latest
+    profiles: ["dev", "prod"]
+    restart: always
+    build: ./statistics/statisticsservice
+    depends_on:
+      - mongodb
+    ports:
+      - "8006:8006"
+    networks:
+      - mynetwork
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/userdb
+   
   gatewayservice:
     container_name: gatewayservice-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/gatewayservice:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./gatewayservice
     depends_on:
       - mongodb
       - userservice
       - authservice
       - generatorservice
+      - statisticsservice
       - questionservice
     ports:
       - "8000:8000"
@@ -81,23 +103,31 @@ services:
     environment:
       AUTH_SERVICE_URL: http://authservice:8002
       USER_SERVICE_URL: http://userservice:8001
+      STATS_SERVICE_URL: http://statisticsservice:8006
       GENERATOR_SERVICE_URL: http://generatorservice:8003
       QUESTION_SERVICE_URL: http://questionservice:8004
+
 
   webapp:
     container_name: webapp-${teamname:-defaultASW}
     image: ghcr.io/arquisoft/wiq_es3a/webapp:latest
     profiles: ["dev", "prod"]
+    restart: always
     build: ./webapp
     depends_on:
       - gatewayservice
     ports:
       - "3000:3000" 
+    environment:
+      GATEWAY_SERVICE_URL: http://gatewayservice:8000
+
+  
 
   prometheus:
     image: prom/prometheus
     container_name: prometheus-${teamname:-defaultASW}
     profiles: ["dev"]
+    restart: always
     networks:
       - mynetwork
     volumes:
@@ -112,6 +142,7 @@ services:
     image: grafana/grafana
     container_name: grafana-${teamname:-defaultASW}
     profiles: ["dev"]
+    restart: always
     networks:
       - mynetwork
     volumes:
@@ -130,11 +161,6 @@ services:
 
 volumes:
   mongodb_data:
-   driver:  local
-   driver_opts:
-      type: none
-      o: bind
-      device: /path/to/your/local/mongodb_data
   prometheus_data: 
   grafana_data: 
 

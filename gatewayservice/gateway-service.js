@@ -12,6 +12,7 @@ const port = 8000;
 
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
+const statisticssServiceUrl = process.env.STATS_SERVICE_URL || 'http://localhost:8006';
 const generatorServiceUrl = process.env.GENERATOR_SERVICE_URL || 'http://localhost:8003';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8004';
 
@@ -50,7 +51,23 @@ app.post('/adduser', async (req, res) => {
 app.get('/generate-question', async (req, res) => {
   try {
     // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
     const questionResponse = await axios.get(generatorServiceUrl+'/generate-question');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+
+app.get('/statistics', async (req, res) => {
+  try {
+    const questionResponse = await axios.get(statisticssServiceUrl+'/statistics', {
+      params: req.query,
+    });
     res.json(questionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
@@ -59,9 +76,35 @@ app.get('/generate-question', async (req, res) => {
 
 app.get('/questions', async (req, res) => {
   try {
+    /*const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+      if(!localStorage.getItem("token")){
+        return res.sendStatus(403);
+      }      
+    }*/
     // Forward the get questions request to the question service
     const questionResponse = await axios.get(questionServiceUrl+'/questions');
     res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+
+app.post('/addStatistic', async (req, res) => {
+  try {
+    const questionResponse = await axios.post(statisticssServiceUrl+'/addStatistic', req.body );
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/users', async (req, res) => {
+  try {
+    // Forward the get questions request to the question service
+    const usersResponse = await axios.get(userServiceUrl+'/users');
+    res.json(usersResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
   }
@@ -84,9 +127,10 @@ if (fs.existsSync(openapiPath)) {
   console.log("Not configuring OpenAPI. Configuration file not present.")
 }
 
+
 // Start the gateway service
 const server = app.listen(port, () => {
   console.log(`Gateway Service listening at http://localhost:${port}`);
 });
 
-module.exports = server
+module.exports = server;

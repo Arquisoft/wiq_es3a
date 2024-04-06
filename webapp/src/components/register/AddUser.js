@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './AddUser.css';
-import logo from '../logo.png';
-
-import AuthProvider, { useAuth } from "../login/AuthProvider";
 
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
 
@@ -49,7 +46,7 @@ const AddUser = () => {
       setError("No se permite dejar espacios en blanco");
       return;
     }
-    if(password != passwordRepeat)
+    if(password !== passwordRepeat)
     {
       setError("Repita correctamente la contraseña que quiera usar");
       return;   
@@ -63,9 +60,6 @@ const AddUser = () => {
 
   return (
     <Container component="main" maxWidth="xs"  className='container'>
-      <div className='logo-container'>
-        <img src={logo} alt='Logo wiq'></img>
-      </div>
       <div className="register-container" >
         <div className='text'>
           <Typography variant="h4">
