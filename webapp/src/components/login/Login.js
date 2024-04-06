@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './Login.css';
 import { useAuth } from "./AuthProvider";
+import axios from 'axios';
 
 
 const Login = () => {
@@ -20,6 +21,9 @@ const Login = () => {
 
   const loginUser = async () => {
     try {
+
+      let res= await axios.post(`${apiEndpoint}/login`, { username, password });
+
       // Extract data from the response
       setToken(res.data.token);
       setUsuario(res.data.username);
@@ -75,7 +79,7 @@ const Login = () => {
             fullWidth
             label="Username"
             name='username'
-            id="input"
+            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -89,7 +93,7 @@ const Login = () => {
             name = "password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            id="input"
+            id="password"
           />
           </div>
           <div className="underline"></div>
