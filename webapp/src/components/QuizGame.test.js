@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import QuizGame from './QuizGame';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import AuthProvider from './login/AuthProvider';
 
 const mockAxios = new MockAdapter(axios);
 
@@ -16,7 +17,7 @@ beforeEach(() => {
       allAnswers: ["correcta", "no1", "no2", "no3"]
     });
   
-    render(<QuizGame />);
+    render(<AuthProvider><QuizGame /></AuthProvider>);
     expect(screen.getByText(/Loading questions.../i)).toBeInTheDocument();
   
     // Wait for the asynchronous operation to complete
