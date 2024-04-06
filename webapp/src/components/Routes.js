@@ -6,7 +6,6 @@ import Inicio from './Inicio';
 import Primera from './Primera';
 import Game from './QuizGame';
 import Statistics from './Statistics';
-import Navbar from "./Navbar";
 
 const Routes = () => {
   const { token } = useAuth();

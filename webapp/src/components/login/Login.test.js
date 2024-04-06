@@ -15,9 +15,7 @@ describe('Login component', () => {
   it('should log in successfully', async () => {
     render(<AuthProvider><Login /></AuthProvider>);
 
-    //const usernameInput = screen.getByLabelText(/Username/i);
     const usernameInput = document.getElementById("username");  
-    //const passwordInput = screen.getByLabelText(/Password/i);    
     const passwordInput = document.getElementById("password");   
     const loginButton = screen.getByRole('button', { name: /Login/i });
 
