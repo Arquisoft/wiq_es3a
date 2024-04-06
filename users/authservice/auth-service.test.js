@@ -42,4 +42,18 @@ describe('Auth Service', () => {
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('username', 'testuser');
   });
+  it('Should return 401 when the password is incorrect', async () => {
+    const response = await request(app).post('/login').send({
+      username: 'testuser',
+      password: 'wrongpassword',
+    });
+    expect(response.status).toBe(401);
+  });
+  it('Should return 500 when an error occurs', async () => {
+    const response = await request(app).post('/login').send({
+      username: 'testuser',
+    });
+    expect(response.status).toBe(500);
+  }
+  );
 });
