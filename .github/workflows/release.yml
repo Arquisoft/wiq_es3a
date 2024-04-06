@@ -16,12 +16,14 @@ jobs:
     - run: npm --prefix users/userservice ci
     - run: npm --prefix preguntas/generatorservice ci
     - run: npm --prefix preguntas/questionservice ci
+    - run: npm --prefix statistics/statisticsservice ci
     - run: npm --prefix gatewayservice ci
     - run: npm --prefix webapp ci
     - run: npm --prefix users/authservice test -- --coverage
     - run: npm --prefix users/userservice test -- --coverage
     - run: npm --prefix preguntas/generatorservice test -- --coverage
     - run: npm --prefix preguntas/questionservice test -- --coverage
+    - run: npm --prefix statistics/statisticsservice test -- --coverage
     - run: npm --prefix gatewayservice test -- --coverage
     - run: npm --prefix webapp test -- --coverage
     - name: Analyze with SonarCloud
@@ -41,6 +43,7 @@ jobs:
     - run: npm --prefix users/userservice install
     - run: npm --prefix preguntas/generatorservice install
     - run: npm --prefix preguntas/questionservice install
+    - run: npm --prefix statistics/statisticsservice install
     - run: npm --prefix gatewayservice install
     - run: npm --prefix webapp install
     - run: npm --prefix webapp run build
@@ -133,6 +136,23 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ghcr.io
         workdir: preguntas/questionservice
+  docker-push-statisticsservice:
+    name: Push statistics service Docker Image to GitHub Packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    needs: [e2e-tests]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@v5
+      with:
+        name: arquisoft/wiq_es3a/statisticsservice
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: ghcr.io
+        workdir: statistics/statisticsservice
   docker-push-gatewayservice:
     name: Push gateway service Docker Image to GitHub Packages
     runs-on: ubuntu-latest

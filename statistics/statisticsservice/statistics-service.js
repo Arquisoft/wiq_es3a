@@ -31,7 +31,7 @@ function validateRequiredFields(req, requiredFields) {
 app.post('/addStatistic', async (req, res) => {
     try {    
         const userId = req.body.username;
-        const userStatistics = await Statistic.findOne({username: userId });
+        const userStatistics = await Statistic.findOne({username: userId.toString() });
        
         userStatistics.gamesPlayed++; // Incrementar el contador de juegos jugados
         userStatistics.rigthAnswers += req.body.rigthAnswers; // Sumar las respuestas correctas
@@ -50,7 +50,7 @@ app.post('/addStatistic', async (req, res) => {
       try {
         const userId = req.query.userId;
         // Buscar las estadísticas asociadas al userId
-        const userStatistics = await Statistic.findOne({username: userId });
+        const userStatistics = await Statistic.findOne({username: userId.toString() });
         if (!userStatistics) {
           throw new Error('Usuario no encontrado');
       }
