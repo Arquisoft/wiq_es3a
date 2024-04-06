@@ -1,9 +1,7 @@
 // src/components/Login.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Container, Typography, TextField, Button, Snackbar } from '@mui/material';
 import './Login.css';
-import logo from '../logo.png';
 import { useAuth } from "./AuthProvider";
 
 
@@ -96,7 +94,7 @@ const Login = () => {
           </div>
           <div className="underline"></div>
           <div className='button'>
-          <Button variant="contained" color="primary" onClick={checkForm()}>
+          <Button variant="contained" color="primary" onClick={checkForm}>
             Login
           </Button>
         </div>

@@ -1,14 +1,15 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Inicio from './Inicio';
+import AuthProvider from './login/AuthProvider';
 
 test('renders learn react link', () => {
-  render(<Inicio />);
+  render(<AuthProvider><Inicio /></AuthProvider>);
   const linkElement = screen.getByText(/Welcome to WIQ/i);
   expect(linkElement).toBeInTheDocument();
 });
 
 test('test mostrar login', () => {
-    render(<Inicio />);
+    render(<AuthProvider><Inicio /></AuthProvider>);
     const linkElement = screen.getByRole('button', {
         name: /login/i
       })
@@ -16,7 +17,7 @@ test('test mostrar login', () => {
   });
 
 test('test crear cuenta', () => {
-render(<Inicio />);
+render(<AuthProvider><Inicio /></AuthProvider>);
 fireEvent.click(screen.getByRole('button', {
     name: "Don't have an account? Register here."
   }));
