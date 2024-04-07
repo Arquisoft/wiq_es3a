@@ -77,6 +77,7 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.userId).toBe('mockedUserId');
   });
+
   // Test /generate-question endpoint
   it('should forward generate question request to question service', async () => {
     const response = await request(app)
@@ -90,6 +91,7 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.question).toBe('mockedQuestion');
   });
+
   // Test /questions endpoint
   it('should forward get questions request to question service', async () => {
     const response = await request(app)
@@ -97,6 +99,18 @@ describe('Gateway Service', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body.question).toBe('mockedQuestion');
+  });
+
+  it('debería manejar errores al intentar obtener preguntas', async () => {
+    const mockErrorResponse = { error: 'Error al obtener preguntas' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/questions');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
   });
 
    // Test /statistics endpoint
