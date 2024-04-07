@@ -169,4 +169,16 @@ describe('Gateway Service', () => {
     expect(response.body.users).toEqual(['mockedUser1', 'mockedUser2']);
   });
 
+  it('debería manejar errores al intentar obtener usuarios', async () => {
+    const mockErrorResponse = { error: 'Error al obtener usuarios' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/users');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
 });
