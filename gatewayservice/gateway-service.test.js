@@ -110,6 +110,18 @@ describe('Gateway Service', () => {
     expect(response.body.wrongAnswers).toBe('mockedWrongAnswers');
   });
 
+  it('debería manejar errores al intentar obtener estadísticas', async () => {
+    const mockErrorResponse = { error: 'Error al obtener estadísticas' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/statistics');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /addStatistic endpoint
   it('should forward add statistic request to statistic service', async () => {
     const response = await request(app)
