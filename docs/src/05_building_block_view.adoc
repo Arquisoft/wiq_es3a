@@ -58,11 +58,16 @@ image:05_DiagramaL3.png[Diagrama nivel 1]
 [options="header",cols="1,2"]
 |===
 |Nombre|Descripción
-|Index |Bienvenida al usuario.
+|Index | Raíz del proyecto.
+|Inicio| Link a registro e inicio de sesión.
 | Log in |Permite al usuario registrarte o iniciar sesión.
-| Home |Permite al usuario comenzar a jugar o consultar su perfil.
+| Home |Permite al usuario comenzar a jugar.
 | Juego |Pantalla donde se mostrarán las preguntas y respuestas.
 |Estadísticas|Pantalla con las estadísticas de los usuarios. 
+|Navbar| Barra de menú.
+|Primera| Pantalla de bienvenida.
+|Add user| Registro de usuarios.
+|Gateway service| Mnaneja y dirige peticiones.
 | User service|Manejo de los datos de inicio de sesión
 | Auth service|Manejo de los datos de registro
 | Generación preguntas y respuestas| Lógica para la correcta generación de preguntas y respuestas.
