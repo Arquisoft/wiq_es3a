@@ -92,6 +92,20 @@ describe('Gateway Service', () => {
     expect(response.body.question).toBe('mockedQuestion');
   });
 
+  it('debería manejar errores al intentar generar una pregunta', async () => {
+    const mockErrorResponse = { error: 'Error al generar pregunta' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app)
+      .get('/generate-question')
+      .set('Authorization', 'Bearer mockedToken');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /questions endpoint
   it('should forward get questions request to question service', async () => {
     const response = await request(app)
