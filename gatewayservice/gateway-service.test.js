@@ -78,6 +78,20 @@ describe('Gateway Service', () => {
     expect(response.body.userId).toBe('mockedUserId');
   });
 
+  it('debería manejar errores al intentar agregar un usuario', async () => {
+    const mockErrorResponse = { error: 'Error al agregar usuario' };
+    const mockStatus = 500;
+  
+    axios.post.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app)
+      .post('/adduser')
+      .send({ username: 'testuser', password: 'testpassword' });
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /generate-question endpoint
   it('should forward generate question request to question service', async () => {
     const response = await request(app)
