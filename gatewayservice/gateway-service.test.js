@@ -12,7 +12,11 @@ describe('Gateway Service', () => {
   // Mock responses from external services
   axios.post.mockImplementation((url, data) => {
     if (url.endsWith('/login')) {
-      return Promise.resolve({ data: { token: 'mockedToken' } });
+      if (data.username === 'test' && data.password === 'test') {
+        return Promise.reject({ response: { status: 401, data: { error: 'Error de autenticación' } } });
+      } else {
+        return Promise.resolve({ data: { token: 'mockedToken' } });
+      }
     } else if (url.endsWith('/adduser')) {
       return Promise.resolve({ data: { userId: 'mockedUserId' } });
     } else if (url.endsWith('/addStatistic')) {
@@ -34,7 +38,13 @@ describe('Gateway Service', () => {
     }
   });
 
- 
+  // Test /health endpoint
+  it('debería devolver un estado de OK', async () => {
+    const response = await request(app).get('/health');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({ status: 'OK' });
+  });
 
   // Test /login endpoint
   it('should forward login request to auth service', async () => {
@@ -44,6 +54,18 @@ describe('Gateway Service', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body.token).toBe('mockedToken');
+  });
+
+  it('debería manejar errores al intentar autenticar', async () => {
+    const mockErrorResponse = { error: 'Error de autenticación' };
+    const mockStatus = 401;
+  
+    const response = await request(app)
+      .post('/login')
+      .send({ username: 'test', password: 'test' });
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
   });
 
   // Test /adduser endpoint
