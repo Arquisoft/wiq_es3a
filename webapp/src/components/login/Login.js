@@ -58,7 +58,7 @@ const Login = () => {
       }, 2000);
       localStorage.setItem('username', username);
     }
-  }, [loginSuccess],
+  }, [loginSuccess, username],
   );
 
 

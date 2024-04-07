@@ -17,7 +17,7 @@ const Statistics= () => {
       .catch(error => {
         setError('Ha habido un error cargando las estadísticas');
       });
-  }, []);
+  }, [gatewayEndpoint]);
 
 
   return (
