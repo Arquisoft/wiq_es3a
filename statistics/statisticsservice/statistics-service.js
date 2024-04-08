@@ -63,8 +63,9 @@ app.post('/addStatistic', async (req, res) => {
       try {
         const users = await Statistic.find(); // Obtener todos los usuarios
         const rankedUsers = users.map(user => {
-          const accuracy = user.rigthAnswers / user.gamesPlayed; // Calcular porcentaje de aciertos
-          return { username: user.username, accuracy }; // Crear objeto con nombre de usuario y porcentaje de aciertos
+          const accuracy = (user.rigthAnswers / user.gamesPlayed) * 100; // Calcular porcentaje de aciertos
+          const roundedAccuracy = accuracy % 1 === 0 ? accuracy : accuracy.toFixed(2); // Redondear solo si tiene decimales
+          return { username: user.username, accuracy: roundedAccuracy }; // Crear objeto con nombre de usuario y porcentaje de aciertos redondeado si es necesario
         });
         const sortedRanking = rankedUsers.sort((a, b) => b.accuracy - a.accuracy); // Ordenar usuarios por porcentaje de aciertos
         res.json(sortedRanking); // Devolver ranking ordenado
@@ -72,6 +73,8 @@ app.post('/addStatistic', async (req, res) => {
         res.status(500).json({ message: err.message });
       }
     });
+    
+    
 
     app.get('/ranking/correctAnswers', async (req, res) => {
       try {
@@ -82,9 +85,21 @@ app.post('/addStatistic', async (req, res) => {
         const rankedUsers = sortedRanking.map(user => ({
           username: user.username,
           correctAnswers: user.rigthAnswers,
-          // Otras propiedades que desees incluir
         }));
         res.json(rankedUsers); // Devolver ranking ordenado con número de respuestas correctas de cada usuario
+      } catch (err) {
+        res.status(500).json({ message: err.message });
+      }
+    });
+    app.get('/ranking/gamesPlayed', async (req, res) => {
+      try {
+        const users = await Statistic.find(); 
+        const sortedRanking = users.sort((a, b) => b.gamesPlayed - a.gamesPlayed);
+        const rankedUsers = sortedRanking.map(user => ({
+          username: user.username,
+          gamesPlayed: user.gamesPlayed,
+        }));
+        res.json(rankedUsers);
       } catch (err) {
         res.status(500).json({ message: err.message });
       }

@@ -40,7 +40,7 @@ const Ranking = () => {
                 <select id="metric-select" value={selectedMetric} onChange={e => setSelectedMetric(e.target.value)}>
                     <option value="accuracy">Porcentaje de Acierto</option>
                     <option value="correctAnswers">Respuestas Correctas</option>
-                    <option value="games-played">Partidas Jugadas</option>
+                    <option value="gamesPlayed">Partidas Jugadas</option>
                 </select>
             </div>
             {error ? (
