@@ -73,18 +73,18 @@ app.post('/addStatistic', async (req, res) => {
       }
     });
 
-    app.get('/ranking/correct-answers', async (req, res) => {
+    app.get('/ranking/correctAnswers', async (req, res) => {
       try {
         const users = await Statistic.find(); // Obtener todos los usuarios
-        // Mapear los usuarios para devolver solo las propiedades necesarias
-        const rankedUsers = users.map(user => ({
-          username: user.username,
-          correctAnswers: user.rigthAnswers, // Cambiar el nombre de la propiedad si es necesario
-          totalQuestions: user.rigthAnswers + user.wrongAnswers // Calcular total de preguntas acertadas
-        }));
         // Ordenar usuarios por respuestas correctas
-        const sortedRanking = rankedUsers.sort((a, b) => b.correctAnswers - a.correctAnswers);
-        res.json(sortedRanking); // Devolver ranking ordenado
+        const sortedRanking = users.sort((a, b) => b.rigthAnswers - a.rigthAnswers);
+        // Mapear los usuarios para devolver el ranking ordenado junto con el número de respuestas correctas de cada usuario
+        const rankedUsers = sortedRanking.map(user => ({
+          username: user.username,
+          correctAnswers: user.rigthAnswers,
+          // Otras propiedades que desees incluir
+        }));
+        res.json(rankedUsers); // Devolver ranking ordenado con número de respuestas correctas de cada usuario
       } catch (err) {
         res.status(500).json({ message: err.message });
       }

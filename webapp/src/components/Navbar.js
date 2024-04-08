@@ -17,7 +17,7 @@ const Navbar = () => {
          <ul className="nav-list">
             <li className="nav-item">
 
-              <NavLink to={process.env.RUTA_RANKING ||"/ranking/"}className="nav__link">
+              <NavLink to={process.env.RUTA_RANKING ||"/ranking"}className="nav__link">
               Ranking 
 
               </NavLink>

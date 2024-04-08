@@ -5,6 +5,7 @@ const Ranking = () => {
     const [rankingData, setRankingData] = useState(null);
     const [error, setError] = useState(null);
     const [selectedMetric, setSelectedMetric] = useState('accuracy');
+    const [headerText, setHeaderText] = useState('Porcentaje de Acierto');
 
     useEffect(() => {
         fetch(`${gatewayEndpoint}/ranking/${selectedMetric}`)
@@ -20,6 +21,15 @@ const Ranking = () => {
             .catch(error => {
                 setError(error.message);
             });
+
+        // Cambiar el texto de la cabecera de la tabla según la métrica seleccionada
+        if (selectedMetric === 'accuracy') {
+            setHeaderText('Porcentaje de Acierto');
+        } else if (selectedMetric === 'ccorrectAnswers') {
+            setHeaderText('Respuestas Correctas');
+        } else if (selectedMetric === 'games-played') {
+            setHeaderText('Partidas Jugadas');
+        }
     }, [gatewayEndpoint, selectedMetric]);
 
     return (
@@ -29,7 +39,7 @@ const Ranking = () => {
                 <label htmlFor="metric-select">Seleccionar métrica:</label>
                 <select id="metric-select" value={selectedMetric} onChange={e => setSelectedMetric(e.target.value)}>
                     <option value="accuracy">Porcentaje de Acierto</option>
-                    <option value="correct-answers">Respuestas Correctas</option>
+                    <option value="correctAnswers">Respuestas Correctas</option>
                     <option value="games-played">Partidas Jugadas</option>
                 </select>
             </div>
@@ -40,7 +50,7 @@ const Ranking = () => {
                     <thead>
                         <tr>
                             <th>Usuario</th>
-                            <th>{selectedMetric === 'accuracy' ? 'Porcentaje de Acierto' : selectedMetric}</th>
+                            <th>{headerText}</th> {/* Usamos el estado headerText para mostrar el texto de la cabecera */}
                         </tr>
                     </thead>
                     <tbody>
@@ -58,5 +68,4 @@ const Ranking = () => {
         </div>
     );
 }
-
 export default Ranking;

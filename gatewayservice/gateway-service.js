@@ -119,9 +119,9 @@ app.get('/ranking/accuracy', async (req, res) => {
   }
 });
 
-app.get('/ranking/correct-answers', async (req, res) => {
+app.get('/ranking/correctAnswers', async (req, res) => {
   try {
-    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/correct-answers');
+    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/correctAnswers');
     res.json(statResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
