@@ -12,7 +12,11 @@ describe('Gateway Service', () => {
   // Mock responses from external services
   axios.post.mockImplementation((url, data) => {
     if (url.endsWith('/login')) {
-      return Promise.resolve({ data: { token: 'mockedToken' } });
+      if (data.username === 'test' && data.password === 'test') {
+        return Promise.reject({ response: { status: 401, data: { error: 'Error de autenticación' } } });
+      } else {
+        return Promise.resolve({ data: { token: 'mockedToken' } });
+      }
     } else if (url.endsWith('/adduser')) {
       return Promise.resolve({ data: { userId: 'mockedUserId' } });
     } else if (url.endsWith('/addStatistic')) {
@@ -34,7 +38,13 @@ describe('Gateway Service', () => {
     }
   });
 
- 
+  // Test /health endpoint
+  it('debería devolver un estado de OK', async () => {
+    const response = await request(app).get('/health');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({ status: 'OK' });
+  });
 
   // Test /login endpoint
   it('should forward login request to auth service', async () => {
@@ -46,6 +56,18 @@ describe('Gateway Service', () => {
     expect(response.body.token).toBe('mockedToken');
   });
 
+  it('debería manejar errores al intentar autenticar', async () => {
+    const mockErrorResponse = { error: 'Error de autenticación' };
+    const mockStatus = 401;
+  
+    const response = await request(app)
+      .post('/login')
+      .send({ username: 'test', password: 'test' });
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /adduser endpoint
   it('should forward add user request to user service', async () => {
     const response = await request(app)
@@ -55,6 +77,21 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.userId).toBe('mockedUserId');
   });
+
+  it('debería manejar errores al intentar agregar un usuario', async () => {
+    const mockErrorResponse = { error: 'Error al agregar usuario' };
+    const mockStatus = 500;
+  
+    axios.post.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app)
+      .post('/adduser')
+      .send({ username: 'testuser', password: 'testpassword' });
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /generate-question endpoint
   it('should forward generate question request to question service', async () => {
     const response = await request(app)
@@ -68,6 +105,21 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.question).toBe('mockedQuestion');
   });
+
+  it('debería manejar errores al intentar generar una pregunta', async () => {
+    const mockErrorResponse = { error: 'Error al generar pregunta' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app)
+      .get('/generate-question')
+      .set('Authorization', 'Bearer mockedToken');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /questions endpoint
   it('should forward get questions request to question service', async () => {
     const response = await request(app)
@@ -75,6 +127,18 @@ describe('Gateway Service', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body.question).toBe('mockedQuestion');
+  });
+
+  it('debería manejar errores al intentar obtener preguntas', async () => {
+    const mockErrorResponse = { error: 'Error al obtener preguntas' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/questions');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
   });
 
    // Test /statistics endpoint
@@ -88,6 +152,18 @@ describe('Gateway Service', () => {
     expect(response.body.wrongAnswers).toBe('mockedWrongAnswers');
   });
 
+  it('debería manejar errores al intentar obtener estadísticas', async () => {
+    const mockErrorResponse = { error: 'Error al obtener estadísticas' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/statistics');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /addStatistic endpoint
   it('should forward add statistic request to statistic service', async () => {
     const response = await request(app)
@@ -98,6 +174,20 @@ describe('Gateway Service', () => {
     expect(response.body.statisticId).toBe('mockedStatisticId');
   });
 
+  it('debería manejar errores al intentar agregar una estadística', async () => {
+    const mockErrorResponse = { error: 'Error al agregar estadística' };
+    const mockStatus = 500;
+  
+    axios.post.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app)
+      .post('/addStatistic')
+      .send({ userId: 'testuser', gamesPlayed: 10, rightAnswers: 5, wrongAnswers: 5 });
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
   // Test /users endpoint
   it('should forward get users request to user service', async () => {
     const response = await request(app)
@@ -105,6 +195,18 @@ describe('Gateway Service', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body.users).toEqual(['mockedUser1', 'mockedUser2']);
+  });
+
+  it('debería manejar errores al intentar obtener usuarios', async () => {
+    const mockErrorResponse = { error: 'Error al obtener usuarios' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/users');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
   });
 
 });

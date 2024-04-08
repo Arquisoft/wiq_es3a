@@ -172,3 +172,5 @@ async function formatoNumero(numero) {
   // Unir las partes nuevamente
   return partes.join(',');
 }
+
+module.exports.formatoNumero = formatoNumero;

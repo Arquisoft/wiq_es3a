@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - uses: actions/setup-node@v4
       with:
         node-version: 20
@@ -17,12 +19,14 @@ jobs:
     - run: npm --prefix users/userservice ci
     - run: npm --prefix preguntas/generatorservice ci
     - run: npm --prefix preguntas/questionservice ci
+    - run: npm --prefix statistics/statisticsservice ci
     - run: npm --prefix gatewayservice ci
     - run: npm --prefix webapp ci
     - run: npm --prefix users/authservice test -- --coverage
     - run: npm --prefix users/userservice test -- --coverage
     - run: npm --prefix preguntas/generatorservice test -- --coverage
     - run: npm --prefix preguntas/questionservice test -- --coverage
+    - run: npm --prefix statistics/statisticsservice test -- --coverage
     - run: npm --prefix gatewayservice test -- --coverage
     - run: npm --prefix webapp test -- --coverage
     - name: Analyze with SonarCloud

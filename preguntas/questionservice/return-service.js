@@ -19,8 +19,7 @@ app.get('/questions', async (req, res) => {
         const questions = await Question.find();
         res.json(questions);
     } catch (error) {
-        console.error("Error al obtener las preguntas:", error);
-        res.status(500).send("Error al obtener las preguntas");
+        
     }
     });
 

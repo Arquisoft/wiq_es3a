@@ -15,7 +15,7 @@ defineFeature(feature, test => {
     beforeAll(async () => {
         browser = process.env.GITHUB_ACTIONS
             ? await puppeteer.launch()
-            : await puppeteer.launch({ headless: false, slowMo: 10 });
+            : await puppeteer.launch({ headless: false });
 
         page = await browser.newPage();
         //Way of setting up the timeout
@@ -35,13 +35,16 @@ defineFeature(feature, test => {
         await expect(page).toFill('input[name="password"]', password);
         await expect(page).toFill('input[name="passwordRepeat"]', password);
         await expect(page).toClick("button", { text: "Registrarse" });
+        await page.waitForSelector('a.nav__link', { text: 'Login', visible: true });
+        await expect(page).toClick('a.nav__link', { text: 'Login' });
     });
 
     test('The user is registered in the site', ({ given, when, then }) => {
 
         given('An user', async () => {
-            username = "Prueba"
-            password = "PruebaPSW"
+            username = "Prueba";
+            password = "PruebaPSW";
+            
         });
 
         when('I fill the data in the form and press submit', async () => {

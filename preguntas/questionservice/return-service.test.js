@@ -37,5 +37,11 @@ describe('Return Service', () => {
     const response = await request(app).get('/questions');
     expect(response.status).toBe(200);
     expect(response.body).toHaveLength(2);
+    expect(response.body[0]).toHaveProperty('question');
+    expect(response.body[0]).toHaveProperty('correctAnswer');
+    expect(response.body[0]).toHaveProperty('allAnswers');
+    expect(response.body[1]).toHaveProperty('question');
+    expect(response.body[1]).toHaveProperty('correctAnswer');
+    expect(response.body[1]).toHaveProperty('allAnswers');
   });
 });

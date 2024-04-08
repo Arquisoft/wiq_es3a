@@ -9,7 +9,7 @@ table {
   
   /* Estilo para las celdas de la tabla */
   th, td {
-    border: 1ev solid #ddd; /* Borde de las celdas */
+    border: 1em solid #ddd; /* Borde de las celdas */
     padding: 1em;
     text-align: center;
   }

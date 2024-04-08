@@ -1,6 +1,7 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
+
 const Template = require('./template-model');
 
 let app;
@@ -16,9 +17,10 @@ mongoServer = await MongoMemoryServer.create();
 const mongoUri = mongoServer.getUri();
 process.env.MONGODB_URI = mongoUri;
 app = require('./question-service');
+formatoNumero = require('./question-service').formatoNumero;
 
 await addTemplate(template);
-});
+}, 10000);
 
 //Function to add template
 async function addTemplate(template){
@@ -45,3 +47,11 @@ describe('Question Service', () => {
             expect(response.body.allAnswers).toHaveLength(4);
         });
 }, 10000);
+
+describe('formatoNumero', () => {
+  it('debería formatear correctamente los números', async () => {
+    const numero = 1234567.89;
+    const resultado = await formatoNumero(numero);
+    expect(resultado).toBe('1.234.567,89');
+  });
+});

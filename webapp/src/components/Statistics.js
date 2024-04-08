@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Statistics.css';
 
 const Statistics= () => {
-  const gatewayEndpoint = process.env.GATEWAY_SERVICE_URL || 'http://localhost:8000';
+  const gatewayEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null); 
 
@@ -17,7 +17,7 @@ const Statistics= () => {
       .catch(error => {
         setError('Ha habido un error cargando las estadísticas');
       });
-  }, []);
+  }, [gatewayEndpoint]);
 
 
   return (

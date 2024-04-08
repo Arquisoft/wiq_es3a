@@ -47,7 +47,7 @@ defineFeature(feature, test => {
     });
 
     then('A confirmation message should be shown in the screen', async () => {
-        await expect(page).toMatchElement("h1", { text: "Login" });
+        await expect(page).toMatchElement("h1", { text: "BIENVENIDO" });
     });
   })
 
