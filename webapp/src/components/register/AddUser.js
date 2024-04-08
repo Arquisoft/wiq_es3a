@@ -34,6 +34,8 @@ const AddUser = () => {
       setToken(res.data.token);      
       setUsuario(res.data.username);
 
+      
+      localStorage.setItem('username', username);
       window.location.href = '/home';
     } catch (error) {
       setError(error.response.data.error);
