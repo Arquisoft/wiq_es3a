@@ -7,6 +7,17 @@ const Ranking = () => {
     const [selectedMetric, setSelectedMetric] = useState('accuracy');
     const [headerText, setHeaderText] = useState('Porcentaje de Acierto');
 
+    // Actualizar el texto de la cabecera de la tabla cuando cambie la métrica seleccionada
+    useEffect(() => {
+        if (selectedMetric === 'accuracy') {
+            setHeaderText('Porcentaje de Acierto (%)');
+        } else if (selectedMetric === 'correctAnswers') {
+            setHeaderText('Respuestas Correctas');
+        } else if (selectedMetric === 'gamesPlayed') {
+            setHeaderText('Partidas Jugadas');
+        }
+    }, [selectedMetric]);
+
     useEffect(() => {
         fetch(`${gatewayEndpoint}/ranking/${selectedMetric}`)
             .then(response => {
@@ -21,15 +32,6 @@ const Ranking = () => {
             .catch(error => {
                 setError(error.message);
             });
-
-        // Cambiar el texto de la cabecera de la tabla según la métrica seleccionada
-        if (selectedMetric === 'accuracy') {
-            setHeaderText('Porcentaje de Acierto');
-        } else if (selectedMetric === 'ccorrectAnswers') {
-            setHeaderText('Respuestas Correctas');
-        } else if (selectedMetric === 'games-played') {
-            setHeaderText('Partidas Jugadas');
-        }
     }, [gatewayEndpoint, selectedMetric]);
 
     return (
@@ -68,4 +70,5 @@ const Ranking = () => {
         </div>
     );
 }
+
 export default Ranking;
