@@ -6,6 +6,7 @@ const AuthProvider = ({ children }) => {
   // State to hold the authentication token
   const [token, setToken_] = useState(localStorage.getItem("token"));
   const [nombreUsuario, setUsuario_] = useState(localStorage.getItem("usuario"));
+  const [numeroPreguntas, setNumPreguntas_] = useState(localStorage.getItem("numPreguntas"));
 
   // Function to set the authentication token
   const setToken = (newToken) => {
@@ -15,6 +16,12 @@ const AuthProvider = ({ children }) => {
   const setUsuario = (newNombre) => {
     setUsuario_(newNombre);
   };
+
+  const setNumPreguntas = (newNumPreguntas) => 
+  {
+    setNumPreguntas_(newNumPreguntas);
+  }
+  
 
   useEffect(() => {
     if (token) {
