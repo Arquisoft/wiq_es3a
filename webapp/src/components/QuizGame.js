@@ -161,6 +161,17 @@ const QuizGame = () => {
 
     const handleTimeOver = () => {
         setIsFinished(true);
+        const username=localStorage.getItem('username')
+        const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
+        const wrongAnswers=numberOfQuestions+1-rigthAnswers;
+        const completedTime = totalTime - time;
+        const statisticsData = {
+            username:  username,
+            rigthAnswers: rigthAnswers,
+            wrongAnswers:wrongAnswers,
+            time:completedTime
+        };
+        saveStatistics(statisticsData);
         alert('¡Tiempo agotado!');
     };
 
