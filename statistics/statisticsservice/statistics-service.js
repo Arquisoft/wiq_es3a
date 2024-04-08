@@ -58,6 +58,41 @@ app.post('/addStatistic', async (req, res) => {
    
     });
 
+   
+    app.get('/ranking/accuracy', async (req, res) => {
+      try {
+        const users = await Statistic.find(); // Obtener todos los usuarios
+        const rankedUsers = users.map(user => {
+          const accuracy = user.rigthAnswers / user.gamesPlayed; // Calcular porcentaje de aciertos
+          return { username: user.username, accuracy }; // Crear objeto con nombre de usuario y porcentaje de aciertos
+        });
+        const sortedRanking = rankedUsers.sort((a, b) => b.accuracy - a.accuracy); // Ordenar usuarios por porcentaje de aciertos
+        res.json(sortedRanking); // Devolver ranking ordenado
+      } catch (err) {
+        res.status(500).json({ message: err.message });
+      }
+    });
+
+    app.get('/ranking/correct-answers', async (req, res) => {
+      try {
+        const users = await Statistic.find(); // Obtener todos los usuarios
+        // Mapear los usuarios para devolver solo las propiedades necesarias
+        const rankedUsers = users.map(user => ({
+          username: user.username,
+          correctAnswers: user.rigthAnswers, // Cambiar el nombre de la propiedad si es necesario
+          totalQuestions: user.rigthAnswers + user.wrongAnswers // Calcular total de preguntas acertadas
+        }));
+        // Ordenar usuarios por respuestas correctas
+        const sortedRanking = rankedUsers.sort((a, b) => b.correctAnswers - a.correctAnswers);
+        res.json(sortedRanking); // Devolver ranking ordenado
+      } catch (err) {
+        res.status(500).json({ message: err.message });
+      }
+    });
+    
+
+
+
 
 const server = app.listen(port, () => {
   console.log(`Statistics Service listening at http://localhost:${port}`);
