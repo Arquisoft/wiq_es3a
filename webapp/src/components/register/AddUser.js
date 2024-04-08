@@ -8,7 +8,7 @@ import { useAuth } from "../login/AuthProvider";
 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
 
 const AddUser = () => {
-  const {setToken} = useAuth();
+  const {setToken, setUsuario} = useAuth();
   const [name, setName] = useState('');
   const [surname, setSurName] = useState('');
   const [username, setUsername] = useState('');
@@ -31,7 +31,8 @@ const AddUser = () => {
 
       let res= await axios.post(`${apiEndpoint}/login`, { username, password });
 
-      setToken(res.data.token);
+      setToken(res.data.token);      
+      setUsuario(res.data.username);
 
       window.location.href = '/home';
     } catch (error) {
