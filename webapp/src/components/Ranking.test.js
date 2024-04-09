@@ -6,10 +6,6 @@ import userEvent from '@testing-library/user-event';
 
 describe('Ranking component', () => {
 
-    beforeEach(() => {
-    localStorage.clear();
-    });
-
     test('ranking título', async () => {
         render(<Ranking />);
         expect(screen.getByText('Ranking')).toBeInTheDocument();
