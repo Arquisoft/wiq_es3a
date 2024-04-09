@@ -63,7 +63,7 @@ app.post('/addStatistic', async (req, res) => {
       try {
         const users = await Statistic.find(); // Obtener todos los usuarios
         const rankedUsers = users.map(user => {
-          const accuracy = (user.rigthAnswers / user.gamesPlayed) * 100; // Calcular porcentaje de aciertos
+          const accuracy = (user.rigthAnswers / (user.gamesPlayed*10)) * 100; // Calcular porcentaje de aciertos
           const roundedAccuracy = accuracy % 1 === 0 ? accuracy : accuracy.toFixed(2); // Redondear solo si tiene decimales
           return { username: user.username, accuracy: roundedAccuracy }; // Crear objeto con nombre de usuario y porcentaje de aciertos redondeado si es necesario
         });

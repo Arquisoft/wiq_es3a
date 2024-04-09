@@ -226,7 +226,7 @@ describe('Gateway Service', () => {
     
   });
 
-  it('debería manejar errores al intentar obtener ranking cion métrica Porcentaje de Aciertos', async () => {
+  it('debería manejar errores al intentar obtener ranking con métrica Porcentaje de Aciertos', async () => {
     const mockErrorResponse = { error: 'Error al obtener ranking' };
     const mockStatus = 500;
   
