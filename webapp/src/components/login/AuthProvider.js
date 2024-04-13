@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken_] = useState(localStorage.getItem("token"));
   const [nombreUsuario, setUsuario_] = useState(localStorage.getItem("usuario"));
   const [numeroPreguntas, setNumPreguntas_] = useState(localStorage.getItem("numPreguntas"));
+  const [tiempoJuego, setTiempoJuego_] = useState(localStorage.getItem("tiempoJuego"));
 
   // Function to set the authentication token
   const setToken = (newToken) => {
@@ -20,8 +21,37 @@ const AuthProvider = ({ children }) => {
   const setNumPreguntas = (newNumPreguntas) => 
   {
     setNumPreguntas_(newNumPreguntas);
-  }
+  };
+
+  const setTiempoJuego = (newTiempoJuego) =>
+  {
+    setTiempoJuego_(newTiempoJuego);
+  };
+
+  useEffect(()=>
+  {
+    if(tiempoJuego)
+    {
+      localStorage.setItem('tiempoJuego', tiempoJuego);
+    }else
+    {
+      localStorage.removeItem('tiempoJuego');      
+      localStorage.setItem('tiempoJuego', 150);
+    }
+  }, [tiempoJuego]);
+
   
+  useEffect(()=>
+  {
+    if(numeroPreguntas)
+    {
+      localStorage.setItem('numeroPreguntas', numeroPreguntas);
+    }else
+    {
+      localStorage.removeItem('numeroPreguntas');      
+      localStorage.setItem('numeroPreguntas', 9);
+    }
+  }, [numeroPreguntas]);
 
   useEffect(() => {
     if (token) {
@@ -47,9 +77,13 @@ const AuthProvider = ({ children }) => {
       token,
       setToken,
       nombreUsuario,
-      setUsuario
+      setUsuario,
+      numeroPreguntas,
+      setNumPreguntas,
+      tiempoJuego,
+      setTiempoJuego
     }),
-    [token,nombreUsuario]
+    [token,nombreUsuario,numeroPreguntas,tiempoJuego]
   );
 
   // Provide the authentication context to the children components
