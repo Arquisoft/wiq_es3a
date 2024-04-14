@@ -35,8 +35,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('tiempoJuego', tiempoJuego);
     }else
     {
-      localStorage.removeItem('tiempoJuego');      
-      localStorage.setItem('tiempoJuego', 150);
+      localStorage.removeItem('tiempoJuego')
     }
   }, [tiempoJuego]);
 
@@ -47,9 +46,8 @@ const AuthProvider = ({ children }) => {
     {
       localStorage.setItem('numeroPreguntas', numeroPreguntas);
     }else
-    {
-      localStorage.removeItem('numeroPreguntas');      
-      localStorage.setItem('numeroPreguntas', 9);
+    {   
+      localStorage.removeItem('numeroPreguntas')
     }
   }, [numeroPreguntas]);
 
