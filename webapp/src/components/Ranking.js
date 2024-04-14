@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import './Ranking.css';
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+
+
 
 const Ranking = () => {
     const gatewayEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
@@ -35,19 +39,22 @@ const Ranking = () => {
     }, [gatewayEndpoint, selectedMetric]);
 
     return (
-        <div>
-            <h1>Ranking</h1>
-            <div>
-                <label htmlFor="metric-select">Seleccionar métrica:</label>
-                <select id="metric-select" value={selectedMetric} onChange={e => setSelectedMetric(e.target.value)}>
-                    <option value="accuracy">Porcentaje de Acierto</option>
-                    <option value="correctAnswers">Respuestas Correctas</option>
-                    <option value="gamesPlayed">Partidas Jugadas</option>
-                </select>
-            </div>
+        <div className="container">
+        <div className="title">
+        <h1>Ranking</h1>
+        </div>
+        <div className="centered-content">
+            <label htmlFor="metric-select" className="label-large">Seleccionar métrica:</label>
+            <select id="metric-select" value={selectedMetric} onChange={e => setSelectedMetric(e.target.value)} className="select-large">
+                <option value="accuracy">Porcentaje de Acierto</option>
+                <option value="correctAnswers">Respuestas Correctas</option>
+                <option value="gamesPlayed">Partidas Jugadas</option>
+            </select>
+        </div>
             {error ? (
                 <p>Error: {error}</p>
             ) : rankingData ? (
+                <div className='table'> 
                 <table>
                     <thead>
                         <tr>
@@ -64,10 +71,13 @@ const Ranking = () => {
                         ))}
                     </tbody>
                 </table>
+                </div> 
             ) : (
                 <p>Cargando ranking...</p>
             )}
-        </div>
+           
+       
+       </div>
     );
 }
 
