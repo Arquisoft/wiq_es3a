@@ -8,8 +8,8 @@ import Timer from './Timer.js';
 import { useAuth } from "./login/AuthProvider";
 
 const QuizGame = () => {
-    const numberOfQuestions = localStorage.getItem("numeroPreguntas");
-    const totalTime = localStorage.getItem("tiempoJuego");
+    const numberOfQuestions = parseInt(localStorage.getItem("numPreguntas")) || 9;
+    const totalTime = parseInt(localStorage.getItem("tiempoJuego")) || 150;
 
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [questionsNumber, setQuestionsNumber] = useState(0);

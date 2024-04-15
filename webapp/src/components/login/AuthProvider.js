@@ -44,10 +44,10 @@ const AuthProvider = ({ children }) => {
   {
     if(numeroPreguntas)
     {
-      localStorage.setItem('numeroPreguntas', numeroPreguntas);
+      localStorage.setItem('numPreguntas', numeroPreguntas);
     }else
     {   
-      localStorage.removeItem('numeroPreguntas')
+      localStorage.removeItem('numPreguntas')
     }
   }, [numeroPreguntas]);
 
