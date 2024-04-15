@@ -110,6 +110,33 @@ app.get('/users', async (req, res) => {
   }
 });
 
+app.get('/ranking/accuracy', async (req, res) => {
+  try {
+    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/accuracy');
+    res.json(statResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/ranking/correctAnswers', async (req, res) => {
+  try {
+    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/correctAnswers');
+    res.json(statResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/ranking/gamesPlayed', async (req, res) => {
+  try {
+    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/gamesPlayed');
+    res.json(statResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
 
 // Read the OpenAPI YAML file synchronously
 openapiPath='./openapi.yaml'

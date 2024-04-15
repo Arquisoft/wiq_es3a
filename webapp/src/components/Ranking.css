@@ -1,0 +1,58 @@
+.container {
+    align-items: center;
+    background-color: #ffffff7a;
+    
+}
+.title{
+    font-size: 2em; /* Tamaño de fuente más grande */
+    font-family: 'Playfair Display', serif;
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: #de0f70; /* Color oscuro para un contraste nítido */
+    text-align: center; /* Centrar el texto */
+    font-weight: 700; /* Fuente en negrita para destacar */
+    
+    font-size: 1.2em;
+}
+
+
+.label-large {
+    font-size: 1.1em;
+    color: #555; /* Color del texto */
+}
+
+.select-large {
+    font-size: 0.9em;
+    
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #fff; /* Color de fondo */
+    color: #333; /* Color del texto */
+    width: 40vh;
+    margin-bottom: 3vh;
+}
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd; /* Borde de la tabla */
+    background-color: rgba(255, 255, 255, 0.8); /* Blanco con una transparencia del 80% */
+    font-size: 1em;
+
+}
+
+.select-large:focus {
+    outline: none; /* Eliminar el contorno al enfocar */
+    border-color: #007bff; /* Color del borde al enfocar */
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Utiliza la fuente Roboto */
+   
+}
