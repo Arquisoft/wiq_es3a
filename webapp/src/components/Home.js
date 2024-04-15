@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import "./Home.css";
-import Categories from './categories';
+import Categories from './categories/categories';
 
 function Home() {
 
