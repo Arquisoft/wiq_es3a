@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import './categories.css';
 
 function Categorias() {
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+  const categoriaGuardada = localStorage.getItem("categoria");
+  const categoriaInicial = categoriaGuardada ? categoriaGuardada.toLowerCase() : "todas";
+
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaInicial);
 
   const categorias = [
     'Todas',
@@ -14,7 +17,8 @@ function Categorias() {
   ];
 
   const seleccionarCategoria = (categoria) => {
-    setCategoriaSeleccionada(categoria);
+    setCategoriaSeleccionada(categoria.toLowerCase());
+    localStorage.setItem("categoria", categoria.toLowerCase());
   };
 
   return (
@@ -24,7 +28,7 @@ function Categorias() {
         {categorias.map((categoria, index) => (
           <button
             key={index}
-            className={`categoria-button ${categoria === categoriaSeleccionada ? 'selected' : ''}`}
+            className={`categoria-button ${categoria.toLowerCase() === categoriaSeleccionada ? 'selected' : ''}`}
             onClick={() => seleccionarCategoria(categoria)}
           >
             {categoria}
@@ -36,3 +40,4 @@ function Categorias() {
 }
 
 export default Categorias;
+
