@@ -9,13 +9,6 @@ body:has(.box)
     background-size:cover;
 }
 
-body:has(.fondo-gradiente)
-{
-    background: linear-gradient(45deg, var(--cuarto) 30%, var(--segundo) 90%);
-    background-repeat: no-repeat;
-    height: 100vh;
-}
-
 .fondo-pagina
 {
     background-image: url("../../public/Saber-y-ganar.jpeg");
