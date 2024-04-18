@@ -11,7 +11,7 @@ function Categorias() {
     'Todas',
     'Geografía',
     'Deporte',
-    'Política y economía',
+    'Política',
     'Escudos y banderas',
     'Cultura'
   ];
@@ -23,7 +23,7 @@ function Categorias() {
 
   return (
     <div className="categorias-container">
-      <h2>Selecciona una categoría:</h2>
+      <h2>Selecciona categoría de sabio:</h2>
       <div className="categorias-list">
         {categorias.map((categoria, index) => (
           <button

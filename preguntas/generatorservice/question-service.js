@@ -4,7 +4,13 @@ const mongoose = require('mongoose');
 const Question = require('./question-model');
 const Template = require('./template-model');
 const axios = require('axios');
-const templateData = require('./data/data.json');
+
+// Import game modes data
+const sabiosData = require('./data/data-sabios.json');
+const decartandoData = require('./data/data-descartando.json');
+const imgData = require('./data/data-img.json');
+const descubriendoData = require('./data/data-descubriendo.json');
+
 
 // Create an instance of Express
 const app = express();
@@ -22,7 +28,7 @@ const endpointUrl = 'https://query.wikidata.org/sparql';
 
 mongoose.connect(mongoUri)
   .then(() => {return Template.deleteMany({})})
-  .then(() => {return Template.insertMany(templateData)});
+  .then(() => {return Template.insertMany(sabiosData)});
 
 //Function to search a random template
 const searchRandomTemplate = async () => {
