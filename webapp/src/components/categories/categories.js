@@ -8,11 +8,10 @@ function Categorias() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaInicial);
 
   const categorias = [
-    'Todas',
+    'Aleatorio',
     'Geografía',
     'Deporte',
     'Política',
-    'Escudos y banderas',
     'Cultura'
   ];
 

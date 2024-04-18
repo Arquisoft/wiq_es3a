@@ -11,11 +11,14 @@
   background-color: #fff;
 }
 
-
 .categorias-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Esto crea dos columnas con el mismo ancho */
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
+}
+
+.categoria-button:first-child {
+  grid-column: 1 / span 2;
 }
 
 .categoria-button {

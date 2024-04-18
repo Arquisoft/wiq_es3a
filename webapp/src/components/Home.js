@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import "./Home.css";
-import Categories from './categories/categories';
+import Modes from './gameModes/ModeSelection';
 
 function Home() {
 
@@ -29,7 +29,7 @@ function Home() {
       </Container>
 
       <div id='scope'>
-        <Categories />
+        <Modes />
       </div>
       
     </div>
