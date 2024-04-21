@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import "./Home.css";
+import Modes from './gameModes/ModeSelection';
 
 function Home() {
 
@@ -26,8 +27,14 @@ function Home() {
           JUGAR
         </Button>
       </Container>
+
+      <div id='scope'>
+        <Modes />
+      </div>
       
     </div>
+
+    
   );
 }
 

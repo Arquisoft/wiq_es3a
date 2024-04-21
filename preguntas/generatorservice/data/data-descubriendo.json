@@ -1,0 +1,7 @@
+[
+  {
+    "question": "¿Qué imagen es de ^?",
+    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q1492 wd:Q90 wd:Q84 wd:Q60 wd:Q1490 wd:Q3130 wd:Q8678 wd:Q649 wd:Q1486 wd:Q1861 wd:Q85 wd:Q64 wd:Q101625 wd:Q334 wd:Q65 wd:Q987 wd:Q612 wd:Q8969 wd:Q740246 wd:Q1781} ?p wdt:P18 ?rLabel. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". } }",
+    "category": "geografía"
+  }
+]
