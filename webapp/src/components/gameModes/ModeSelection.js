@@ -3,8 +3,7 @@ import './ModeSelection.css';
 import Categories from '../categories/categories';
 
 const ModeSelection = () => {
-  const modoGuardado = localStorage.getItem('mode');
-  const modoInicial = modoGuardado ? modoGuardado.toLowerCase() : 'bateríadesabios';
+  const modoInicial = '';
 
   const [modoSeleccionado, setModoSeleccionado] = useState(modoInicial);
   const [isModeSelected, setIsModeSelected] = useState(false);
