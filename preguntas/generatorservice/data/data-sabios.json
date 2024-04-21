@@ -2,38 +2,38 @@
   {
     "question": "¿Cuál es la capital de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P36 ?r. FILTER(?p != wd:Q124653007) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
-    "category": "geografía"
+    "category": "geografia"
   },
   {
     "question": "¿A qué continente pertenece ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P30 ?r. FILTER(?p NOT IN (wd:Q703695, wd:Q28846511, wd:Q120088504, wd:Q115166787)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
-    "category": "geografía"
+    "category": "geografia"
   },
   {
     "question": "¿Cuál es el área en Kilómetros cuadrados (Km2) de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P2046 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
-    "category": "geografía"
+    "category": "geografia"
   },
   { 
     "question": "¿Cuál es la superficie ocupada por el ^ en kilómetros cuadrados (km2)?", 
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q165. ?p wdt:P2046 ?r. FILTER (?r > 800000) FILTER (STR(?p) != 'http://www.wikidata.org/entity/Q3240274') SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}",
-    "category": "geografía"
+    "category": "geografia"
  
   },
   {
     "question":"¿En qué año se fundó ^ como país?",
     "query": "SELECT ?pLabel (MIN(YEAR(?r)) AS ?rLabel) WHERE { ?p wdt:P31 wd:Q6256; wdt:P571 ?r; wdt:P1082 ?population. FILTER(?p != wd:Q703695 && ?population > 2000000) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }} GROUP BY ?pLabel",
-    "category": "geografía"
+    "category": "geografia"
   },
   {
     "question": "¿Cuál es la bandera de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. FILTER (?p != wd:Q124653007) OPTIONAL { ?p wdt:P41 ?rLabel } FILTER(BOUND(?rLabel)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
-    "category": "geografía"
+    "category": "geografia"
   },
   {
     "question": "¿Qué imagen es de ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q1492 wd:Q90 wd:Q84 wd:Q60 wd:Q1490 wd:Q3130 wd:Q8678 wd:Q649 wd:Q1486 wd:Q1861 wd:Q85 wd:Q64 wd:Q101625 wd:Q334 wd:Q65 wd:Q987 wd:Q612 wd:Q8969 wd:Q740246 wd:Q1781} ?p wdt:P18 ?rLabel. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". } }",
-    "category": "geografía"
+    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q1492 wd:Q90 wd:Q84 wd:Q60 wd:Q1490 wd:Q3130 wd:Q8678 wd:Q649 wd:Q1486 wd:Q1861 wd:Q85 wd:Q64 wd:Q101625 wd:Q334 wd:Q65 wd:Q987 wd:Q612 wd:Q8969 wd:Q740246 wd:Q1781} ?p wdt:P18 ?rLabel. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
+    "category": "geografia"
   },
 
 
@@ -85,37 +85,37 @@
   {
     "question": "¿Qúe moneda es utilizada en ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P38 ?r. FILTER(?r NOT IN (wd:Q100928009, wd:Q329248, wd:Q4228784, wd:Q96051466)) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
-    "category": "política"
+    "category": "politica"
   },
   {
     "question": "¿Cuál es el nombre del presidente/jefe de Estado de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P35 ?r. FILTER(?p != wd:Q124653007) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
-    "category": "política"
+    "category": "politica"
   },
   {
     "question": "¿Cuál es el nombre del primer ministro de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q6256. ?p wdt:P6 ?r. FILTER (?p != wd:Q967 && ?p != wd:Q965 && ?p != wd:Q124653007) SERVICE wikibase:label { bd:serviceParam wikibase:language '[AUTO_LANGUAGE],es'. } }",
-    "category": "política"
+    "category": "politica"
   },
   {
     "question": "¿Qué imagen es de ^?",
     "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q5; wdt:P27 wd:Q29; wdt:P106 wd:Q82955; wdt:P18 ?rLabel; wdt:P8687 ?followers. FILTER(?followers > 514772 && ?followers < 20000000) FILTER(?p != wd:Q513911) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
-    "category": "política"
+    "category": "politica"
   },
   {
     "question": "¿Quién ganó la/s ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q47566; wdt:P991 ?r; p:P585 ?fechaStatement. ?fechaStatement ps:P585 ?fecha. FILTER(?fecha < \"2024-01-01T00:00:00Z\"^^xsd:dateTime) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". } }",
-    "category": "política"
+    "query": "SELECT ?pLabel ?rLabel WHERE { ?p wdt:P31 wd:Q47566; wdt:P991 ?r; p:P585 ?fechaStatement. ?fechaStatement ps:P585 ?fecha. FILTER(?fecha < \"2024-01-01T00:00:00Z\"^^xsd:dateTime) SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
+    "category": "politica"
   },
   {
     "question":"¿En que año comenzó la ^?",
-    "query":"SELECT ?pLabel (YEAR(?r) AS ?rLabel) WHERE { VALUES ?p { wd:Q361 wd:Q362 wd:Q8683 wd:Q8663 wd:Q8740 wd:Q10859 wd:Q8676 wd:Q79911 wd:Q165725 wd:Q150701 wd:Q164432 wd:Q220984 } ?p wdt:P580 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". } }", 
-    "category": "política"
+    "query":"SELECT ?pLabel (YEAR(?r) AS ?rLabel) WHERE { VALUES ?p { wd:Q361 wd:Q362 wd:Q8683 wd:Q8663 wd:Q8740 wd:Q10859 wd:Q8676 wd:Q79911 wd:Q165725 wd:Q150701 wd:Q164432 wd:Q220984 } ?p wdt:P580 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }", 
+    "category": "politica"
   },
   {
     "question":"¿En que año terminó la ^?",
-    "query":"SELECT ?pLabel (YEAR(?r) AS ?rLabel) WHERE { VALUES ?p { wd:Q361 wd:Q362 wd:Q8683 wd:Q8663 wd:Q8740 wd:Q10859 wd:Q8676 wd:Q79911 wd:Q165725 wd:Q150701 wd:Q164432 wd:Q220984 } ?p wdt:P582 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". } }", 
-    "category": "política"
+    "query":"SELECT ?pLabel (YEAR(?r) AS ?rLabel) WHERE { VALUES ?p { wd:Q361 wd:Q362 wd:Q8683 wd:Q8663 wd:Q8740 wd:Q10859 wd:Q8676 wd:Q79911 wd:Q165725 wd:Q150701 wd:Q164432 wd:Q220984 } ?p wdt:P582 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }", 
+    "category": "politica"
   },
 
 
@@ -152,7 +152,7 @@
   },
   {
     "question": "¿Quién es el compositor de la obra ^?",
-    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q11989 wd:Q231390 wd:Q12016 wd:Q689519 wd:Q199786 wd:Q206015 wd:Q756843 wd:Q651383 wd:Q207732 wd:Q769763} ?p wdt:P86 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". } }",
+    "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q11989 wd:Q231390 wd:Q12016 wd:Q689519 wd:Q199786 wd:Q206015 wd:Q756843 wd:Q651383 wd:Q207732 wd:Q769763} ?p wdt:P86 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
     "category": "cultura"
   }
 ]
