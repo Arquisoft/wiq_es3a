@@ -7,7 +7,7 @@ const axios = require('axios');
 
 // Import game modes data
 const sabiosData = require('./data/data-sabios.json');
-const decartandoData = require('./data/data-descartando.json');
+const descartandoData = require('./data/data-descartando.json');
 const imgData = require('./data/data-img.json');
 const descubriendoData = require('./data/data-descubriendo.json');
 
@@ -74,7 +74,7 @@ app.get('/generate-question', async (req, res) => {
     await Template.insertMany(sabiosData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -84,54 +84,17 @@ app.get('/generate-question', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -143,7 +106,7 @@ app.get('/generate-question/aleatorio', async (req, res) => {
     await Template.insertMany(sabiosData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -153,54 +116,17 @@ app.get('/generate-question/aleatorio', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -210,67 +136,29 @@ app.get('/generate-question/geografia', async (req, res) => {
     await mongoose.connect(mongoUri);
     await Template.deleteMany({});
     await Template.insertMany(sabiosData);
-    console.log(Template.length)
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
     // Search a random template
-    const template = await searchRandomCategoryTemplate("geografia");
+    const template = await searchRandomCategoryTemplate("georafia");
 
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -282,7 +170,7 @@ app.get('/generate-question/deporte', async (req, res) => {
     await Template.insertMany(sabiosData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -292,54 +180,17 @@ app.get('/generate-question/deporte', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -351,7 +202,7 @@ app.get('/generate-question/politica', async (req, res) => {
     await Template.insertMany(sabiosData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -361,54 +212,17 @@ app.get('/generate-question/politica', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -420,7 +234,7 @@ app.get('/generate-question/cultura', async (req, res) => {
     await Template.insertMany(sabiosData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -430,54 +244,17 @@ app.get('/generate-question/cultura', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -486,10 +263,10 @@ app.get('/generate-question/descartando', async (req, res) => {
   try {
     await mongoose.connect(mongoUri);
     await Template.deleteMany({});
-    await Template.insertMany(decartandoData);
+    await Template.insertMany(descartandoData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -499,54 +276,17 @@ app.get('/generate-question/descartando', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -558,7 +298,7 @@ app.get('/generate-question/descubriendociudades', async (req, res) => {
     await Template.insertMany(descubriendoData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -568,54 +308,17 @@ app.get('/generate-question/descubriendociudades', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
-    let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
-    do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+    const result = await generateQuestion(formattedResults, template);
 
-    //Creación de respuestas
-    const correctAnswer = formattedResults[randomIndex0];
-    const wrongAnswer1 = formattedResults[randomIndex1];
-    const wrongAnswer2 = formattedResults[randomIndex2];
-    const wrongAnswer3 = formattedResults[randomIndex3];
-
-    //Creación de array desordenado con todas las respuestas
-    const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
-    const allAnswers = shuffleArray(allAnswersSorted);
-
-    // Add pLabel to question string from template
-    const question = template.question.replace('^', correctAnswer.pLabel);
-
-    //Cambio de formato de numero. Se intenta hacer más legible
-    if (question.includes('superficie') || question.includes('área')) {
-      correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
-      for (let i = 0; i < allAnswers.length; i++) {
-        allAnswers[i] = await formatoNumero(allAnswers[i]);
-      }
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
     }
 
-    // Create a new question
-    const newQuestion = new Question({
-      question: question,
-      correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
-    });
-
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -627,7 +330,7 @@ app.get('/generate-question/soloimagenes', async (req, res) => {
     await Template.insertMany(imgData);
     
   } catch (error) {
-    res.status(500).json({ message: 'Error al resetear los datos', error });
+    return res.status(500).json({ message: 'Error al resetear los datos', error });
   }
 
   try {
@@ -637,34 +340,48 @@ app.get('/generate-question/soloimagenes', async (req, res) => {
     //Execute the query
     const formattedResults = await executeQuery(template);
 
-    //Generación de índices aleatorios y diferentes
+    const result = await generateQuestion(formattedResults, template);
+
+    if (result.success) {
+      return res.json(result.question);
+    } else {
+      return res.status(500).json({ error: result.error, details: result.details });
+    }
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Refactorización de codigo generación de preguntas
+const generateQuestion = async (formattedResults, template) => {
+  try {
     let randomIndex0, randomIndex1, randomIndex2, randomIndex3;
     do {
-        randomIndex0 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex1 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex2 = Math.floor(Math.random() * formattedResults.length);
-        randomIndex3 = Math.floor(Math.random() * formattedResults.length);
-    } while (formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel || 
-      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel || 
-      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel);
+      randomIndex0 = Math.floor(Math.random() * formattedResults.length);
+      randomIndex1 = Math.floor(Math.random() * formattedResults.length);
+      randomIndex2 = Math.floor(Math.random() * formattedResults.length);
+      randomIndex3 = Math.floor(Math.random() * formattedResults.length);
+    } while (
+      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex1].rLabel ||
+      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex2].rLabel ||
+      formattedResults[randomIndex0].rLabel === formattedResults[randomIndex3].rLabel ||
+      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex2].rLabel ||
+      formattedResults[randomIndex1].rLabel === formattedResults[randomIndex3].rLabel ||
+      formattedResults[randomIndex2].rLabel === formattedResults[randomIndex3].rLabel
+    );
 
-    //Creación de respuestas
     const correctAnswer = formattedResults[randomIndex0];
     const wrongAnswer1 = formattedResults[randomIndex1];
     const wrongAnswer2 = formattedResults[randomIndex2];
     const wrongAnswer3 = formattedResults[randomIndex3];
 
-    //Creación de array desordenado con todas las respuestas
     const allAnswersSorted = [correctAnswer.rLabel, wrongAnswer1.rLabel, wrongAnswer2.rLabel, wrongAnswer3.rLabel];
     const allAnswers = shuffleArray(allAnswersSorted);
 
-    // Add pLabel to question string from template
     const question = template.question.replace('^', correctAnswer.pLabel);
 
-    //Cambio de formato de numero. Se intenta hacer más legible
     if (question.includes('superficie') || question.includes('área')) {
       correctAnswer.rLabel = await formatoNumero(correctAnswer.rLabel);
       for (let i = 0; i < allAnswers.length; i++) {
@@ -672,21 +389,19 @@ app.get('/generate-question/soloimagenes', async (req, res) => {
       }
     }
 
-    // Create a new question
     const newQuestion = new Question({
       question: question,
       correctAnswer: correctAnswer.rLabel,
-      allAnswers: allAnswers
+      allAnswers: allAnswers,
     });
 
-    newQuestion.save();
-    // Return the question as a JSON response
-    res.json(newQuestion);
+    await newQuestion.save();
+    return { success: true, question: newQuestion };
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return { success: false, error: 'Internal Server Error', details: error };
   }
-});
+};
 
 // Start the server
 const server = app.listen(port, () => {
