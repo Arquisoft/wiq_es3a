@@ -23,7 +23,7 @@ function Home() {
         <Typography className="tituloHome" component="h2" variant="h5" align="center" sx={{ marginTop: 2 }}>
         PULSA EL BOTÓN PARA JUGAR
         </Typography>
-        <Button className="botonHome" variant="contained" color="primary" fullWidth onClick={window.location.href = '/game'}>
+        <Button className="botonHome" variant="contained" color="primary" fullWidth onClick={() =>{window.location.href = '/game';}}>
           JUGAR
         </Button>
       </Container>

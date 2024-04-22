@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Home from './Home';
 import userEvent from '@testing-library/user-event';
 import {BrowserRouter} from 'react-router-dom';
+import AuthProvider from './login/AuthProvider';
 
 let assignMock = jest.fn();
 
@@ -14,14 +15,14 @@ afterEach(() => {
 
 
 test('iniciar', () => {
-  render(<Home />);
+  render(<AuthProvider><Home /></AuthProvider>);
   const linkElement = screen.getByText(/BIENVENIDO/i);
   expect(linkElement).toBeInTheDocument();
   expect(screen.getByText(/PULSA EL BOTÓN PARA JUGAR/i)).toBeInTheDocument();
 });
 
 test('jugar', async () => {
-    render(<Home />, {wrapper: BrowserRouter});
+    render(<AuthProvider><Home /></AuthProvider>, {wrapper: BrowserRouter});
     const user = userEvent.setup()
     const jugarButton = screen.getByRole('button', { name: /JUGAR/i });
     await user.click(jugarButton);

@@ -54,13 +54,13 @@ test('Establece Parametros Predeterminados', async () => {
 
     await fireEvent.click(opcion);
 
-    // Wait for the state updates to propagate
-    await waitFor(() => {
-        const tj = localStorage.getItem("tiempoJuego");
-        const num = localStorage.getItem("numPreguntas");
-        expect(tj).toEqual("150");
-        expect(num).toEqual("9"); 
-    });
+    // Wait for the state updates to propagate    
+    const tj = localStorage.getItem("tiempoJuego");
+    const tj2 = localStorageMock.getItem("tiempoJuego");
+    const num = localStorage.getItem("numPreguntas");
+    expect(tj).toEqual("150");
+    expect(num).toEqual("9"); 
+    
 });
 
 test('Establece Parametros Partida Corta', async () => {
@@ -72,13 +72,12 @@ test('Establece Parametros Partida Corta', async () => {
 
     await fireEvent.click(opcion); 
 
-    // Wait for the state updates to propagate
-    await waitFor(() => {
-        const tj = localStorage.getItem("tiempoJuego");
-        const num = localStorage.getItem("numPreguntas");
-        expect(tj).toEqual("60"); 
-        expect(num).toEqual("5");
-    });
+    // Wait for the state updates to propagate    
+    const tj = localStorage.getItem("tiempoJuego");    
+    const num = localStorage.getItem("numPreguntas");
+    expect(tj).toEqual("60"); 
+    expect(num).toEqual("5");
+  
 });
 
 test('Establece Parametros Partida Media', async () => {
@@ -90,11 +89,27 @@ test('Establece Parametros Partida Media', async () => {
 
     await fireEvent.click(opcion); 
 
-    // Wait for the state updates to propagate
-    await waitFor(() => {
-        const tj = localStorage.getItem("tiempoJuego");
-        const num = localStorage.getItem("numPreguntas");
-        expect(tj).toEqual("90");
-        expect(num).toEqual("10");
-    });
+    // Wait for the state updates to propagate    
+    const tj = localStorage.getItem("tiempoJuego");    
+    const num = localStorage.getItem("numPreguntas");
+    expect(tj).toEqual("90");
+    expect(num).toEqual("10");
+    
+});
+
+test('Establece Parametros Partida Larga', async () => {
+    render(<AuthProvider><Parameters /></AuthProvider>);
+    expect(screen.getByText(/PARÁMETROS DE LA PARTIDA:/i)).toBeInTheDocument();
+
+    // Wait for the asynchronous operation to complete
+    const opcion = await document.getElementById("larga");
+
+    await fireEvent.click(opcion); 
+
+    // Wait for the state updates to propagate    
+    const tj = localStorage.getItem("tiempoJuego");    
+    const num = localStorage.getItem("numPreguntas");
+    expect(tj).toEqual("210");
+    expect(num).toEqual("20");
+    
 });

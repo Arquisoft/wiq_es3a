@@ -14,13 +14,7 @@ function Parameters(){
       setNumPreguntas(v[0]);
       setTiempoJuego(v[1]);
     };
-
-    useEffect(()=>
-    {
-      setNumPreguntas("9");
-      setTiempoJuego("150");
-    });
-
+    
     return (
 
     <Container className='boxHome' maxWidth="xs">
