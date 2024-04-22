@@ -143,7 +143,7 @@ app.get('/generate-question/geografia', async (req, res) => {
 
   try {
     // Search a random template
-    const template = await searchRandomCategoryTemplate("georafia");
+    const template = await searchRandomCategoryTemplate("geografia");
 
     //Execute the query
     const formattedResults = await executeQuery(template);
