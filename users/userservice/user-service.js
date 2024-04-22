@@ -47,7 +47,7 @@ app.post('/adduser', async (req, res) => {
 
     app.get('/users', async (req, res) => {
       try {
-        const users = await User.find();
+        const users = await User.find({}, { password: 0 });
         res.status(200).json(users); 
       } catch (error) {
         // Manejo de errores

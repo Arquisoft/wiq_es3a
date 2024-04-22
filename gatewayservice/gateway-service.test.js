@@ -35,6 +35,12 @@ describe('Gateway Service', () => {
       wrongAnswers:'mockedWrongAnswers'  }});
     } else if (url.endsWith('/users')) {
       return Promise.resolve({ data: { users: ['mockedUser1', 'mockedUser2'] } });
+    }else if(url.endsWith('/ranking/accuracy')){
+      return Promise.resolve({ data: { user: 'mockedUser', accuracy:'mockedAccuracy' }});
+    }else if(url.endsWith('/ranking/correctAnswers')){
+      return Promise.resolve({ data: { user: 'mockedUser', accuracy:'mockedCorrectAnswers' }});
+    }else if(url.endsWith('/ranking/gamesPlayed')){
+      return Promise.resolve({ data: { user: 'mockedUser', accuracy:'mockedGamesPlayed' }});
     }
   });
 
@@ -204,6 +210,75 @@ describe('Gateway Service', () => {
     axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
   
     const response = await request(app).get('/users');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
+  // Test /ranking/accuracy endpoint
+  it('should forward get ranking/accuracy request to statistics service', async () => {
+    const response = await request(app)
+      .get('/ranking/accuracy');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.user).toBe('mockedUser');
+    expect(response.body.accuracy).toBe('mockedAccuracy');
+    
+  });
+
+  it('debería manejar errores al intentar obtener ranking con métrica Porcentaje de Aciertos', async () => {
+    const mockErrorResponse = { error: 'Error al obtener ranking' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/ranking/accuracy');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
+   // Test /ranking/correctAnswers endpoint
+   it('should forward get ranking/correctAnswers request to statistics service', async () => {
+    const response = await request(app)
+      .get('/ranking/correctAnswers');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.user).toBe('mockedUser');
+    expect(response.body.accuracy).toBe('mockedCorrectAnswers');
+    
+  });
+
+  it('debería manejar errores al intentar obtener ranking con métrica Respuestas Correctas', async () => {
+    const mockErrorResponse = { error: 'Error al obtener ranking' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/ranking/correctAnswers');
+  
+    expect(response.status).toBe(mockStatus);
+    expect(response.body).toEqual(mockErrorResponse);
+  });
+
+  // Test /ranking/gamesPlayed endpoint
+  it('should forward get ranking/gamesPlayed request to statistics service', async () => {
+    const response = await request(app)
+      .get('/ranking/gamesPlayed');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.user).toBe('mockedUser');
+    expect(response.body.accuracy).toBe('mockedGamesPlayed');
+    
+  });
+
+  it('debería manejar errores al intentar obtener ranking con métrica Partidas Jugadas', async () => {
+    const mockErrorResponse = { error: 'Error al obtener ranking' };
+    const mockStatus = 500;
+  
+    axios.get.mockRejectedValueOnce({ response: { status: mockStatus, data: mockErrorResponse } });
+  
+    const response = await request(app).get('/ranking/gamesPlayed');
   
     expect(response.status).toBe(mockStatus);
     expect(response.body).toEqual(mockErrorResponse);

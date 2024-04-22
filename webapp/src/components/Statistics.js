@@ -21,8 +21,10 @@ const Statistics= () => {
 
 
   return (
-    <div>
-      <h1>Estadísticas</h1>
+    <div className='principal'>
+      <div className="title">
+        <h1>Estadísticas</h1>
+        </div>
       {error ? ( // Verificar si hay un error
       <p>Error: {error}</p>
     ) : userData ? (
@@ -44,10 +46,13 @@ const Statistics= () => {
             </tr>
           </tbody>
         </table>
+        
       ) : (
         <p>Cargando estadísticas...</p>
       )}
+      
     </div>
+    
   );
 }
 

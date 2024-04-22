@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import "./Home.css";
 import Parameters from './Parameters';
+import Modes from './gameModes/ModeSelection';
 
 function Home() {
 
@@ -29,8 +30,11 @@ function Home() {
       </Container>
       <div id="scope">
         <Parameters />     
-      </div>       
+        <Modes />
+      </div>
     </div>
+
+    
   );
 }
 

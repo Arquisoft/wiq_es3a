@@ -35,5 +35,9 @@ table {
     align-items: center;
     display: flex;
     flex-direction: column;
-    background-color: white;
+   
   }
+  .title{
+    font-size: 2em; 
+    font-family: 'Playfair Display', serif;
+}

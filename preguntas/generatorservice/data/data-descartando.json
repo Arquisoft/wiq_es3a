@@ -1,0 +1,26 @@
+[
+    {
+        "question": "¿Quién es el autor de la novela ^?",
+        "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q480 wd:Q174596 wd:Q178869 wd:Q208460 wd:Q15228 wd:Q25338 wd:Q8337 wd:Q52910 wd:Q1784466 wd:Q214132} ?p wdt:P50 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}",
+        "category": "cultura"
+    },
+
+    {
+        "question": "¿Quién dirigió la película ^?",
+        "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q128518 wd:Q162729 wd:Q183066 wd:Q61740820 wd:Q108839994 wd:Q44578 wd:Q163872 wd:Q11621 wd:Q185658 wd:Q165325 wd:Q104123 wd:Q47703 wd:Q131074 wd:Q20856802 wd:Q277038 wd:Q458656 wd:Q1050105 wd:Q543462 wd:Q65032692 wd:Q54274 } ?p wdt:P57 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". } }",
+        "category": "cultura"
+    },
+
+    {
+        "question": "¿Quién es el autor de la obra ^?",
+        "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q12418 wd:Q128910 wd:Q175036 wd:Q25729 wd:Q500242 wd:Q208758 wd:Q151047 wd:Q219831 wd:Q152867 wd:Q94802 wd:Q45585 wd:Q3232010} ?p wdt:P170 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],es\". }}",
+        "category": "cultura"
+    },
+
+    {
+        "question": "¿Quién es el compositor de la obra ^?",
+        "query": "SELECT ?pLabel ?rLabel WHERE { VALUES ?p { wd:Q11989 wd:Q231390 wd:Q12016 wd:Q689519 wd:Q199786 wd:Q206015 wd:Q756843 wd:Q651383 wd:Q207732 wd:Q769763} ?p wdt:P86 ?r. SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". } }",
+        "category": "cultura"
+    }
+
+]

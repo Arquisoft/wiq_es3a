@@ -43,7 +43,18 @@ const QuizGame = () => {
                     const config = {
                       headers: { Authorization: 'Bearer '+ token}
                     };
-                    const response = await axios.get(`${apiEndpoint}/generate-question`,config);
+
+                    let endpoint = `${apiEndpoint}/generate-question`;
+
+                    if (localStorage.getItem("mode") !== 'bateríadesabios'){
+                        const mode = localStorage.getItem("mode");
+                        endpoint = `${apiEndpoint}/generate-question${mode ? `/${mode}` : ''}`;
+                    }
+                    else{
+                        const categoria = localStorage.getItem("categoria");
+                        endpoint = `${apiEndpoint}/generate-question${categoria ? `/${categoria}` : ''}`;
+                    }
+                    const response = await axios.get(endpoint,config);
                     setCurrentQuestion(response.data);
                     setError(null);
                 } catch (error) {
@@ -96,7 +107,6 @@ const QuizGame = () => {
                 const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
                 const wrongAnswers=numberOfQuestions+1-rigthAnswers;
                 const completedTime = totalTime - time;
-                console.log(completedTime)
                 setTimeout(() => {
                     setIsFinished(true);
                 }, 1000);
@@ -146,9 +156,20 @@ const QuizGame = () => {
             const config = {
                 headers: { Authorization: 'Bearer '+ token}
               };
-            const response = await axios.get(`${apiEndpoint}/generate-question`,config);
-            setAuxQuestion(response.data);
-            setError(null);
+
+              let endpoint = `${apiEndpoint}/generate-question`;
+
+              if (localStorage.getItem("mode") !== 'bateríadesabios'){
+                  const mode = localStorage.getItem("mode");
+                  endpoint = `${apiEndpoint}/generate-question${mode ? `/${mode}` : ''}`;
+              }
+              else{
+                  const categoria = localStorage.getItem("categoria");
+                  endpoint = `${apiEndpoint}/generate-question${categoria ? `/${categoria}` : ''}`;
+              }
+              const response = await axios.get(endpoint,config);
+              setAuxQuestion(response.data);
+              setError(null);
         } catch (error) {
             setError('Ha habido un error cargando las preguntas');
         }
@@ -156,6 +177,17 @@ const QuizGame = () => {
 
     const handleTimeOver = () => {
         setIsFinished(true);
+        const username=localStorage.getItem('username')
+        const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
+        const wrongAnswers=numberOfQuestions+1-rigthAnswers;
+        const completedTime = totalTime - time;
+        const statisticsData = {
+            username:  username,
+            rigthAnswers: rigthAnswers,
+            wrongAnswers:wrongAnswers,
+            time:completedTime
+        };
+        saveStatistics(statisticsData);
         alert('¡Tiempo agotado!');
     };
 

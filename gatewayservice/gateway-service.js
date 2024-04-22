@@ -62,6 +62,117 @@ app.get('/generate-question', async (req, res) => {
   }
 });
 
+app.get('/generate-question/aleatorio', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/aleatorio');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/generate-question/geografia', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/geografia');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/generate-question/deporte', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/deporte');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/generate-question/politica', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/politica');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/generate-question/cultura', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/cultura');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/generate-question/descartando', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/descartando');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/generate-question/descubriendociudades', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/descubriendociudades');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/generate-question/soloimagenes', async (req, res) => {
+  try {
+    // Forward the generate question request to the question service
+    const bearerHeader = req.headers['authorization'];
+    if(! bearerHeader ){
+        return res.sendStatus(403);
+    }
+    const questionResponse = await axios.get(generatorServiceUrl+'/generate-question/soloimagenes');
+    res.json(questionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
 
 app.get('/statistics', async (req, res) => {
   try {
@@ -105,6 +216,33 @@ app.get('/users', async (req, res) => {
     // Forward the get questions request to the question service
     const usersResponse = await axios.get(userServiceUrl+'/users');
     res.json(usersResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/ranking/accuracy', async (req, res) => {
+  try {
+    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/accuracy');
+    res.json(statResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/ranking/correctAnswers', async (req, res) => {
+  try {
+    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/correctAnswers');
+    res.json(statResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/ranking/gamesPlayed', async (req, res) => {
+  try {
+    const statResponse = await axios.get(statisticssServiceUrl+'/ranking/gamesPlayed');
+    res.json(statResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
   }

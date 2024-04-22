@@ -6,6 +6,7 @@ import Inicio from './Inicio';
 import Primera from './Primera';
 import Game from './QuizGame';
 import Statistics from './Statistics';
+import Ranking from "./Ranking";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -43,6 +44,18 @@ const Routes = () => {
         {
           path: "/statistics", 
           element: <Statistics />,
+        },
+        {
+          path: "/ranking/", 
+          element: <Ranking />,
+        },
+        {
+          path: "/ranking/accuracy", 
+          element: <Ranking />,
+        },
+        {
+          path: "/ranking/correct-answers", 
+          element: <Ranking />,
         },
       ],
     },
