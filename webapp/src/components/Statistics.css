@@ -11,7 +11,13 @@ th {
 
 .table tbody tr {
   background-color: rgba(255, 255, 255, 0.5); /* Fondo medio transparente */
-  border-bottom: 1px solid #EE0E51; /* Borde inferior del mismo color que el fondo */
+  
   margin-bottom: 10px; /* Espacio entre cada fila */
 }
 /* Estilo para las filas al pasar el ratón */
+
+.principal{
+  height: 100vh; /* Ocupar toda la altura de la pantalla */
+  width: 100vw;  /* Ocupar toda la anchura de la pantalla */
+  background-color: #fff;
+}
