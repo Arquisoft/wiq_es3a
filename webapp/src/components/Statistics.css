@@ -1,4 +1,4 @@
- /* Estilo para las celdas de la tabla */
+   /* Estilo para las celdas de la tabla */
  th, td {
   text-align: center;
   color: #EE0E50; 
@@ -24,7 +24,10 @@ th {
   align-items: center;
   height: 100vh; /* Ocupar toda la altura de la pantalla */
   width: 100vw;  /* Ocupar toda la anchura de la pantalla */
-  background-color: #fff;
+  background-image: url('./stats4.jpeg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;;
 }
 .principal p {
   font-size: 1.2rem; /* Tamaño de fuente */
@@ -33,5 +36,7 @@ th {
   font-weight: bold;
 }
 .table-stats{
-width: 50%;
+    width: 50%;
+    background-color: #fff;
+    border-radius: 8px;
 }
