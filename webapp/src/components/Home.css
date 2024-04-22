@@ -35,3 +35,22 @@
     padding-top: 10vh;
     padding-bottom: 10vh;
 }
+
+.row 
+{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff7a;
+    padding-bottom: 1.5em;
+    border-radius: 1em;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.column
+{
+    flex:50%;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}

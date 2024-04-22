@@ -28,9 +28,14 @@ function Home() {
           JUGAR
         </Button>
       </Container>
-      <div id="scope">
-        <Parameters />     
-        <Modes />
+      
+      <div class="row" id="scope">
+        <div class="column" id="para">
+          <Parameters />     
+        </div>
+        <div class="column" id="modes">          
+          <Modes />
+        </div>
       </div>
     </div>
 
