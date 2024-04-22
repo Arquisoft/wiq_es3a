@@ -8,6 +8,7 @@ import Timer from './Timer.js';
 import { useAuth } from "./login/AuthProvider";
 
 const QuizGame = () => {
+    const toastTime = 2200; // Tiempo para hacer la consulta de la siguiente pregunta
     const numberOfQuestions = parseInt(localStorage.getItem("numPreguntas")) || 9;
     const totalTime = parseInt(localStorage.getItem("tiempoJuego")) || 150;
 
@@ -85,11 +86,13 @@ const QuizGame = () => {
         if(isCorrect) {
             toast.success('¡Respuesta correcta!', { 
                 position: toast.POSITION.TOP_CENTER, 
+                autoClose: toastTime,
                 onClose: () => setIsToastVisible(false) 
             }); 
         } else {
             toast.error('Respuesta incorrecta', { 
                 position: toast.POSITION.TOP_CENTER, 
+                autoClose: toastTime,
                 onClose: () => setIsToastVisible(false) 
             }); 
         }
