@@ -46,9 +46,10 @@
 
 table {
     width: 100%;
-    border-radius: 8vh;
+    border-radius: 8px;
     border-collapse: separate; /* Usar 'separate' para poder especificar 'border-spacing' */
     border-spacing: 0 7vh; /* Espacio horizontal y vertical entre las celdas */
+    background-color: #fff;
   }
   
   .table th,

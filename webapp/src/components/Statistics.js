@@ -30,7 +30,7 @@ const Statistics= () => {
       {error ? ( // Verificar si hay un error
       <p>Error: {error}</p>
     ) : userData ? (
-      <div className='table.stats'> 
+      <div className='table-stats'> 
         <table>
           <thead>
             <tr>
