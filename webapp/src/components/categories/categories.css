@@ -1,7 +1,7 @@
 .categorias-container {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #ffffff7a;
+  background-color: #e8c7d6;
   margin-top: 2em;
   border-radius: 1em;
 }
@@ -9,6 +9,7 @@
 .categorias-container h2{
   text-align: center;
   background-color: #fff;
+  border-radius: 0.5em;
 }
 
 .categorias-list {
