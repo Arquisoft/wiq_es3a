@@ -28,10 +28,10 @@ function Parameters(){
   };
 
   return (
-    <Container className='boxHome' maxWidth="xs">
-        <h3>
+    <Container className='boxHome' maxWidth="xs" id='param'>
+        <h2>
           Parámetros Actuales
-        </h3>
+        </h2>
         <ul>
           <li><h4>Tiempo de Juego: {tiempoJuego} segundos</h4></li>
           <li><h4>Número de Preguntas: {parseInt(numeroPreguntas)+1}</h4></li>

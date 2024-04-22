@@ -27,8 +27,8 @@
     background-color: #ffffff7a;
     padding-bottom: 1.5em;
     border-radius: 1em;
-    padding-right: 50px;
-    padding-left: 50px;
+    padding: 20px;
+    margin-top: 2em;
 }
 
 .imagenHome{
@@ -53,4 +53,16 @@
     flex:50%;
     margin-left: 0.5em;
     margin-right: 0.5em;
+}
+
+#param
+{
+    background-color: #e8c7d6;
+}
+
+#param > h2
+{
+    text-align: center;
+    background-color: #fff;
+    border-radius: 0.5em;
 }
