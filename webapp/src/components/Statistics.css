@@ -1,23 +1,37 @@
- /* Estilo para las celdas de la tabla */
- th, td {
-  padding: 1em;
-  text-align: center;
-}
-
-/* Estilo para el encabezado de la tabla */
-th {
-  background-color: #ffffff; /* Color de fondo del encabezado */
-}
-
-.table tbody tr {
-  background-color: rgba(255, 255, 255, 0.5); /* Fondo medio transparente */
+  /* Estilo para las celdas de la tabla */
+  th, td {
+    text-align: center;
+    color: #EE0E50; 
+    padding: 2vh 3vh; /* espaciado de las celdas */
+    border-bottom: vh solid #EE0E51; /* Borde inferior */
+  }
   
-  margin-bottom: 10px; /* Espacio entre cada fila */
-}
-/* Estilo para las filas al pasar el ratón */
-
-.principal{
-  height: 100vh; /* Ocupar toda la altura de la pantalla */
-  width: 100vw;  /* Ocupar toda la anchura de la pantalla */
-  background-color: #fff;
-}
+  /* Estilo para el encabezado de la tabla */
+  th {
+    background-color: #ffffff; /* Color de fondo del encabezado */
+  }
+  
+  .table tbody tr {
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo medio transparente */
+    
+    margin-bottom: 10px; /* Espacio entre cada fila */
+  }
+  /* Estilo para las filas al pasar el ratón */
+  
+  .principal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* Ocupar toda la altura de la pantalla */
+    width: 100vw;  /* Ocupar toda la anchura de la pantalla */
+    background-color: #fff;
+  }
+  .principal p {
+    font-size: 1.2rem; /* Tamaño de fuente */
+    margin-bottom: 20px; /* Espacio debajo del mensaje */
+    color: #333; /* Color de texto */
+    font-weight: bold;
+  }
+  .table-stats{
+  width: 50%;
+  }
