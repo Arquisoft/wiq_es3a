@@ -8,7 +8,7 @@
     align-items: center;
     height: 100vh;; /* Ocupar toda la altura de la pantalla */
     width: 100%;  /* Ocupar toda la anchura de la pantalla */
-    background-color: #fff;
+    background-image: url('./stats4.jpeg'); 
 }
 
 
@@ -23,6 +23,7 @@
     border-radius: 1em;
     align-items: center;
     text-align: center;
+    margin:1vh;
 }
 
 .label-large {
@@ -40,7 +41,6 @@
     padding: 1vh;
     font-size: 1rem;
     border-radius: 4px;
-    border: 0.5vh solid #EE0E50;
     margin-bottom: 5vh;
 }
 
@@ -48,8 +48,9 @@ table {
     width: 100%;
     border-radius: 8px;
     border-collapse: separate; /* Usar 'separate' para poder especificar 'border-spacing' */
-    border-spacing: 0 7vh; /* Espacio horizontal y vertical entre las celdas */
+    border-spacing: 0.5vh; /* Espacio horizontal y vertical entre las celdas */
     background-color: #fff;
+    text-align: center;
   }
   
   .table th,
