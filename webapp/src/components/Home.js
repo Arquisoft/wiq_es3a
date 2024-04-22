@@ -27,7 +27,9 @@ function Home() {
           JUGAR
         </Button>
       </Container>
-      <Parameters />            
+      <div id="scope">
+        <Parameters />     
+      </div>       
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {useAuth} from "./login/AuthProvider";
 function Parameters(){
     
 
-  const {setNumPreguntas, setTiempoJuego} = useAuth();
+  const {numeroPreguntas, setNumPreguntas, tiempoJuego, setTiempoJuego} = useAuth();
 
     const cambioPara = (event) =>
     {
@@ -14,12 +14,19 @@ function Parameters(){
       setNumPreguntas(v[0]);
       setTiempoJuego(v[1]);
     };
-    
+
     return (
 
-    <Container className='boxHome' maxWidth="xs">
+    <Container className='boxPara' maxWidth="xs">
+        <h3>
+          Parámetros Actuales
+        </h3>
+        <ul>
+          <li><h4>Tiempo de Juego: {tiempoJuego} segundos</h4></li>
+          <li><h4>Número de Preguntas: {parseInt(numeroPreguntas)+1}</h4></li>
+        </ul>
         <FormControl>
-        <FormLabel>PARÁMETROS DE LA PARTIDA:</FormLabel>
+        <FormLabel>Parámetros de la Partida:</FormLabel>
         <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
@@ -31,7 +38,7 @@ function Parameters(){
             <FormControlLabel value="10|90" control={<Radio />} label="Partida Media" id="media"/>                          
             <FormControlLabel value="20|210" control={<Radio />} label="Partida Larga" id="larga"/>               
         </RadioGroup>
-        </FormControl>
+        </FormControl>        
     </Container>
     );
 }
