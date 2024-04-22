@@ -17,7 +17,7 @@ function Parameters(){
 
     return (
 
-    <Container className='boxPara' maxWidth="xs">
+    <Container className='boxHome' maxWidth="xs">
         <h3>
           Parámetros Actuales
         </h3>
