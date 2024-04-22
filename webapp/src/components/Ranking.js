@@ -41,8 +41,9 @@ const Ranking = () => {
     return (
         <div className="container">
         <div className="title">
-        <h1>Ranking</h1>
+        <img src="/ranking.png" alt="Título como imagen" className="title-image" />
         </div>
+        
         <div className="centered-content">
             <label htmlFor="metric-select" className="label-large">Seleccionar métrica:</label>
             <select id="metric-select" value={selectedMetric} onChange={e => setSelectedMetric(e.target.value)} className="select-large">
@@ -58,6 +59,7 @@ const Ranking = () => {
                 <table>
                     <thead>
                         <tr>
+                            <th>Posición</th>
                             <th>Usuario</th>
                             <th>{headerText}</th> {/* Usamos el estado headerText para mostrar el texto de la cabecera */}
                         </tr>
@@ -65,6 +67,7 @@ const Ranking = () => {
                     <tbody>
                         {rankingData.map((user, index) => (
                             <tr key={index}>
+                                <td>{index + 1}</td> {/* Posición del usuario */}
                                 <td>{user.username}</td>
                                 <td>{user[selectedMetric]}</td>
                             </tr>
@@ -75,9 +78,9 @@ const Ranking = () => {
             ) : (
                 <p>Cargando ranking...</p>
             )}
+           </div>
            
        
-       </div>
     );
 }
 
