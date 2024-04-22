@@ -2,12 +2,14 @@
 
 
 /* Estilos personalizados para tu componente Ranking */
-.container {
-   
-    align-items: flex-start;        /* Alinear elementos a la izquierda */
-    position: relative;
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;; /* Ocupar toda la altura de la pantalla */
+    width: 100%;  /* Ocupar toda la anchura de la pantalla */
+    background-color: #fff;
 }
-
 
 
 .table-centered-content{
@@ -16,44 +18,45 @@
 
 .centered-content {
     width: 30%;                    /* Ocupar todo el ancho */
-    text-align: right;              /* Alinear el texto a la derecha */
-    margin-bottom: 20px;
     background-color: #ffffff7a;
     position: relative;
     border-radius: 1em;
+    align-items: center;
+    text-align: center;
 }
 
 .label-large {
-    margin-bottom: 10px;
+    margin-bottom: 10vh;
     font-weight: bold;
-    width: 100%;
-    max-width: 100%;
+  
+}
+.title{
+    margin-bottom: 4vh;
 }
 
 .select-large {
     text-align: center;
-    width: 100%;
-    padding: 10px;
+    width: 90%;
+    padding: 1vh;
     font-size: 1rem;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 0.5vh solid #EE0E50;
     margin-bottom: 5vh;
 }
 
 table {
-    width: 80%;
-    border-radius: 8px;
+    width: 100%;
+    border-radius: 8vh;
     border-collapse: separate; /* Usar 'separate' para poder especificar 'border-spacing' */
-    border-spacing: 0 15px; /* Espacio horizontal y vertical entre las celdas */
+    border-spacing: 0 7vh; /* Espacio horizontal y vertical entre las celdas */
   }
   
   .table th,
   .table td {
-    color: #EE0E50; /* Letra rosa */
-    padding: 10px 15px; /* Ajusta el espaciado de las celdas */
+    color: #EE0E50; 
+    padding: 2vh 3vh; /* espaciado de las celdas */
+    border-bottom: vh solid #EE0E51; /* Borde inferior */
   }
 
-  .title {
-    width: 100%;                    /* Ocupar todo el ancho */
-    text-align: right;              /* Alinear el texto a la derecha */
-}
+
+
