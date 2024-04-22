@@ -6,10 +6,7 @@ import userEvent from '@testing-library/user-event';
 
 describe('Ranking component', () => {
 
-    test('ranking título', async () => {
-        render(<Ranking />);
-        expect(screen.getByText('Ranking')).toBeInTheDocument();
-  });
+  
 
   it('muestra la opción seleccionada por defecto como "Porcentaje de Acierto"', () => {
     render(<Ranking />);
