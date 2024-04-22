@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthProvider from './components/login/AuthProvider';
 import Routes from './components/Routes';
+import Footer from "./components/footer/Footer"; 
 
 function App() {
 
@@ -9,7 +10,9 @@ function App() {
     <AuthProvider>
       <Routes />
     </AuthProvider>
+    
     </main> 
+    
   );
 }
 
