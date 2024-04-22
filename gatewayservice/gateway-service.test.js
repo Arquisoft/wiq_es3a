@@ -27,6 +27,22 @@ describe('Gateway Service', () => {
   axios.get.mockImplementation((url) => {
     if (url.endsWith('/generate-question')) {
       return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/aleatorio')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/geografia')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/deporte')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/politica')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/cultura')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/descartando')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/descubriendociudades')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
+    }else if (url.endsWith('/generate-question/soloimagenes')) {
+      return Promise.resolve({ data: { question: 'mockedQuestion' } });
     }else if (url.endsWith('/questions')) {
       return Promise.resolve({ data: { question: 'mockedQuestion' } });
     }else if (url.endsWith('/statistics')) {
@@ -112,6 +128,12 @@ describe('Gateway Service', () => {
     expect(response.body.question).toBe('mockedQuestion');
   });
 
+  it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+    const response = await request(app).get('/generate-question');
+
+    expect(response.status).toBe(403);
+  });
+
   it('debería manejar errores al intentar generar una pregunta', async () => {
     const mockErrorResponse = { error: 'Error al generar pregunta' };
     const mockStatus = 500;
@@ -125,6 +147,254 @@ describe('Gateway Service', () => {
     expect(response.status).toBe(mockStatus);
     expect(response.body).toEqual(mockErrorResponse);
   });
+
+  // Test /generate-question/aleatorio endpoint
+  it('debería devolver una pregunta generada aleatoriamente', async () => {
+    const mockedQuestion = { question: 'mockedQuestion' };
+    axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+    const response = await request(app)
+      .get('/generate-question/aleatorio')
+      .set('Authorization', 'Bearer mockedToken');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(mockedQuestion);
+  });
+
+  it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+    const response = await request(app).get('/generate-question/aleatorio');
+
+    expect(response.status).toBe(403);
+  });
+
+  it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+    const mockedError = { error: 'Error al generar pregunta' };
+    axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+    const response = await request(app)
+      .get('/generate-question/aleatorio')
+      .set('Authorization', 'Bearer mockedToken');
+
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual(mockedError);
+  });
+
+  // Test /generate-question/geografia endpoint
+  it('debería devolver una pregunta generada aleatoriamente', async () => {
+    const mockedQuestion = { question: 'mockedQuestion' };
+    axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+    const response = await request(app)
+      .get('/generate-question/geografia')
+      .set('Authorization', 'Bearer mockedToken');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(mockedQuestion);
+  });
+
+  it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+    const response = await request(app).get('/generate-question/geografia');
+
+    expect(response.status).toBe(403);
+  });
+
+  it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+    const mockedError = { error: 'Error al generar pregunta' };
+    axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+    const response = await request(app)
+      .get('/generate-question/geografia')
+      .set('Authorization', 'Bearer mockedToken');
+
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual(mockedError);
+  });
+
+  // Test /generate-question/deporte endpoint
+  it('debería devolver una pregunta generada aleatoriamente', async () => {
+    const mockedQuestion = { question: 'mockedQuestion' };
+    axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+    const response = await request(app)
+      .get('/generate-question/deporte')
+      .set('Authorization', 'Bearer mockedToken');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(mockedQuestion);
+  });
+
+  it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+    const response = await request(app).get('/generate-question/deporte');
+
+    expect(response.status).toBe(403);
+  });
+
+  it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+    const mockedError = { error: 'Error al generar pregunta' };
+    axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+    const response = await request(app)
+      .get('/generate-question/deporte')
+      .set('Authorization', 'Bearer mockedToken');
+
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual(mockedError);
+  });
+
+// Test /generate-question/politica endpoint
+it('debería devolver una pregunta generada aleatoriamente', async () => {
+  const mockedQuestion = { question: 'mockedQuestion' };
+  axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+  const response = await request(app)
+    .get('/generate-question/politica')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(200);
+  expect(response.body).toEqual(mockedQuestion);
+});
+
+it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+  const response = await request(app).get('/generate-question/politica');
+
+  expect(response.status).toBe(403);
+});
+
+it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+  const mockedError = { error: 'Error al generar pregunta' };
+  axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+  const response = await request(app)
+    .get('/generate-question/politica')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(500);
+  expect(response.body).toEqual(mockedError);
+});
+
+// Test /generate-question/cultura endpoint
+it('debería devolver una pregunta generada aleatoriamente', async () => {
+  const mockedQuestion = { question: 'mockedQuestion' };
+  axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+  const response = await request(app)
+    .get('/generate-question/cultura')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(200);
+  expect(response.body).toEqual(mockedQuestion);
+});
+
+it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+  const response = await request(app).get('/generate-question/cultura');
+
+  expect(response.status).toBe(403);
+});
+
+it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+  const mockedError = { error: 'Error al generar pregunta' };
+  axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+  const response = await request(app)
+    .get('/generate-question/cultura')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(500);
+  expect(response.body).toEqual(mockedError);
+});
+
+// Test /generate-question/descartando endpoint
+it('debería devolver una pregunta generada aleatoriamente', async () => {
+  const mockedQuestion = { question: 'mockedQuestion' };
+  axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+  const response = await request(app)
+    .get('/generate-question/descartando')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(200);
+  expect(response.body).toEqual(mockedQuestion);
+});
+
+it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+  const response = await request(app).get('/generate-question/descartando');
+
+  expect(response.status).toBe(403);
+});
+
+it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+  const mockedError = { error: 'Error al generar pregunta' };
+  axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+  const response = await request(app)
+    .get('/generate-question/descartando')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(500);
+  expect(response.body).toEqual(mockedError);
+});
+
+// Test /generate-question/descubriendociudades endpoint
+it('debería devolver una pregunta generada aleatoriamente', async () => {
+  const mockedQuestion = { question: 'mockedQuestion' };
+  axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+  const response = await request(app)
+    .get('/generate-question/descubriendociudades')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(200);
+  expect(response.body).toEqual(mockedQuestion);
+});
+
+it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+  const response = await request(app).get('/generate-question/descubriendociudades');
+
+  expect(response.status).toBe(403);
+});
+
+it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+  const mockedError = { error: 'Error al generar pregunta' };
+  axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+  const response = await request(app)
+    .get('/generate-question/descubriendociudades')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(500);
+  expect(response.body).toEqual(mockedError);
+});
+
+// Test /generate-question/soloimagenes endpoint
+it('debería devolver una pregunta generada aleatoriamente', async () => {
+  const mockedQuestion = { question: 'mockedQuestion' };
+  axios.get.mockResolvedValueOnce({ data: mockedQuestion });
+
+  const response = await request(app)
+    .get('/generate-question/soloimagenes')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(200);
+  expect(response.body).toEqual(mockedQuestion);
+});
+
+it('debería devolver un error 403 si no se proporciona el encabezado de autorización', async () => {
+  const response = await request(app).get('/generate-question/soloimagenes');
+
+  expect(response.status).toBe(403);
+});
+
+it('debería devolver un error si el servicio de generación de preguntas falla', async () => {
+  const mockedError = { error: 'Error al generar pregunta' };
+  axios.get.mockRejectedValueOnce({ response: { status: 500, data: mockedError } });
+
+  const response = await request(app)
+    .get('/generate-question/soloimagenes')
+    .set('Authorization', 'Bearer mockedToken');
+
+  expect(response.status).toBe(500);
+  expect(response.body).toEqual(mockedError);
+});
 
   // Test /questions endpoint
   it('should forward get questions request to question service', async () => {
