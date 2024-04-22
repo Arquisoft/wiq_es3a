@@ -8,6 +8,10 @@ const templateSchema = new mongoose.Schema({
   query: {
     type: String,
     required: true
+  },
+  category: {
+    type: String,
+    required: true
   }
 });
 

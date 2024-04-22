@@ -8,7 +8,7 @@ const ModeSelection = () => {
   const [modoSeleccionado, setModoSeleccionado] = useState(modoInicial);
   const [isModeSelected, setIsModeSelected] = useState(false);
 
-  const modos = ['Batería de sabios', 'Descartando', 'Descubriendo ciudades', 'Solo imágenes'];
+  const modos = ['Batería de sabios', 'Descartando', 'Descubriendo ciudades', 'Solo imagenes'];
 
   const seleccionarModo = (modo) => {
     setModoSeleccionado(quitarEspacios(modo.toLowerCase()));

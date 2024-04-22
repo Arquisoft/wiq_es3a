@@ -3,15 +3,15 @@ import './categories.css';
 
 function Categorias() {
   const categoriaGuardada = localStorage.getItem("categoria");
-  const categoriaInicial = categoriaGuardada ? categoriaGuardada.toLowerCase() : "todas";
+  const categoriaInicial = categoriaGuardada ? categoriaGuardada.toLowerCase() : "aleatorio";
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaInicial);
 
   const categorias = [
     'Aleatorio',
-    'Geografía',
+    'Geografia',
     'Deporte',
-    'Política',
+    'Politica',
     'Cultura'
   ];
 
