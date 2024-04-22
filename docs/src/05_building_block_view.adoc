@@ -26,7 +26,7 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 |===
 |Nombre|Descripción
 | Usuario |Actor principal, interatúa con la aplicación y proporciona sus datos.
-| Aplicación |Se trata de nuestra aplicación, explicada en detalle más adelante.
+| WIQ |Se trata de nuestra aplicación, explicada en detalle más adelante.
 | Wikidata |Es una base de datos de conocimiento editada en colaboración.
 |Base de datos | Almacena la información necesaria para el correcto funcionamiento de la aplicación.
 |===
@@ -44,8 +44,11 @@ image:05_DiagramaL2.png[Diagrama nivel 1]
 [options="header",cols="1,2"]
 |===
 |Nombre|Descripción
-| Frontend |Interfaz de usuario.
-| Backend |Lógica de negocio y manejo de datos.
+| Webapp |Componente que alberga la interfaz de usuario, con la que interactua el usuario, además de la lógica de la aplicación.
+| Gateway service |Maneja y dirige peticiones desde la interfaz de usuario hasta los servicios.
+| Preguntas |Contiene dos servicios relacionados con el juego: generatorService y questionService.
+| Statistics |Contiene el servicio de las estadísticas.
+| Users |Contiene dos servicios: autenticación y usuarios.
 |===
 
 
@@ -67,7 +70,7 @@ image:05_DiagramaL3.png[Diagrama nivel 1]
 |Navbar| Barra de menú.
 |Primera| Pantalla de bienvenida.
 |Add user| Registro de usuarios.
-|Gateway service| Mnaneja y dirige peticiones.
+|Gateway service| Mananeja y dirige peticiones.
 | User service|Manejo de los datos de inicio de sesión
 | Auth service|Manejo de los datos de registro
 | Generación preguntas y respuestas| Lógica para la correcta generación de preguntas y respuestas.

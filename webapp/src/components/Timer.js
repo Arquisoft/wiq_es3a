@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const totalTime = 150;
+const totalTime = parseInt(localStorage.getItem("tiempoJuego"));
 
 const Timer = ({ initialTime = totalTime, onTimeOver, onTimeChange }) => {
   const [time, setTime] = useState(initialTime);

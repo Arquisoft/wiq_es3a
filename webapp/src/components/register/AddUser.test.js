@@ -28,7 +28,8 @@ describe('AddUser component', () => {
     
     mockAxios.onPost('http://localhost:8000/login').reply(200,
     {
-      token:'12345'
+      token:'12345',
+      usuario:'testUser'
     });
 
     // Simulate user input

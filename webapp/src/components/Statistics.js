@@ -23,7 +23,7 @@ const Statistics= () => {
   return (
     <div className='principal'>
       <div className="title">
-        <h1>Estadísticas</h1>
+        <img src="/estadisticas.png" alt="Título como imagen" className="title-image" />
         </div>
       {error ? ( // Verificar si hay un error
       <p>Error: {error}</p>
