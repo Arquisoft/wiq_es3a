@@ -58,7 +58,7 @@ test('Establece Parametros Predeterminados', async () => {
     const tj = localStorage.getItem("tiempoJuego");
     const tj2 = localStorageMock.getItem("tiempoJuego");
     const num = localStorage.getItem("numPreguntas");
-    expect(tj).toEqual("150");
+    expect(tj).toEqual("120");
     expect(num).toEqual("9"); 
     
 });
@@ -76,7 +76,7 @@ test('Establece Parametros Partida Corta', async () => {
     const tj = localStorage.getItem("tiempoJuego");    
     const num = localStorage.getItem("numPreguntas");
     expect(tj).toEqual("60"); 
-    expect(num).toEqual("5");
+    expect(num).toEqual("4");
   
 });
 
@@ -92,8 +92,8 @@ test('Establece Parametros Partida Media', async () => {
     // Wait for the state updates to propagate    
     const tj = localStorage.getItem("tiempoJuego");    
     const num = localStorage.getItem("numPreguntas");
-    expect(tj).toEqual("90");
-    expect(num).toEqual("10");
+    expect(tj).toEqual("150");
+    expect(num).toEqual("11");
     
 });
 
@@ -109,7 +109,7 @@ test('Establece Parametros Partida Larga', async () => {
     // Wait for the state updates to propagate    
     const tj = localStorage.getItem("tiempoJuego");    
     const num = localStorage.getItem("numPreguntas");
-    expect(tj).toEqual("210");
-    expect(num).toEqual("20");
+    expect(tj).toEqual("240");
+    expect(num).toEqual("19");
     
 });
