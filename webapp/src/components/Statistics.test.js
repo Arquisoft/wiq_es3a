@@ -10,10 +10,9 @@ describe('Statistics component', () => {
 
   test('user statistics', async () => {
     render(<Statistics />);
-    let statisticWordArray=screen.getAllByText(/Estadísticas/i)
-    for(let i=0;i<2;i++){
-      expect(statisticWordArray[i]).toBeInTheDocument();
-    }
+    let statisticWord = screen.getByText(/Estadísticas/i);
+    expect(statisticWord).toBeInTheDocument();
+    
   });
 
 
