@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Statistics.css';
 
+
 const Statistics= () => {
   const gatewayEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000';
   const [userData, setUserData] = useState(null);
@@ -25,9 +26,11 @@ const Statistics= () => {
       <div className="title">
         <img src="/estadisticas.png" alt="Título como imagen" className="title-image" />
         </div>
+       
       {error ? ( // Verificar si hay un error
       <p>Error: {error}</p>
     ) : userData ? (
+      <div className='table.stats'> 
         <table>
           <thead>
             <tr>
@@ -46,14 +49,16 @@ const Statistics= () => {
             </tr>
           </tbody>
         </table>
-        
+        </div>
       ) : (
         <p>Cargando estadísticas...</p>
       )}
       
     </div>
     
+    
   );
+ 
 }
 
 export default Statistics;
