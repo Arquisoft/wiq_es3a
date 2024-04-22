@@ -44,10 +44,10 @@ function Parameters(){
         defaultValue={"9|150"}
         value={selectedValue} 
         onChange={cambioPara}>
-            <FormControlLabel value="9|150" control={<Radio />} label="Predeterminado" id="predeterminado"/>              
-            <FormControlLabel value="5|60" control={<Radio />} label="Partida Corta" id="corta"/>                           
-            <FormControlLabel value="10|90" control={<Radio />} label="Partida Media" id="media"/>                          
-            <FormControlLabel value="20|210" control={<Radio />} label="Partida Larga" id="larga"/>               
+            <FormControlLabel value="9|120" control={<Radio />} label="Predeterminado" id="predeterminado"/>              
+            <FormControlLabel value="4|60" control={<Radio />} label="Partida Corta" id="corta"/>                           
+            <FormControlLabel value="11|150" control={<Radio />} label="Partida Media" id="media"/>                          
+            <FormControlLabel value="19|240" control={<Radio />} label="Partida Larga" id="larga"/>           
         </RadioGroup>
         </FormControl>        
     </Container>
