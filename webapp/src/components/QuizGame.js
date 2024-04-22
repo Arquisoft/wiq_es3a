@@ -10,6 +10,7 @@ import { useAuth } from "./login/AuthProvider";
 const QuizGame = () => {
     const numberOfQuestions = 9;
     const totalTime = 150;
+    const toastTime = 2200; // Tiempo para hacer la consulta de la siguiente pregunta
 
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [questionsNumber, setQuestionsNumber] = useState(0);
@@ -85,11 +86,13 @@ const QuizGame = () => {
         if(isCorrect) {
             toast.success('¡Respuesta correcta!', { 
                 position: toast.POSITION.TOP_CENTER, 
+                autoClose: toastTime,
                 onClose: () => setIsToastVisible(false) 
             }); 
         } else {
             toast.error('Respuesta incorrecta', { 
                 position: toast.POSITION.TOP_CENTER, 
+                autoClose: toastTime,
                 onClose: () => setIsToastVisible(false) 
             }); 
         }
