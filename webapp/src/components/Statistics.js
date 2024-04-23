@@ -26,7 +26,7 @@ const Statistics= () => {
       <div className="title">
         <img src="/estadisticas.png" alt="Título como imagen" className="title-image" />
         </div>
-       
+    
       {error ? ( // Verificar si hay un error
       <p>Error: {error}</p>
     ) : userData ? (
