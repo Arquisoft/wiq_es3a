@@ -62,20 +62,24 @@ image:05_DiagramaL3.png[Diagrama nivel 1]
 |===
 |Nombre|Descripción
 |Index | Raíz del proyecto.
+|App | Contiene la estructura del proyecto con enrutamiento y proveedor de autenticación.
 |Inicio| Link a registro e inicio de sesión.
-| Log in |Permite al usuario registrarte o iniciar sesión.
+|Primera| Pantalla de bienvenida.
+|Register| Registro de usuarios.
+| Log in |Permite al usuario iniciar sesión.
 | Home |Permite al usuario comenzar a jugar.
 | Juego |Pantalla donde se mostrarán las preguntas y respuestas.
-|Estadísticas|Pantalla con las estadísticas de los usuarios. 
-|Navbar| Barra de menú.
-|Primera| Pantalla de bienvenida.
-|Add user| Registro de usuarios.
+| Game modes |Permite seleccionar un modo de juego.
+| Categories |Permite seleccionar distintas categorías para jugar.
+| Routes |Proporciona las distintas rutas existentes.
+|Statistics|Pantalla con las estadísticas de los usuarios y su correspondiente lógica. 
+|Ranking| Pantalla con el ranking de los usuarios y su correspondiente lógica.
 |Gateway service| Mananeja y dirige peticiones.
 | User service|Manejo de los datos de inicio de sesión
 | Auth service|Manejo de los datos de registro
-| Generación preguntas y respuestas| Lógica para la correcta generación de preguntas y respuestas.
-| Esquema| Plantilla para la generación de preguntas.
-|Cálculo de estadísticas| Lógica para el correcto manejo y cálculo de estadísticas sobre los resultados de los usuarios.
+| Generator service| Servcio para la correcta generación de preguntas y respuestas.
+| Question service| Servicio para la correcta generación de la api de preguntas.
+|Statistics service| Servicio para el correcto manejo de estadísticas sobre los resultados de los usuarios.
 
 
 |===
