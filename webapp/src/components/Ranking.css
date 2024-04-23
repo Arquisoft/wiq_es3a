@@ -23,7 +23,7 @@
     border-radius: 1em;
     align-items: center;
     text-align: center;
-    margin:1vh;
+    margin:3vh;
 }
 
 .label-large {
@@ -48,7 +48,7 @@ table {
     width: 100%;
     border-radius: 8px;
     border-collapse: separate; /* Usar 'separate' para poder especificar 'border-spacing' */
-    border-spacing: 0.5vh; /* Espacio horizontal y vertical entre las celdas */
+    border-spacing: 2vh; /* Espacio horizontal y vertical entre las celdas */
     background-color: #fff;
     text-align: center;
   }

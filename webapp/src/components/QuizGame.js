@@ -74,6 +74,27 @@ const QuizGame = () => {
         }
     }, [questionsNumber, isToastVisible, apiEndpoint, auxQuestion, token]);
 
+    useEffect(() => {
+        // Verificar si el juego ha terminado
+        if (isFinished) {
+          const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
+          const wrongAnswers = numberOfQuestions + 1 - rigthAnswers;
+          const completedTime = (totalTime - time).toFixed(2);
+          const username = localStorage.getItem('username');
+      
+          const statisticsData = {
+            username: username,
+            rigthAnswers: rigthAnswers,
+            wrongAnswers: wrongAnswers,
+            time: completedTime
+          };
+      
+          // Guardar estadísticas
+          saveStatistics(statisticsData);
+        }
+      }, [isFinished, answeredQuestions, numberOfQuestions, time, totalTime]);
+      
+
     const handleAnswer = (answer) => {
         //Comprueba si la respuesta es correcta
         const isCorrect = answer === currentQuestion.correctAnswer;
@@ -107,20 +128,11 @@ const QuizGame = () => {
         if (questionsNumber === numberOfQuestions) {
             
             if (questionsNumber === numberOfQuestions) {
-                const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
-                const wrongAnswers=numberOfQuestions+1-rigthAnswers;
-                const completedTime = totalTime - time;
+              
                 setTimeout(() => {
                     setIsFinished(true);
                 }, 1000);
-                const username=localStorage.getItem('username')
-                const statisticsData = {
-                    username:  username,
-                    rigthAnswers: rigthAnswers,
-                    wrongAnswers:wrongAnswers,
-                    time:completedTime
-                };
-                saveStatistics(statisticsData);
+               
             }
 
         }
@@ -137,10 +149,8 @@ const QuizGame = () => {
         })
         .then(response => {
             if (response.ok) {
-                // La solicitud fue exitosa
                 return response.json();
             } else {
-                // La solicitud falló, manejar el error
                 throw new Error('Error al enviar estadísticas al servidor');
             }
         })
@@ -148,7 +158,6 @@ const QuizGame = () => {
             // Procesar la respuesta del servidor si es necesario
         })
         .catch(error => {
-            // Manejar el error
             console.error('Error al enviar estadísticas al servidor:', error);
         });
     };
@@ -173,6 +182,9 @@ const QuizGame = () => {
               const response = await axios.get(endpoint,config);
               setAuxQuestion(response.data);
               setError(null);
+              if (questionsNumber >= numberOfQuestions) {
+                setCurrentQuestion(response.data);
+            }
         } catch (error) {
             setError('Ha habido un error cargando las preguntas');
         }
@@ -180,17 +192,6 @@ const QuizGame = () => {
 
     const handleTimeOver = () => {
         setIsFinished(true);
-        const username=localStorage.getItem('username')
-        const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
-        const wrongAnswers=numberOfQuestions+1-rigthAnswers;
-        const completedTime = totalTime - time;
-        const statisticsData = {
-            username:  username,
-            rigthAnswers: rigthAnswers,
-            wrongAnswers:wrongAnswers,
-            time:completedTime
-        };
-        saveStatistics(statisticsData);
         alert('¡Tiempo agotado!');
     };
 
@@ -327,7 +328,7 @@ const QuizGame = () => {
                     <h2>¡Has terminado el juego en { formatTime(totalTime - time) }!</h2>
 
                     <h3>Has acertado { answeredQuestions.filter(question => question.isCorrect).length } preguntas de { numberOfQuestions + 1 } </h3>
-
+                   
                     <h3>El porcentaje de aciertos ha sido del {
                         formatPercentage((answeredQuestions.filter(question => question.isCorrect).length)/(numberOfQuestions+1)*100)
                         } % </h3>
