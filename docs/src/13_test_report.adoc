@@ -60,3 +60,17 @@ Para el inicio de sesión se introduce un usuario en la base de datos y posterio
 Con las pruebas unitarias se puede observar el porcentaje del código se ha cubierto con estas. Para este proyecto decidimos usar el quality gate de aws donde se necesita mas de un 80% de cobertura.
 
 === Pruebas de carga 
+
+La prueba de carga han sido realizadas con gatlin y esta consta de iniciar sesión y jugar una partida enviando durante 60 segundos 2 usuarios por segundo.
+
+En los resultados obtenemos que todas las peticiones realizadas al servidor que son casi 5000 se realizaron en menos de 800ms con todas las respuestas correctas como se muestra en la siguiente imagen. 
+image:respuestas.png[Tiempos de respuesta]
+
+Como pico de usuarios se obtienen 129 usuarios activos durante 14 segundos. como se muestra en la siguiente gráfica.
+image:pico.png[Pico usuarios]
+
+En la siguiente gráfica vemos la distribución en el tiempo de respuesta donde observamos que la mayor parte de los usuarios están cerca del 0 por lo que se puede concluir que los tiempos excesivos no es algo común.
+image:distribucion.png[Distribución tiempo de respuesta]
+
+Finalmente en las gráficas posteriores se muestra el numero de peticiones y respuestas en relación con el tiempo y el numero de usuarios en el sistema.
+image:peticiones.png[Peticiones y respuestas]
