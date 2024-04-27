@@ -121,6 +121,8 @@ services:
     environment:
       GATEWAY_SERVICE_URL: http://gatewayservice:8000
 
+  
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus-${teamname:-defaultASW}
@@ -129,7 +131,7 @@ services:
     networks:
       - mynetwork
     volumes:
-      - ./gatewayservice/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./gatewayservice/monitoring/prometheus:/etc/prometheus
       - prometheus_data:/prometheus
     ports:
       - "9090:9090"
