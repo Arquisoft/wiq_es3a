@@ -4,13 +4,25 @@ Wiq es un proyecto desarrollado por la Universidad de Oviedo, desarrollado por l
 La aplicación consiste en una serie de preguntas de diferentes categorías y temas generadas automáticamente a partir de datos de Wikidata.
 Los miembros del equipo de desarrollo son los siguientes:
 
+* link:https://github.com/UO289659[Carmen Espinosa Martínez] 
+* link:https://github.com/UO287998[Ángel David Fernández Vior] 
+* link:https://github.com/UO285267[Felipe García Gómez] 
+* link:https://github.com/UO277382[Laureano Enrique Álvarez] 
+* link:https://github.com/marcosMachadoMenendez[Marcos Mahado Menéndez] 
 
 === Requisitos
+* Aplicación web con integración y despliegue continuos.
 * Los usuarios podrán registrarse en el sistema y consultar el histórico de participaciones.
 * Las preguntas serán generadas automáticamente con datos de Wikidata.
 * Las preguntas tendrán un tiempo límite.
 * Cada pregunta tendrá una respuesta correcta y varias incorrectas, todas ellas generadas automáticamente.
 * El sistema dispondrá de una API para acceder a la información de las preguntas y los usuarios.
+
+==== Otros requisitos
+* La aplicación incluye diferentes temáticas sobre las preguntas. Esto permite que los usuarios puedan elegir que temática responder.
+* El sistema tiene varios modos de juego que podrán ser seleccionados por los jugadores.
+* Se permite ajustar parámetros de juego como el tiempo o el número de preguntas.
+* Existe un ranking de todos los usuarios de la aplicación donde se pueden ordenar por las estadísticas de cada uno.
 
 === Objetivos de calidad
 [options="header",cols="1,2,4"] 
@@ -33,6 +45,14 @@ Los miembros del equipo de desarrollo son los siguientes:
 | *4*
 | *_Testeabilidad_*
 | Se utilizarán pruebas unitarias para garantizar el buen funcionamiento de la aplicación. 
+
+| *5*
+| *_Rendimiento_*
+| Uno de los objetivos será que los tiempos de carga sean rápidos, con tiempos de respuesta bajos, para lograr una experiencia fluida durante la navegación.
+
+| *6*
+| *_Disponibilidad_*
+| Es importante que la aplicación esté disponible y accesible para los usuarios cuando la necesiten. Se intentará minimizar el tiempo de inactividad de la aplicación mediante un despliegue continuo
 |=== 
 
 === Stakeholders
@@ -41,8 +61,8 @@ Los miembros del equipo de desarrollo son los siguientes:
 |Nombre|Descripción|Expectativas
 
 | *_Equipo de desarrollo_*
-| 
-| El equipo de desarrollo esta formado por los estudiantes anteriormente indicados, y deberían desarrollar la aplicación con éxito en base a la documentación entregada por la empresa.
+| El equipo de desarrollo esta formado por los estudiantes miembros de este grupo
+| Deberían desarrollar la aplicación con éxito en base a los requisitos puestos por la empresa
 
 | *_Usuarios_*
 | Personas que utilicen la aplicación.
@@ -52,7 +72,7 @@ Los miembros del equipo de desarrollo son los siguientes:
 | Empresa que contrata el desarrollo de la aplicación.
 | Se espera que la aplicación cumpla con los requisitos mencionados anteriormente.
 
-| *RTVE*
+| *_RTVE_*
 | Empresa que contrata
 | Tiene las mismas expectativas que que el equipo de desarrollo que funcione todo correctamente y sin ningún fallo
 |=== 
