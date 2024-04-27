@@ -11,10 +11,16 @@ Contributors:
 - <a href="https://github.com/UO277382"><img src="https://img.shields.io/badge/Laureano-fuchsia?logo=github"></a>
 - <a href="https://github.com/marcosMachadoMenendez"><img src="https://img.shields.io/badge/Marcos-fuchsia?logo=github"></a>
 
-## Guide for USERS
-You can access the game through the following URL -> [WIQ_es3a](http://74.249.118.115:3000 "WIQ")
+Play here! -> [PLAY WIQ](http://74.249.118.115:3000 "WIQ")
+Access the documentation -> [DOCS](https://arquisoft.github.io/wiq_es3a/)
+Swagger API -> [API UI](http://74.249.118.115:8000/api-doc)
+API Questions -> [Questions](http://74.249.118.115:8000/questions)
+API Users -> [Users](http://74.249.118.115:8000/users)
 
-------------
+## Guide for USERS
+
+### Gameplay Tutorial
+[Click here and learn how to PLAY WIQ](https://tinyurl.com/shmd92c2)
 
 ### Gameplay Instructions
 To play, you'll need to follow these steps:
@@ -33,8 +39,6 @@ To play, you'll need to follow these steps:
 5. Then, just select PLAY.
 
 After playing, you'll be able to view your game statistics and compare yourself with other users on a ranking.
-
-------------
 
 ## Guide for DEVELOPERS
 
