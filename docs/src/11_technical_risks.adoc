@@ -10,7 +10,7 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 |Despliegue en servidor|Puede haber errores de conexión con la máquina que despliega la aplicación. Además, si la desplegamos en servicios como Azure o AWS, la aplicación depende de una fuente externa, por lo que, podría darse la situación de no poder desplegar la web por una causa ajena.
 
-|Inconsistencias de datos| Al utilizar Wikidata para responder sacar la respuesta a preguntas, puede haber ciertas inconsistencias en los datos. Estos son actualizados por usuarios independientes y puede ocurrir que exista alguna respuesta que no tiene algún dato actualizado o incluso datos erróneos
+|Inconsistencias de datos| Al utilizar Wikidata para sacar la respuesta a preguntas, puede haber ciertas inconsistencias en los datos. Estos son actualizados por usuarios independientes y puede ocurrir que exista alguna respuesta que no tiene algún dato actualizado o incluso datos erróneos
 
 |Utilizar dependencias antiguas/inseguras| Puede ser un problema utilizar librerías o frameworks antiguos, expuestos a vulnerabilidades de seguridad o que dejen de funcionar, ya que, han sido modificados.
 
@@ -23,5 +23,7 @@ ifndef::imagesdir[:imagesdir: ../images]
 |Alta demanda de peticiones| Podría haber problemas de rendimiento si hay un número elevado de usuarios jugando al mismo tiempo. Eso podría colapsar la máquina y base de datos que dan soporte al juego.
 
 |Usabilidad en la web| Se intentará que la aplicación sea lo más usable posible y que pueda llegar al máximo número de personas y rangos de edad; evitando colores parecidos, mala legibilidad y haciendo la aplicación lo más intuitiva posible.
+
+|Rendimiento depende de Wikidata| Puede darse el caso de que al hacer una consulta a Wikidata para obtener alguna pregunta, esta petición se demore mucho tiempo, siendo esto un problema que se ha de intentar subsanar en la medida de lo posible, pero que no está en manos de los desarrolladores.
 
 |===
