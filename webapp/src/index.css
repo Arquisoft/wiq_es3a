@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --rosa: #EE0E51;
+  --rosa-oscuro: #b6214d;
+  --primero: #5680e9;
+  --primero-oscuro: #3f5daa;
+  --segundo: #CF79DC;
+  --tercero: #FF7BB4;
+  --cuarto: #FF9986;
+  --quinto: #FFC866;
+  --sexto: #F9F871;
+}
+
+body:has(.fondo-gradiente)
+{
+    background: linear-gradient(45deg, var(--cuarto) 30%, var(--segundo) 90%);
+    background-repeat: no-repeat;
+    height: 100vh;
+}

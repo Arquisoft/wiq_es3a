@@ -45,6 +45,17 @@ app.post('/adduser', async (req, res) => {
         res.status(400).json({ error: error.message }); 
     }});
 
+    app.get('/users', async (req, res) => {
+      try {
+        const users = await User.find({}, { password: 0 });
+        res.status(200).json(users); 
+      } catch (error) {
+        // Manejo de errores
+        
+      }
+   
+    });
+
 const server = app.listen(port, () => {
   console.log(`User Service listening at http://localhost:${port}`);
 });

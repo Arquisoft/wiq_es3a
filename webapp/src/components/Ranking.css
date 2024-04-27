@@ -1,0 +1,65 @@
+/* Ranking.css */
+
+
+/* Estilos personalizados para tu componente Ranking */
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* Ocupar toda la altura de la pantalla */
+    width: 100%;  /* Ocupar toda la anchura de la pantalla */
+    /*linear-gradient(0deg,#f000,#ee0e5173),linear-gradient(0deg,#f000,#ee0e5173); */
+    background-image: url('./stats4.jpeg'); 
+}
+
+
+.table-centered-content{
+    width: 100%;
+}
+
+.centered-content {
+    width: 30%;                    /* Ocupar todo el ancho */
+    background-color: #ffffff7a;
+    position: relative;
+    border-radius: 1em;
+    align-items: center;
+    text-align: center;
+    margin:3vh;
+}
+
+.label-large {
+    margin-bottom: 10vh;
+    font-weight: bold;
+  
+}
+.title{
+    margin-bottom: 4vh;
+}
+
+.select-large {
+    text-align: center;
+    width: 90%;
+    padding: 1vh;
+    font-size: 1rem;
+    border-radius: 4px;
+    margin-bottom: 5vh;
+}
+
+table {
+    width: 100%;
+    border-radius: 8px;
+    border-collapse: separate; /* Usar 'separate' para poder especificar 'border-spacing' */
+    border-spacing: 2vh; /* Espacio horizontal y vertical entre las celdas */
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .table th,
+  .table td {
+    color: #EE0E50; 
+    padding: 2vh 3vh; /* espaciado de las celdas */
+    border-bottom: vh solid #EE0E51; /* Borde inferior */
+  }
+
+
+

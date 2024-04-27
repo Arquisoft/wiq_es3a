@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
 import App from './App';
+import { render, waitFor, screen } from '@testing-library/react';
 
-test('renders learn react link', () => {
+test('renders primera', async() => {
   render(<App />);
-  const linkElement = screen.getByText(/Welcome to the 2024 edition of the Software Architecture course/i);
+  
+  const linkElement = screen.getByText(/Saber y Ganar: El Juego/i);
   expect(linkElement).toBeInTheDocument();
 });

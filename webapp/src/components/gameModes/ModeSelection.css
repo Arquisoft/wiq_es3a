@@ -1,0 +1,40 @@
+.modos-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #e8c7d6;
+    margin-top: 2em;
+    border-radius: 1em;
+  }
+  
+  .modos-container h2{
+    text-align: center;
+    background-color: #ffffff85;
+    border-radius: 0.5em;
+    font-weight: 800;
+    font-size: 1.8rem;
+  }
+  
+  .modos-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .modo-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .modo-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .modo-button.selected {
+    background-color: var(--rosa) !important;
+    color: #fff;
+  }

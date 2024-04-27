@@ -34,17 +34,19 @@ See https://docs.arc42.org/section-2/[Architecture Constraints] in the arc42 doc
 | GitHub |Usaremos GitHub para mantener el proyecto en un repositorio remoto, comunicarnos, asignar tareas y documentar las actas.
 | Docker | El proyecto será desplegado a través de Docker.
 |Pruebas | Deberán ser implementadas pruebas de cobertura, aceptación y carga.
+|Despliegue | El sistema debe estar desplegado en un servidor, una máquina virtual.
+
 |===
 
 === Restricciones organizativas
 [options="header",cols="1,2"]
 |===
 |Constraint|Explicación
-| Miembros del grupo | El proyecto se llevará a cabo en un equipo con 6 miembros que trabajarán de forma conjunta.
+| Miembros del grupo | El proyecto se llevará a cabo en un equipo con 5-6 miembros que trabajarán de forma conjunta.
 | Entregas |El trabajo conlleva un calendario de entregas específico: +
 * Documentación 0.1 será entregada en la semana 4. +
 * Prototipo 0.1 en la semana 7. +
-* Prototype 1.0 y documentación 1.0 en la semana 10. +
+* Prototipo 1.0 y documentación 1.0 en la semana 10. +
 * Prototipo 1.1 y documentación 1.1 en la semana 13.
 
 | Reuniones y acta | Es obligatorio hacer una reunión de equipo en cada clase y tomar su correspondiente acta.
@@ -56,7 +58,9 @@ See https://docs.arc42.org/section-2/[Architecture Constraints] in the arc42 doc
 |Constraint|Explicación
 | Documentación | Documentaremos el proyecto siguiendo el modelo arc42.
 | Lenguajes |Se usará NodeJS y React para implementar los distintos requisitos de la aplicación.
-
 | Base de datos | Se usará MongoDB como base de datos del proyecto.
 | Idioma | La documentación será en español.
+| Actas | Se rotará el miembro que toma las actas.
+| Ramas | Cada miembro del equipo trabajará en su rama de GitHub.
+| Máquina | La máquina será desplegada en Azure.
 |===

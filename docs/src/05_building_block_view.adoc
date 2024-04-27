@@ -5,11 +5,8 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 == Building Block View
 
-[role="arc42help"]
-
 === Whitebox Overall System
 
-[role="arc42help"]
 
 ==== Overview Diagram
 image:05_DiagramaL1.png[Diagrama nivel 1]
@@ -23,32 +20,35 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 
 
 
+
 ==== Contained Building Blocks
 [options="header",cols="1,2"]
 |===
 |Nombre|Descripción
 | Usuario |Actor principal, interatúa con la aplicación y proporciona sus datos.
-| Aplicación |Se trata de nuestra aplicación, explicada en detalle más adelante.
+| WIQ |Se trata de nuestra aplicación, explicada en detalle más adelante.
 | Wikidata |Es una base de datos de conocimiento editada en colaboración.
 |Base de datos | Almacena la información necesaria para el correcto funcionamiento de la aplicación.
 |===
 ==== Important Interfaces
 Las interfaces más importantes son las encargadas de la interacción con el usuario, aunque irán cambiando a medida que el proyecto se desarrolle.
 
-[role="arc42help"]
-
 
 === Level 2
 
 image:05_DiagramaL2.png[Diagrama nivel 1]
 
-===== Building blocks
+
+==== Building blocks
 
 [options="header",cols="1,2"]
 |===
 |Nombre|Descripción
-| Frontend |Interfaz de usuario.
-| Backend |Lógica de negocio y manejo de datos.
+| Webapp |Componente que alberga la interfaz de usuario, con la que interactua el usuario, además de la lógica de la aplicación.
+| Gateway service |Maneja y dirige peticiones desde la interfaz de usuario hasta los servicios.
+| Preguntas |Contiene dos servicios relacionados con el juego: generatorService y questionService.
+| Statistics |Contiene el servicio de las estadísticas.
+| Users |Contiene dos servicios: autenticación y usuarios.
 |===
 
 
@@ -57,14 +57,30 @@ image:05_DiagramaL2.png[Diagrama nivel 1]
 image:05_DiagramaL3.png[Diagrama nivel 1]
 
 ==== Contained Building Blocks
+
+[options="header",cols="1,2"]
 |===
 |Nombre|Descripción
-| Log in |Permite al usuario registrarte o iniciar sesión.
-| Interfaz con preguntas y posibles respuestas. |Pantalla donde se mostrarán las preguntas y respuestas.
-|Estadísticas|Pantalla con las estadísticas de los usuarios. | Comprobación del registro o inicio de sesión.
-|Manejo de los datos de inicio de sesión y registro de usuario. | Generación preguntas y respuestas.| Lógica para la correcta generación de preguntas y respuestas.
-|Comprobación de respuesta.| Lógica para la correcta comprobación de la respuesta seleccionada por el usuario.
-|Generación de estadísticas.|Lógica para la correcta generación de estadísticas sobre los resultados de los usuarios.
+|Index | Raíz del proyecto.
+|App | Contiene la estructura del proyecto con enrutamiento y proveedor de autenticación.
+|Inicio| Link a registro e inicio de sesión.
+|Primera| Pantalla de bienvenida.
+|Register| Registro de usuarios.
+| Log in |Permite al usuario iniciar sesión.
+| Home |Permite al usuario comenzar a jugar.
+| Juego |Pantalla donde se mostrarán las preguntas y respuestas.
+| Game modes |Permite seleccionar un modo de juego.
+| Categories |Permite seleccionar distintas categorías para jugar.
+| Routes |Proporciona las distintas rutas existentes.
+|Statistics|Pantalla con las estadísticas de los usuarios y su correspondiente lógica. 
+|Ranking| Pantalla con el ranking de los usuarios y su correspondiente lógica.
+|Gateway service| Mananeja y dirige peticiones.
+| User service|Manejo de los datos de inicio de sesión
+| Auth service|Manejo de los datos de registro
+| Generator service| Servcio para la correcta generación de preguntas y respuestas.
+| Question service| Servicio para la correcta generación de la api de preguntas.
+|Statistics service| Servicio para el correcto manejo de estadísticas sobre los resultados de los usuarios.
+
 
 |===
 

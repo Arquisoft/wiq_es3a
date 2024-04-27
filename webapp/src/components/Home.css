@@ -1,0 +1,70 @@
+.home{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 94vh;
+    background-image: linear-gradient(to top, rgba(255, 0, 0, 0), #ee0e5173);
+}
+
+.tituloHome{
+    padding-bottom: 2vh;
+}
+
+.tituloHome_h1{
+    padding-bottom: 2vh;
+    font-weight: 800!important;
+    font-size: 3em!important;
+}
+
+.botonHome{
+    background-color: var(--rosa) !important;
+}
+
+.boxHome{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff7a;
+    padding-bottom: 1.5em;
+    border-radius: 1em;
+    padding: 20px;
+    margin-top: 2em;
+}
+
+.imagenHome{
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+}
+
+.row 
+{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff7a;
+    padding-bottom: 1.5em;
+    border-radius: 1em;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.column
+{
+    flex:50%;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+#param
+{
+    background-color: #e8c7d6;
+}
+
+#param > h2
+{
+    text-align: center;
+    background-color: #ffffff85;
+    border-radius: 0.5em;
+    font-weight: 800;
+    font-size: 1.8rem;
+}
