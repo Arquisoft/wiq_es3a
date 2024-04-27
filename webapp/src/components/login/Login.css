@@ -21,7 +21,7 @@
     margin-top: 7px;
     height: 0.5em;
     border-radius: 9em;
-    background: #EE0E51;
+    background: var(--rosa);
     align-self: center;
   }
   
@@ -33,11 +33,11 @@
   }
 
   .login-container button {
-    background-color: #EE0E51;
+    background-color: var(--rosa);
   }
   
   .login-container button:hover {
-    background-color: #A80032;
+    background-color: var(--rosa-oscuro);
   }
   body {
     height: 10vh;
@@ -62,6 +62,29 @@
   .logo-container img {
     width: 30em; 
     height: auto; 
+  }
+
+  .boton-registrar{
+    /*#1976d2*/
+    color: #1976d2!important;
+  }
+
+  .titulo{
+    background-color: #000000;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip:text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    font-weight: 900!important;
+    font-size: 3rem!important;
+  }
+
+  .fondo-gradiente{
+    background-color: #ffffff73;
+    border-radius: 25px;
+    padding-bottom: 50px;
   }
   
   

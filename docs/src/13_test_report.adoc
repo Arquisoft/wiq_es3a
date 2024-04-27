@@ -1,0 +1,100 @@
+ifndef::imagesdir[:imagesdir: ../images]
+
+[[section-test-report]]
+== Informe de pruebas
+
+=== Pruebas unitarias
+
+Para este proyecto decidimos hacer pruebas unitarias para cada servicio creado y para cada componente de react del frontend.
+Estas pruebas se ejecutan obligatoriamente al realizar un commit en la rama main del repositorio y al hacer una release permitiendo asegurarnos del correcto funcionamiento de la aplicación.
+
+==== Pruebas servicios
+
+Este proyecto consta de 6 servicios, Gateway , User , Auth , Generator , Question y Statistics.
+
+Gateway::
+
+Las pruebas de este servicio constan de probar que las diferentes rutas al resto de servicios estén disponibles y retornen los datos correctos. Ademas también se prueban casos de errores
+En total se realizan 46 pruebas.
+
+User:: 
+
+Para este servicio se prueba que se registre bien los usuarios almacenando sus datos. También se prueba caso negativo de que no se introduzcan todos los campos.
+En total se realizan 3 pruebas.
+Auth::
+
+Este servicio se prueba que el acceso de usuario sea correcto cuando los credenciales sean correctas. En total se realizan 3 pruebas.
+
+Generartor::
+
+Las pruebas unitarias de este servicio constan de probar que a partir de las plantillas de preguntas se haga la consulta a la api y se le de el formato correcto al resultado.
+En total se realizan 10 pruebas.
+
+Question:: 
+
+Las pruebas de este servicio nos asegura que sea capaz de retornar las diferentes preguntas generadas. Tiene una única prueba.
+
+Statistics:: 
+
+Las pruebas unitarias de este servicio se encargan de probar a obtener las estadísticas del los usuarios con el formato correcto.En total se realizan 7 pruebas.
+
+==== Pruebas Webapp
+
+En la aplicación se realizó pruebas en cada uno de los componentes de react donde se realizan 12 conjuntos de prueba con un total de 40 pruebas ejecutadas.
+
+=== Pruebas de aceptación
+
+Se han realizado un total de 2 pruebas de aceptación con puppeteer. Las pruebas fueron realizadas para la acción de iniciar sesión y de registro.
+
+Registro:: 
+
+Para probar el registro se rellenan todos los campos del registro y se presiona el botón, posteriormente se comprueba que exista el usuario en la base de datos.
+
+Inicio de sesión::
+
+Para el inicio de sesión se introduce un usuario en la base de datos y posteriormente se prueba el registro introduciendo el usuario y la contraseña. 
+
+
+=== Cobertura de código 
+
+Con las pruebas unitarias se puede observar el porcentaje del código se ha cubierto con estas. Para este proyecto decidimos usar el quality gate de aws donde se necesita mas de un 80% de cobertura. Conseguimos una cobertura total del 83,8% y de nuevo código generado 82,2%
+
+A continuación se mostrara cobertura de los diferentes módulos servicios y de la aplicación.
+
+Gateway::
+image:coverage1.png[Cobertura Gateway]
+
+User::
+image:coverage2.png[Cobertura User]
+
+Auth::
+image:coverage3.png[Cobertura Auth]
+
+Generartor::
+image:coverage4.png[Cobertura Generartor]
+
+Question::
+image:coverage5.png[Cobertura Question]
+
+Statistics::
+image:coverage6.png[Cobertura Statistics]
+
+Webapp::
+image:coverage7.png[Cobertura Webapp]
+
+
+=== Pruebas de carga 
+
+La prueba de carga han sido realizadas con gatlin y esta consta de iniciar sesión y jugar una partida enviando durante 60 segundos 2 usuarios por segundo.
+
+En los resultados obtenemos que todas las peticiones realizadas al servidor, que son 4270 se realizaron en menos de 800ms con 98% de respuestas correctas y 2% de respuestas que fallan como se muestra en la siguiente imagen. 
+image:respuestas.png[Tiempos de respuesta]
+
+Como pico de usuarios se obtienen 117 usuarios activos y durante 66 segundos hay más de 50 usuarios simultáneos. como se muestra en la siguiente gráfica.
+image:pico.png[Pico usuarios]
+
+En la siguiente gráfica vemos la distribución en el tiempo de respuesta donde observamos que hay dos picos uno en el menor y otro en 252ms por lo que se puede concluir que los tiempos excesivos no es algo común.
+image:distribucion.png[Distribución tiempo de respuesta]
+
+Finalmente, en las gráficas posteriores se muestra el número de peticiones y respuestas en relación con el tiempo y el número de usuarios en el sistema. Se ve que el número de pericones va en relación con el número de usuarios y en las respuestas los diferentes valles que hay son fallos por lo general. 
+image:peticiones.png[Peticiones y respuestas]

@@ -72,9 +72,31 @@ const QuizGame = () => {
             setAnswerSelected(false);
             setButtonsDisabled(false);
         }
-    }, [questionsNumber, isToastVisible, apiEndpoint, auxQuestion, token]);
+    }, [questionsNumber, isToastVisible, apiEndpoint, auxQuestion, token, numberOfQuestions]);
 
     useEffect(() => {
+        const saveStatistics = (statisticsData) => {
+            fetch( `${apiEndpoint}/addStatistic`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(statisticsData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Error al enviar estadísticas al servidor');
+                }
+            })
+            .then(data => {
+                // Procesar la respuesta del servidor si es necesario
+            })
+            .catch(error => {
+                console.error('Error al enviar estadísticas al servidor:', error);
+            });
+        };
         // Verificar si el juego ha terminado
         if (isFinished) {
           const rigthAnswers = answeredQuestions.filter(question => question.isCorrect).length;
@@ -92,7 +114,7 @@ const QuizGame = () => {
           // Guardar estadísticas
           saveStatistics(statisticsData);
         }
-      }, [isFinished, answeredQuestions, numberOfQuestions, time, totalTime]);
+      }, [isFinished, answeredQuestions, numberOfQuestions, time, totalTime,apiEndpoint]);
       
 
     const handleAnswer = (answer) => {
@@ -138,30 +160,6 @@ const QuizGame = () => {
         }
        
     }
-    
-    const saveStatistics = (statisticsData) => {
-        fetch( `${apiEndpoint}/addStatistic`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(statisticsData)
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Error al enviar estadísticas al servidor');
-            }
-        })
-        .then(data => {
-            // Procesar la respuesta del servidor si es necesario
-        })
-        .catch(error => {
-            console.error('Error al enviar estadísticas al servidor:', error);
-        });
-    };
-
 
     const generateAuxQuestion = async () => {
         try {

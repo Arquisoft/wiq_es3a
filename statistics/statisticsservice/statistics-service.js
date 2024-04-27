@@ -64,14 +64,17 @@ app.post('/addStatistic', async (req, res) => {
         const users = await Statistic.find(); // Obtener todos los usuarios
         let roundedAccuracy=0;
         const rankedUsers = users.map(user => {
-          const accuracy = (user.rigthAnswers / (user.gamesPlayed*10)) * 100; // Calcular porcentaje de aciertos
+          let roundedAccuracy;
+          if(user.wrongAnswers === 0 && user.rigthAnswers !=0) return { username: user.username, accuracy: 100 }; // Evitar división por cero (no se han jugado partidas
+          const accuracy = (user.rigthAnswers / (user.wrongAnswers + user.rigthAnswers )) * 100; // Calcular porcentaje de aciertos
           if (isNaN(accuracy)) {
             roundedAccuracy = 0; // Asignar 0 si accuracy es NaN
         } else {
            roundedAccuracy = accuracy % 1 === 0 ? accuracy : accuracy.toFixed(2); // Redondear solo si tiene decimales
         }
           return { username: user.username, accuracy: roundedAccuracy }; // Crear objeto con nombre de usuario y porcentaje de aciertos redondeado si es necesario
-       });
+       
+        });
         const sortedRanking = rankedUsers.sort((a, b) => b.accuracy - a.accuracy); // Ordenar usuarios por porcentaje de aciertos
         res.json(sortedRanking); // Devolver ranking ordenado
       } catch (err) {

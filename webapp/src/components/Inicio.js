@@ -16,15 +16,15 @@ function Inicio() {
   };
 
   return (
-    <Container>
+    <Container className='fondo-gradiente' maxWidth="md">
         <CssBaseline />
-      <Typography component="h1" variant="h5" align="center"  sx={{ marginTop: 2, fontWeight:"bold" }}>
+      <Typography className='titulo' component="h1" variant="h5" align="center"  sx={{ marginTop: 2, marginBottom: 2, fontWeight:"bold"}}>
         Welcome to WIQ
       </Typography>
       {showLogin ? <Login /> : <AddUser />}
       <Typography component="div" align="center" sx={{ marginTop: 2 }}>
         {showLogin ? (
-          <Link name="gotoregister" component="button" color={'#ffffff'} variant="body2" onClick={handleToggleView}>
+          <Link className='boton-registrar' name="gotoregister" component="button" color={'#000000'} variant="body2" onClick={handleToggleView}>
             Don't have an account? Register here.
           </Link>
         ) : (

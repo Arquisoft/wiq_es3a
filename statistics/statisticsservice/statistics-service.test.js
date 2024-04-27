@@ -110,16 +110,16 @@ describe('GET /ranking/accuracy', () => {
     expect(response.status).toBe(200);
 
     // Verificar el cuerpo de la respuesta para testuser
-    expect(response.body[0]).toHaveProperty('username', 'testuser');
+    expect(response.body[0]).toHaveProperty('username', 'user1');
     expect(response.body[0]).toHaveProperty('accuracy', 100); 
 
     // Verificar el cuerpo de la respuesta para user1
-    expect(response.body[1]).toHaveProperty('username', 'user1');
-    expect(response.body[1]).toHaveProperty('accuracy', 8);
+    expect(response.body[1]).toHaveProperty('username', 'user2');
+    expect(response.body[1]).toHaveProperty('accuracy', 100);
 
     // Verificar el cuerpo de la respuesta para user2
-    expect(response.body[2]).toHaveProperty('username', 'user2');
-    expect(response.body[2]).toHaveProperty('accuracy', '7.50'); 
+    expect(response.body[2]).toHaveProperty('username', 'testuser');
+    expect(response.body[2]).toHaveProperty('accuracy', '71.43'); 
   });
 
 

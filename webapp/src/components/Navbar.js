@@ -32,7 +32,7 @@ const Navbar = () => {
 
             <li className="nav-item">
               <NavLink to={process.env.RUTA_LOGIN || '/login'} className="nav__link">
-                Login
+                Logout
               </NavLink>
             </li>
 
