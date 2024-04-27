@@ -28,4 +28,22 @@ ifndef::imagesdir[:imagesdir: ../images]
 |Stakeholders
 |Son el conjunto de personas o entidades que tienen interés o influencia de alguna manera sobre un proyecto
 
+|NodeJS
+|Es un entorno de tiempo de ejecución de JavaScript que permite ejecutar código JavaScript en el servidor. Node.js es especialmente conocido por su capacidad para crear aplicaciones de red escalables y de alta velocidad.
+
+|React
+|Es una biblioteca de JavaScript que se utiliza para construir interfaces de usuario (UI) interactivas y dinámicas para aplicaciones web y móviles.
+
+|Integración continua
+|Es una práctica de desarrollo de software que implica integrar cambios de código en un repositorio compartido de forma frecuente y regular, idealmente varias veces al día.
+
+|Despliegue continuo 
+|Implica automatizar el proceso de implementación de software en un entorno de producción una vez que se pasa satisfactoriamente a través de las pruebas automatizadas.
+
+|Automatización
+|Es el proceso de configurar y programar tareas repetitivas para que se ejecuten de forma automática sin intervención manual. Esto implica definir y ejecutar flujos de trabajo que realizan acciones específicas, como pruebas de código, compilación de aplicaciones, despliegue automático...
+
+|GitHub
+|Es una plataforma de desarrollo de software basada en la web que ofrece control de versiones y herramientas de colaboración para desarrolladores.
+
 |===
