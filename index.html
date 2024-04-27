@@ -506,6 +506,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-technical-risks">11. Riesgos y deudas técnicas</a></li>
 <li><a href="#section-glossary">12. Glosario</a></li>
+<li><a href="#section-test-report">13. Informe de pruebas</a>
+<ul class="sectlevel2">
+<li><a href="#_pruebas_unitarias">13.1. Pruebas unitarias</a></li>
+<li><a href="#_pruebas_de_aceptación">13.2. Pruebas de aceptación</a></li>
+<li><a href="#_cobertura_de_código">13.3. Cobertura de código</a></li>
+<li><a href="#_pruebas_de_carga">13.4. Pruebas de carga</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -726,6 +734,10 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pruebas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Deberán ser implementadas pruebas de cobertura, aceptación y carga.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Despliegue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema debe estar desplegado en un servidor, una máquina virtual.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -745,7 +757,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Miembros del grupo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo en un equipo con 6 miembros que trabajarán de forma conjunta.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo en un equipo con 5-6 miembros que trabajarán de forma conjunta.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Entregas</p></td>
@@ -791,6 +803,18 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Idioma</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La documentación será en español.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se rotará el miembro que toma las actas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ramas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cada miembro del equipo trabajará en su rama de GitHub.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Máquina</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La máquina será desplegada en Azure.</p></td>
 </tr>
 </tbody>
 </table>
@@ -945,7 +969,7 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 <td class="tableblock halign-left valign-top"><p class="tableblock">Actor principal, interatúa con la aplicación y proporciona sus datos.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Aplicación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WIQ</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se trata de nuestra aplicación, explicada en detalle más adelante.</p></td>
 </tr>
 <tr>
@@ -986,12 +1010,24 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Frontend</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interfaz de usuario.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Webapp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Componente que alberga la interfaz de usuario, con la que interactua el usuario, además de la lógica de la aplicación.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Backend</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lógica de negocio y manejo de datos.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gateway service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maneja y dirige peticiones desde la interfaz de usuario hasta los servicios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preguntas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contiene dos servicios relacionados con el juego: generatorService y questionService.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Statistics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contiene el servicio de las estadísticas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contiene dos servicios: autenticación y usuarios.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1021,12 +1057,24 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 <td class="tableblock halign-left valign-top"><p class="tableblock">Raíz del proyecto.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">App</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contiene la estructura del proyecto con enrutamiento y proveedor de autenticación.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Inicio</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Link a registro e inicio de sesión.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Primera</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla de bienvenida.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Register</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registro de usuarios.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Log in</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario registrarte o iniciar sesión.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario iniciar sesión.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Home</p></td>
@@ -1037,24 +1085,28 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla donde se mostrarán las preguntas y respuestas.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Estadísticas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla con las estadísticas de los usuarios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Game modes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite seleccionar un modo de juego.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Navbar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Barra de menú.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Categories</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite seleccionar distintas categorías para jugar.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Primera</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla de bienvenida.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Routes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proporciona las distintas rutas existentes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Registro de usuarios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Statistics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla con las estadísticas de los usuarios y su correspondiente lógica.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ranking</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla con el ranking de los usuarios y su correspondiente lógica.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gateway service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mnaneja y dirige peticiones.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mananeja y dirige peticiones.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User service</p></td>
@@ -1065,16 +1117,16 @@ Esto nos advierte de una división clara del proyecto en frontend, con la interf
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manejo de los datos de registro</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generación preguntas y respuestas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lógica para la correcta generación de preguntas y respuestas.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generator service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servcio para la correcta generación de preguntas y respuestas.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Esquema</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Plantilla para la generación de preguntas.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Question service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio para la correcta generación de la api de preguntas.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cálculo de estadísticas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lógica para el correcto manejo y cálculo de estadísticas sobre los resultados de los usuarios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Statistics service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio para el correcto manejo de estadísticas sobre los resultados de los usuarios.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1465,13 +1517,150 @@ opción para guardarlos es usando una base de datos NoSQL, cosa de la MongoDB se
 </tr>
 </tbody>
 </table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-test-report">13. Informe de pruebas</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_pruebas_unitarias">13.1. Pruebas unitarias</h3>
+<div class="paragraph">
+<p>Para este proyecto decidimos hacer pruebas unitarias para cada servicio creado y para cada componente de react del frontend.
+Estas pruebas se ejecutan obligatoriamente al realizar un commit en la rama main del repositorio y al hacer una release permitiendo asegurarnos del correcto funcionamiento de la aplicación.</p>
+</div>
+<div class="sect3">
+<h4 id="_pruebas_servicios">13.1.1. Pruebas servicios</h4>
+<div class="paragraph">
+<p>Este proyecto consta de 6 servicios, Gateway , User , Auth , Generator , Question y Statistics.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Gateway</dt>
+<dd>
+<p>Las pruebas de este servicio constan de probar que las diferentes rutas al resto de servicios estén disponibles y retornen los datos correctos. Ademas también se prueban casos de errores
+En total se realizan 46 pruebas.</p>
+</dd>
+<dt class="hdlist1">User</dt>
+<dd>
+<p>Para este servicio se prueba que se registre bien los usuarios almacenando sus datos. También se prueba caso negativo de que no se introduzcan todos los campos.
+En total se realizan 3 pruebas.</p>
+</dd>
+<dt class="hdlist1">Auth</dt>
+<dd>
+<p>Este servicio se prueba que el acceso de usuario sea correcto cuando los credenciales sean correctas. En total se realizan 3 pruebas.</p>
+</dd>
+<dt class="hdlist1">Generartor</dt>
+<dd>
+<p>Las pruebas unitarias de este servicio constan de probar que a partir de las plantillas de preguntas se haga la consulta a la api y se le de el formato correcto al resultado.
+En total se realizan 10 pruebas.</p>
+</dd>
+<dt class="hdlist1">Question</dt>
+<dd>
+<p>Las pruebas de este servicio nos asegura que sea capaz de retornar las diferentes preguntas generadas. Tiene una única prueba.</p>
+</dd>
+<dt class="hdlist1">Statistics</dt>
+<dd>
+<p>Las pruebas unitarias de este servicio se encargan de probar a obtener las estadísticas del los usuarios con el formato correcto.En total se realizan 7 pruebas.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pruebas_webapp">13.1.2. Pruebas Webapp</h4>
+<div class="paragraph">
+<p>En la aplicación se realizó pruebas en cada uno de los componentes de react donde se realizan 12 conjuntos de prueba con un total de 40 pruebas ejecutadas.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pruebas_de_aceptación">13.2. Pruebas de aceptación</h3>
+<div class="paragraph">
+<p>Se han realizado un total de 2 pruebas de aceptación con puppeteer. Las pruebas fueron realizadas para la acción de iniciar sesión y de registro.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Registro</dt>
+<dd>
+<p>Para probar el registro se rellenan todos los campos del registro y se presiona el botón, posteriormente se comprueba que exista el usuario en la base de datos.</p>
+</dd>
+<dt class="hdlist1">Inicio de sesión</dt>
+<dd>
+<p>Para el inicio de sesión se introduce un usuario en la base de datos y posteriormente se prueba el registro introduciendo el usuario y la contraseña.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cobertura_de_código">13.3. Cobertura de código</h3>
+<div class="paragraph">
+<p>Con las pruebas unitarias se puede observar el porcentaje del código se ha cubierto con estas. Para este proyecto decidimos usar el quality gate de aws donde se necesita mas de un 80% de cobertura. Conseguimos una cobertura total del 83,8% y de nuevo código generado 82,2%</p>
+</div>
+<div class="paragraph">
+<p>A continuación se mostrara cobertura de los diferentes módulos servicios y de la aplicación.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Gateway</dt>
+<dd>
+<p><span class="image"><img src="./images/coverage1.png" alt="Cobertura Gateway"></span></p>
+</dd>
+<dt class="hdlist1">User</dt>
+<dd>
+<p><span class="image"><img src="./images/coverage2.png" alt="Cobertura User"></span></p>
+</dd>
+<dt class="hdlist1">Auth</dt>
+<dd>
+<p><span class="image"><img src="./images/coverage3.png" alt="Cobertura Auth"></span></p>
+</dd>
+<dt class="hdlist1">Generartor</dt>
+<dd>
+<p><span class="image"><img src="./images/coverage4.png" alt="Cobertura Generartor"></span></p>
+</dd>
+<dt class="hdlist1">Question</dt>
+<dd>
+<p><span class="image"><img src="./images/coverage5.png" alt="Cobertura Question"></span></p>
+</dd>
+<dt class="hdlist1">Statistics</dt>
+<dd>
+<p><span class="image"><img src="./images/coverage6.png" alt="Cobertura Statistics"></span></p>
+</dd>
+<dt class="hdlist1">Webapp</dt>
+<dd>
+<p><span class="image"><img src="./images/coverage7.png" alt="Cobertura Webapp"></span></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pruebas_de_carga">13.4. Pruebas de carga</h3>
+<div class="paragraph">
+<p>La prueba de carga han sido realizadas con gatlin y esta consta de iniciar sesión y jugar una partida enviando durante 60 segundos 2 usuarios por segundo.</p>
+</div>
+<div class="paragraph">
+<p>En los resultados obtenemos que todas las peticiones realizadas al servidor, que son 4270 se realizaron en menos de 800ms con 98% de respuestas correctas y 2% de respuestas que fallan como se muestra en la siguiente imagen.
+<span class="image"><img src="./images/respuestas.png" alt="Tiempos de respuesta"></span></p>
+</div>
+<div class="paragraph">
+<p>Como pico de usuarios se obtienen 117 usuarios activos y durante 66 segundos hay más de 50 usuarios simultáneos. como se muestra en la siguiente gráfica.
+<span class="image"><img src="./images/pico.png" alt="Pico usuarios"></span></p>
+</div>
+<div class="paragraph">
+<p>En la siguiente gráfica vemos la distribución en el tiempo de respuesta donde observamos que hay dos picos uno en el menor y otro en 252ms por lo que se puede concluir que los tiempos excesivos no es algo común.
+<span class="image"><img src="./images/distribucion.png" alt="Distribución tiempo de respuesta"></span></p>
+</div>
+<div class="paragraph">
+<p>Finalmente, en las gráficas posteriores se muestra el número de peticiones y respuestas en relación con el tiempo y el número de usuarios en el sistema. Se ve que el número de pericones va en relación con el número de usuarios y en las respuestas los diferentes valles que hay son fallos por lo general.
+<span class="image"><img src="./images/peticiones.png" alt="Peticiones y respuestas"></span></p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 8.2 EN<br>
-Last updated 2024-04-08 09:28:08 +0200
+Last updated 2024-04-27 10:31:19 +0200
 </div>
 </div>
 </body>
