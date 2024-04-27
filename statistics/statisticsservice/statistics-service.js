@@ -62,6 +62,7 @@ app.post('/addStatistic', async (req, res) => {
     app.get('/ranking/accuracy', async (req, res) => {
       try {
         const users = await Statistic.find(); // Obtener todos los usuarios
+        let roundedAccuracy=0;
         const rankedUsers = users.map(user => {
           let roundedAccuracy;
           if(user.wrongAnswers === 0 & user.rigthAnswers !=0) return { username: user.username, accuracy: 100 }; // Evitar división por cero (no se han jugado partidas
