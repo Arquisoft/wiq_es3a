@@ -65,7 +65,7 @@ app.post('/addStatistic', async (req, res) => {
         let roundedAccuracy=0;
         const rankedUsers = users.map(user => {
           let roundedAccuracy;
-          if(user.wrongAnswers === 0 & user.rigthAnswers !=0) return { username: user.username, accuracy: 100 }; // Evitar división por cero (no se han jugado partidas
+          if(user.wrongAnswers === 0 && user.rigthAnswers !=0) return { username: user.username, accuracy: 100 }; // Evitar división por cero (no se han jugado partidas
           const accuracy = (user.rigthAnswers / (user.wrongAnswers + user.rigthAnswers )) * 100; // Calcular porcentaje de aciertos
           if (isNaN(accuracy)) {
             roundedAccuracy = 0; // Asignar 0 si accuracy es NaN
