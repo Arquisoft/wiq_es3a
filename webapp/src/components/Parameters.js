@@ -29,7 +29,7 @@ function Parameters(){
 
   return (
     <Container className='boxHome' maxWidth="xs" id='param'>
-        <h2>
+        <h2 className='titulos-menu-home'>
           Parámetros Actuales
         </h2>
         <ul>
@@ -44,10 +44,10 @@ function Parameters(){
         defaultValue={"9|150"}
         value={selectedValue} 
         onChange={cambioPara}>
-            <FormControlLabel value="9|120" control={<Radio />} label="Predeterminado" id="predeterminado"/>              
-            <FormControlLabel value="4|60" control={<Radio />} label="Partida Corta" id="corta"/>                           
-            <FormControlLabel value="11|150" control={<Radio />} label="Partida Media" id="media"/>                          
-            <FormControlLabel value="19|240" control={<Radio />} label="Partida Larga" id="larga"/>           
+            <FormControlLabel value="9|120" control={<Radio sx={{color: 'var(--rosa)','&.Mui-checked': {color: 'var(--rosa)',},}} />} label="Predeterminado" id="predeterminado"/>              
+            <FormControlLabel value="4|60" control={<Radio sx={{color: 'var(--rosa)','&.Mui-checked': {color: 'var(--rosa)',},}}/>} label="Partida Corta" id="corta"/>                           
+            <FormControlLabel value="11|150" control={<Radio sx={{color: 'var(--rosa)','&.Mui-checked': {color: 'var(--rosa)',},}}/>} label="Partida Media" id="media"/>                          
+            <FormControlLabel value="19|240" control={<Radio sx={{color: 'var(--rosa)','&.Mui-checked': {color: 'var(--rosa)',},}}/>} label="Partida Larga" id="larga"/>           
         </RadioGroup>
         </FormControl>        
     </Container>
