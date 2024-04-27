@@ -8,6 +8,6 @@ test('renders navbar', () => {
   const linkElement = screen.getByText("Home");
   expect(linkElement).toBeInTheDocument();
 
-  const linkElement2 = screen.getByText("Login");
+  const linkElement2 = screen.getByText("Ranking");
   expect(linkElement2).toBeInTheDocument();
 });

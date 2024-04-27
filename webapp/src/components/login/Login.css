@@ -21,7 +21,7 @@
     margin-top: 7px;
     height: 0.5em;
     border-radius: 9em;
-    background: var(--primero);
+    background: var(--rosa);
     align-self: center;
   }
   
@@ -33,11 +33,11 @@
   }
 
   .login-container button {
-    background-color: var(--primero);
+    background-color: var(--rosa);
   }
   
   .login-container button:hover {
-    background-color: var(--primero-oscuro);
+    background-color: var(--rosa-oscuro);
   }
   body {
     height: 10vh;
@@ -65,7 +65,8 @@
   }
 
   .boton-registrar{
-    color:#1976d2!important;
+    /*#1976d2*/
+    color: #1976d2!important;
   }
 
   .titulo{

@@ -63,7 +63,7 @@ const AddUser = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs"  className='container'>
+    <Container component="main" maxWidth="xs"  className='container-login'>
       <div className="register-container" >
         <div className='text'>
           <Typography variant="h4">

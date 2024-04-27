@@ -8,8 +8,10 @@
   
   .modos-container h2{
     text-align: center;
-    background-color: #fff;
+    background-color: #ffffff85;
     border-radius: 0.5em;
+    font-weight: 800;
+    font-size: 1.8rem;
   }
   
   .modos-list {

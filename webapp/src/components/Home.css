@@ -33,7 +33,7 @@
 
 .imagenHome{
     padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-bottom: 5vh;
 }
 
 .row 
@@ -63,6 +63,8 @@
 #param > h2
 {
     text-align: center;
-    background-color: #fff;
+    background-color: #ffffff85;
     border-radius: 0.5em;
+    font-weight: 800;
+    font-size: 1.8rem;
 }
