@@ -1,21 +1,52 @@
-# wiq_es3a 
- 
+# wiq_es3a
+
 [![Deploy on release](https://github.com/Arquisoft/wiq_es3a/actions/workflows/release.yml/badge.svg)](https://github.com/Arquisoft/wiq_es3a/actions/workflows/release.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_wiq_es3a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_wiq_es3a)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_wiq_es3a&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_wiq_es3a)
 
-This is a base repo for the [Software Architecture course](http://arquisoft.github.io/) in [2023/2024 edition](https://arquisoft.github.io/course2324.html). 
+Contributors:
+- <a href="https://github.com/uo287998"><img src="https://img.shields.io/badge/Ángel-fuchsia?logo=github"></a>
+- <a href="https://github.com/UO289659"><img src="https://img.shields.io/badge/Carmen-fuchsia?logo=github"></a>
+- <a href="https://github.com/UO285267"><img src="https://img.shields.io/badge/Felipe-fuchsia?logo=github"></a>
+- <a href="https://github.com/UO277382"><img src="https://img.shields.io/badge/Laureano-fuchsia?logo=github"></a>
+- <a href="https://github.com/marcosMachadoMenendez"><img src="https://img.shields.io/badge/Marcos-fuchsia?logo=github"></a>
+
+## Guide for USERS
+You can access the game through the following URL -> [WIQ_es3a](http://74.249.118.115:3000 "WIQ")
+
+------------
+
+###Gameplay Instructions
+To play, you'll need to follow these steps:
+1. If you're not registered, you'll need to sign up.
+2. Once registered, you'll need to log in.
+3. On the main page, you can select the game parameters you want.
+   3.1. Short game
+   3.2. Medium game
+   3.3. Long game
+   3.4. Default game
+4. You'll be able to select the game mode you want.
+   4.1. Battery of Wise Men
+   4.2. Discovering Cities
+   4.3. Discarding
+   4.4. Images Only
+5. Then, just select PLAY.
+
+After playing, you'll be able to view your game statistics and compare yourself with other users on a ranking.
+
+------------
+
+## Guide for DEVELOPERS
 
 This repo is a basic application composed of several components.
 
 - **Gateway service**. Express service that is exposed to the public and serves as a proxy to the two previous ones.
 - **User service**. Express service that handles the insertion of new users in the system.
 - **Auth service**. Express service that handles the authentication of users.
+- **Generator service**. Express service that handles the selection and execution of questions.
+- **Statistics service**. Express service that handles the statistics of users in the game.
+- **API services**. Services that provide data on all generated questions and all users.
 - **Webapp**. React web application that uses the gateway service to allow basic login and new user features.
-
-Both the user and auth service share a Mongo database that is accessed with mongoose.
-
-## Quick start guide
 
 ### Using docker
 
