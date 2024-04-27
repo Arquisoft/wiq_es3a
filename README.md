@@ -16,7 +16,7 @@ You can access the game through the following URL -> [WIQ_es3a](http://74.249.11
 
 ------------
 
-###Gameplay Instructions
+### Gameplay Instructions
 To play, you'll need to follow these steps:
 1. If you're not registered, you'll need to sign up.
 2. Once registered, you'll need to log in.
