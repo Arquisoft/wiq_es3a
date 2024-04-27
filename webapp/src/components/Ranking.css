@@ -1,12 +1,11 @@
 /* Ranking.css */
 
-
-/* Estilos personalizados para tu componente Ranking */
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh; /* Ocupar toda la altura de la pantalla */
+    height: 100%; /* Ocupa al menos el 100% del viewport */
+    min-height: 100vh; /* Ocupa al menos el 100vh, pero se expande si el contenido es más alto */
     width: 100%;  /* Ocupar toda la anchura de la pantalla */
     /*linear-gradient(0deg,#f000,#ee0e5173),linear-gradient(0deg,#f000,#ee0e5173); */
     background-image: url('./stats4.jpeg'); 
