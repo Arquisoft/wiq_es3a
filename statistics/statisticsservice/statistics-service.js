@@ -62,11 +62,16 @@ app.post('/addStatistic', async (req, res) => {
     app.get('/ranking/accuracy', async (req, res) => {
       try {
         const users = await Statistic.find(); // Obtener todos los usuarios
+        let roundedAccuracy=0;
         const rankedUsers = users.map(user => {
           const accuracy = (user.rigthAnswers / (user.gamesPlayed*10)) * 100; // Calcular porcentaje de aciertos
-          const roundedAccuracy = accuracy % 1 === 0 ? accuracy : accuracy.toFixed(2); // Redondear solo si tiene decimales
+          if (isNaN(accuracy)) {
+            roundedAccuracy = 0; // Asignar 0 si accuracy es NaN
+        } else {
+           roundedAccuracy = accuracy % 1 === 0 ? accuracy : accuracy.toFixed(2); // Redondear solo si tiene decimales
+        }
           return { username: user.username, accuracy: roundedAccuracy }; // Crear objeto con nombre de usuario y porcentaje de aciertos redondeado si es necesario
-        });
+       });
         const sortedRanking = rankedUsers.sort((a, b) => b.accuracy - a.accuracy); // Ordenar usuarios por porcentaje de aciertos
         res.json(sortedRanking); // Devolver ranking ordenado
       } catch (err) {
