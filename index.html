@@ -574,10 +574,32 @@ For documentation of your own system you use better the <em>plain</em> version.<
 La aplicación consiste en una serie de preguntas de diferentes categorías y temas generadas automáticamente a partir de datos de Wikidata.
 Los miembros del equipo de desarrollo son los siguientes:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/UO289659">Carmen Espinosa Martínez</a></p>
+</li>
+<li>
+<p><a href="https://github.com/UO287998">Ángel David Fernández Vior</a></p>
+</li>
+<li>
+<p><a href="https://github.com/UO285267">Felipe García Gómez</a></p>
+</li>
+<li>
+<p><a href="https://github.com/UO277382">Laureano Enrique Álvarez</a></p>
+</li>
+<li>
+<p><a href="https://github.com/marcosMachadoMenendez">Marcos Mahado Menéndez</a></p>
+</li>
+</ul>
+</div>
 <div class="sect2">
 <h3 id="_requisitos">1.1. Requisitos</h3>
 <div class="ulist">
 <ul>
+<li>
+<p>Aplicación web con integración y despliegue continuos.</p>
+</li>
 <li>
 <p>Los usuarios podrán registrarse en el sistema y consultar el histórico de participaciones.</p>
 </li>
@@ -594,6 +616,25 @@ Los miembros del equipo de desarrollo son los siguientes:</p>
 <p>El sistema dispondrá de una API para acceder a la información de las preguntas y los usuarios.</p>
 </li>
 </ul>
+</div>
+<div class="sect3">
+<h4 id="_otros_requisitos">1.1.1. Otros requisitos</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>La aplicación incluye diferentes temáticas sobre las preguntas. Esto permite que los usuarios puedan elegir que temática responder.</p>
+</li>
+<li>
+<p>El sistema tiene varios modos de juego que podrán ser seleccionados por los jugadores.</p>
+</li>
+<li>
+<p>Se permite ajustar parámetros de juego como el tiempo o el número de preguntas.</p>
+</li>
+<li>
+<p>Existe un ranking de todos los usuarios de la aplicación donde se pueden ordenar por las estadísticas de cada uno.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -632,6 +673,16 @@ Los miembros del equipo de desarrollo son los siguientes:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Testeabilidad</em></strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se utilizarán pruebas unitarias para garantizar el buen funcionamiento de la aplicación.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>5</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Rendimiento</em></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uno de los objetivos será que los tiempos de carga sean rápidos, con tiempos de respuesta bajos, para lograr una experiencia fluida durante la navegación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>6</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Disponibilidad</em></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es importante que la aplicación esté disponible y accesible para los usuarios cuando la necesiten. Se intentará minimizar el tiempo de inactividad de la aplicación mediante un despliegue continuo</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -653,8 +704,8 @@ Los miembros del equipo de desarrollo son los siguientes:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Equipo de desarrollo</em></strong></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El equipo de desarrollo esta formado por los estudiantes anteriormente indicados, y deberían desarrollar la aplicación con éxito en base a la documentación entregada por la empresa.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El equipo de desarrollo esta formado por los estudiantes miembros de este grupo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deberían desarrollar la aplicación con éxito en base a los requisitos puestos por la empresa</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Usuarios</em></strong></p></td>
@@ -667,7 +718,7 @@ Los miembros del equipo de desarrollo son los siguientes:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se espera que la aplicación cumpla con los requisitos mencionados anteriormente.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RTVE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>RTVE</em></strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Empresa que contrata</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tiene las mismas expectativas que que el equipo de desarrollo que funcione todo correctamente y sin ningún fallo</p></td>
 </tr>
@@ -1441,7 +1492,7 @@ opción para guardarlos es usando una base de datos NoSQL, cosa de la MongoDB se
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Inconsistencias de datos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Al utilizar Wikidata para responder sacar la respuesta a preguntas, puede haber ciertas inconsistencias en los datos. Estos son actualizados por usuarios independientes y puede ocurrir que exista alguna respuesta que no tiene algún dato actualizado o incluso datos erróneos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Al utilizar Wikidata para sacar la respuesta a preguntas, puede haber ciertas inconsistencias en los datos. Estos son actualizados por usuarios independientes y puede ocurrir que exista alguna respuesta que no tiene algún dato actualizado o incluso datos erróneos</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Utilizar dependencias antiguas/inseguras</p></td>
@@ -1466,6 +1517,10 @@ opción para guardarlos es usando una base de datos NoSQL, cosa de la MongoDB se
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad en la web</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se intentará que la aplicación sea lo más usable posible y que pueda llegar al máximo número de personas y rangos de edad; evitando colores parecidos, mala legibilidad y haciendo la aplicación lo más intuitiva posible.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rendimiento depende de Wikidata</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puede darse el caso de que al hacer una consulta a Wikidata para obtener alguna pregunta, esta petición se demore mucho tiempo, siendo esto un problema que se ha de intentar subsanar en la medida de lo posible, pero que no está en manos de los desarrolladores.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1514,6 +1569,30 @@ opción para guardarlos es usando una base de datos NoSQL, cosa de la MongoDB se
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Stakeholders</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Son el conjunto de personas o entidades que tienen interés o influencia de alguna manera sobre un proyecto</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>NodeJS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Es un entorno de tiempo de ejecución de JavaScript que permite ejecutar código JavaScript en el servidor. Node.js es especialmente conocido por su capacidad para crear aplicaciones de red escalables y de alta velocidad.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>React</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Es una biblioteca de JavaScript que se utiliza para construir interfaces de usuario (UI) interactivas y dinámicas para aplicaciones web y móviles.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Integración continua</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Es una práctica de desarrollo de software que implica integrar cambios de código en un repositorio compartido de forma frecuente y regular, idealmente varias veces al día.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Despliegue continuo</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Implica automatizar el proceso de implementación de software en un entorno de producción una vez que se pasa satisfactoriamente a través de las pruebas automatizadas.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Automatización</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Es el proceso de configurar y programar tareas repetitivas para que se ejecuten de forma automática sin intervención manual. Esto implica definir y ejecutar flujos de trabajo que realizan acciones específicas, como pruebas de código, compilación de aplicaciones, despliegue automático&#8230;&#8203;</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>GitHub</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Es una plataforma de desarrollo de software basada en la web que ofrece control de versiones y herramientas de colaboración para desarrolladores.</em></p></td>
 </tr>
 </tbody>
 </table>
