@@ -11,11 +11,11 @@ Contributors:
 - <a href="https://github.com/UO277382"><img src="https://img.shields.io/badge/Laureano-fuchsia?logo=github"></a>
 - <a href="https://github.com/marcosMachadoMenendez"><img src="https://img.shields.io/badge/Marcos-fuchsia?logo=github"></a>
 
-Play here! -> [PLAY WIQ](http://74.249.118.115:3000 "WIQ")
+Play here! -> [PLAY WIQ](http://20.49.57.157:3000/ "WIQ")
 Access the documentation -> [DOCS](https://arquisoft.github.io/wiq_es3a/)
-Swagger API -> [API UI](http://74.249.118.115:8000/api-doc)
-API Questions -> [Questions](http://74.249.118.115:8000/questions)
-API Users -> [Users](http://74.249.118.115:8000/users)
+Swagger API -> [API UI](http://20.49.57.157:8000/api-doc)
+API Questions -> [Questions](http://20.49.57.157:8000/questions)
+API Users -> [Users](http://20.49.57.157:8000/users)
 
 ## Guide for USERS
 
